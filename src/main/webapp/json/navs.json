@@ -88,6 +88,14 @@
 			"href": "page/doc/navDoc.html",
 			"spread": false
 		}
+	],
+	"academy" : [
+		{
+			"title": "学院信息",
+			"icon": "layui-icon-release",
+			"href": "page/academy/academyManager.html",
+			"spread": false
+		}
 	]
 }
 

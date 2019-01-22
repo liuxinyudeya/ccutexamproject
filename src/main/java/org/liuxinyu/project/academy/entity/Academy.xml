@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.liuxinyu.project.academy.mapper.IAcademy_Dao">
+
+    <insert id="addAcademyByOne" parameterType="org.liuxinyu.project.academy.entity.Academy">
+        insert into aca_ma_cla_info (id, grade, academyname, academycode, department, updatetime)
+        values (#{id}, #{grade}, #{academyName}, #{academyCode}, #{department}, #{updatetime})
+    </insert>
+
+    <select id="queryAllAcademy"
+            resultType="org.liuxinyu.project.academy.entity.Academy">
+        select id,grade,academyname,academycode,updatetime
+        from aca_ma_cla_info
+        order by updatetime desc
+    </select>
+
+</mapper>

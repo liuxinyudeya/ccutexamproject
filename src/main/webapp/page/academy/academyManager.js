@@ -19,25 +19,25 @@ layui.use(['form','layer','table','laytpl'],function(){
             {type: "checkbox", fixed:"left", width:50},
             {field: 'userName', title: '用户名', minWidth:100, align:"center"},
             {field: 'userEmail', title: '用户邮箱', minWidth:200, align:'center',templet:function(d){
-                return '<a class="layui-blue" href="mailto:'+d.userEmail+'">'+d.userEmail+'</a>';
-            }},
+                    return '<a class="layui-blue" href="mailto:'+d.userEmail+'">'+d.userEmail+'</a>';
+                }},
             {field: 'userSex', title: '用户性别', align:'center'},
             {field: 'userStatus', title: '用户状态',  align:'center',templet:function(d){
-                return d.userStatus == "0" ? "正常使用" : "限制使用";
-            }},
+                    return d.userStatus == "0" ? "正常使用" : "限制使用";
+                }},
             {field: 'userGrade', title: '用户等级', align:'center',templet:function(d){
-                if(d.userGrade == "0"){
-                    return "注册会员";
-                }else if(d.userGrade == "1"){
-                    return "中级会员";
-                }else if(d.userGrade == "2"){
-                    return "高级会员";
-                }else if(d.userGrade == "3"){
-                    return "钻石会员";
-                }else if(d.userGrade == "4"){
-                    return "超级会员";
-                }
-            }},
+                    if(d.userGrade == "0"){
+                        return "注册会员";
+                    }else if(d.userGrade == "1"){
+                        return "中级会员";
+                    }else if(d.userGrade == "2"){
+                        return "高级会员";
+                    }else if(d.userGrade == "3"){
+                        return "钻石会员";
+                    }else if(d.userGrade == "4"){
+                        return "超级会员";
+                    }
+                }},
             {field: 'userEndTime', title: '最后登录时间', align:'center',minWidth:150},
             {title: '操作', minWidth:175, templet:'#userListBar',fixed:"right",align:"center"}
         ]]
@@ -60,11 +60,12 @@ layui.use(['form','layer','table','laytpl'],function(){
     });
 
     //添加用户
-    function  addUser(edit){
+    function addUser(edit){
         var index = layui.layer.open({
-            title : "添加用户",
+            title : "添加学院",
+            // 如果是iframe层
             type : 2,
-            content : "userAdd.html",
+            content : "academyAdd.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
@@ -129,7 +130,7 @@ layui.use(['form','layer','table','laytpl'],function(){
                 btnText = "已禁用";
             if(_this.text()=="已禁用"){
                 usableText = "是否确定启用此用户？",
-                btnText = "已启用";
+                    btnText = "已启用";
             }
             layer.confirm(usableText,{
                 icon: 3,
@@ -148,8 +149,8 @@ layui.use(['form','layer','table','laytpl'],function(){
                 // $.get("删除文章接口",{
                 //     newsId : data.newsId  //将需要删除的newsId作为参数传入
                 // },function(data){
-                    tableIns.reload();
-                    layer.close(index);
+                tableIns.reload();
+                layer.close(index);
                 // })
             });
         }
