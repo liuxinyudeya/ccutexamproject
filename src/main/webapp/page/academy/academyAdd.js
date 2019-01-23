@@ -1,7 +1,9 @@
 layui.use(['form', 'layer'], function () {
-    var form = layui.form
+
+    var form = layui.form,
     layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery;
+
 
     form.on("submit(addUser)", function (data) {
         //弹出loading
@@ -10,6 +12,9 @@ layui.use(['form', 'layer'], function () {
         obj.academyName = $(".academyName").val();
         obj.academyCode = $(".academyCode").val();
         obj.updatetime = new Date();
+        obj.isdelete= $(".isdelete").val();
+
+
         $.ajax({
             type: 'POST',
             url: "http://localhost:8080/demo_war_exploded/AcademyManager/addAcademy.action",

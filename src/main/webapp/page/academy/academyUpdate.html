@@ -14,6 +14,7 @@
 </head>
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;">
+<input  id="id" type="hidden">
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<label class="layui-form-label">选择年级</label>
 		<div class="layui-input-block">
@@ -52,7 +53,6 @@
 	</div>
 
 
-
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<label class="layui-form-label">描述</label>
 		<div class="layui-input-block">
@@ -61,12 +61,54 @@
 	</div>
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<div class="layui-input-block">
-			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">添加</button>
+			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">提交</button>
 			<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
 		</div>
 	</div>
 </form>
 <script type="text/javascript" src="../../layui/layui.js"></script>
-<script type="text/javascript" src="academyAdd.js"></script>
+<script>
+	layui.use(['form', 'layer'], function () {
+
+		var form = layui.form,
+		layer = parent.layer === undefined ? layui.layer : top.layer,
+				$ = layui.jquery;
+
+
+		form.on("submit(addUser)", function (data) {
+			//弹出loading
+			var obj = new Object();
+			obj.id = $("#id").val();
+			obj.grade = $(".grade").val();
+			obj.academyName = $(".academyName").val();
+			obj.academyCode = $(".academyCode").val();
+			obj.isdelete=$(".isdelete").val();
+			$.ajax({
+				type: 'POST',
+				url: "http://localhost:8080/demo_war_exploded/AcademyManager/updateAcademy.action",
+				data: obj,
+				success: function (res) {
+					console.log(res);
+					if (res.state == 0) {
+						layer.msg(res.success, {icon: 1, time: 1500});
+					} else {
+						layer.msg(res.error, {icon: 2, time: 1500});
+					}
+				}
+				, error: function () {
+					layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+				}
+
+			})
+			setTimeout(function () {
+				layer.closeAll("iframe");
+				//刷新父页面
+				parent.location.reload();
+			}, 2000);
+			return false;
+		})
+
+	})
+</script>
 </body>
 </html>

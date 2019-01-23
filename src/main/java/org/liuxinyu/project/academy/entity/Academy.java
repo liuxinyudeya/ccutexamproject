@@ -9,6 +9,23 @@ public class Academy {
     private Date updatetime;
     private String grade;
     private String department;
+    private String isdelete;
+    private String updatetime_str;
+
+    @Override
+    public String toString() {
+        return "Academy{" +
+                "id='" + id + '\'' +
+                ", academyName='" + academyName + '\'' +
+                ", academyCode='" + academyCode + '\'' +
+                ", updatetime=" + updatetime +
+                ", grade='" + grade + '\'' +
+                ", department='" + department + '\'' +
+                ", isdelete='" + isdelete + '\'' +
+                ", update_str='" + updatetime_str + '\'' +
+                '}';
+    }
+
 
     public String getId() {
         return id;
@@ -50,18 +67,6 @@ public class Academy {
         this.grade = grade;
     }
 
-    @Override
-    public String toString() {
-        return "Academy{" +
-                "id='" + id + '\'' +
-                ", academyName='" + academyName + '\'' +
-                ", academyCode='" + academyCode + '\'' +
-                ", updatetime=" + updatetime +
-                ", grade='" + grade + '\'' +
-                ", department='" + department + '\'' +
-                '}';
-    }
-
     public String getDepartment() {
         return department;
     }
@@ -69,4 +74,21 @@ public class Academy {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    public String getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(String isdelete) {
+        this.isdelete = isdelete;
+    }
+
+    public String getUpdatetime_str() {
+        return updatetime_str;
+    }
+
+    public void setUpdatetime_str(String updatetime_str) {
+        this.updatetime_str = updatetime_str;
+    }
+
 }

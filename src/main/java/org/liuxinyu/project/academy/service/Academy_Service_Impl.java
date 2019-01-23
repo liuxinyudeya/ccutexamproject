@@ -2,6 +2,7 @@ package org.liuxinyu.project.academy.service;
 
 import org.liuxinyu.project.academy.entity.Academy;
 import org.liuxinyu.project.academy.mapper.IAcademy_Dao;
+import org.liuxinyu.project.util.entity.LayuiTable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,5 +39,13 @@ public class Academy_Service_Impl implements Academy_Service_Iface {
     public List<Academy> queryAllAcademy() throws Exception {
         return iAcademy_dao.queryAllAcademy();
 
+    }
+
+    public Map<String, Object> updateAcademy(Academy academy) throws Exception {
+        HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
+        iAcademy_dao.updateAcademy(academy);
+        stringObjectHashMap.put("state", 0);// 0 成功 : 1 失败
+        stringObjectHashMap.put("success", "更新成功");
+        return stringObjectHashMap;
     }
 }
