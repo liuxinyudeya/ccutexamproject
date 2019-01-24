@@ -95,6 +95,11 @@
 			"icon": "layui-icon-release",
 			"href": "page/academy/academyManager.html",
 			"spread": false
+		},{
+			"title": "专业信息",
+			"icon": "layui-icon-release",
+			"href": "page/major/majorManager.html",
+			"spread": false
 		}
 	]
 }

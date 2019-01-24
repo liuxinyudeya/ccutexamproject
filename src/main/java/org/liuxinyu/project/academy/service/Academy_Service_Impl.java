@@ -36,8 +36,8 @@ public class Academy_Service_Impl implements Academy_Service_Iface {
         return stringObjectHashMap;
     }
 
-    public List<Academy> queryAllAcademy() throws Exception {
-        return iAcademy_dao.queryAllAcademy();
+    public List<Academy> queryAllAcademy(String key) throws Exception {
+        return iAcademy_dao.queryAllAcademy(key);
 
     }
 

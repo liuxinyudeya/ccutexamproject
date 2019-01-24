@@ -10,7 +10,7 @@ public interface IAcademy_Dao {
 
     void addAcademyByOne(Academy academy) throws Exception ;
 
-    List<Academy> queryAllAcademy () throws Exception ;
+    List<Academy> queryAllAcademy (String key) throws Exception ;
 
     void updateAcademy(Academy academy) throws Exception ;
 }

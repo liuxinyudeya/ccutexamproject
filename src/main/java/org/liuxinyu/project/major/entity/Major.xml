@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.liuxinyu.project.major.mapper.IMajor_Dao">
+    <select id="queryGradeKind" resultType="string">
+      select grade from aca_ma_cla_info  group by grade
+    </select>
+
+    <select id="queryAcademyKind" parameterType="string" resultType="org.liuxinyu.project.academy.entity.Academy">
+        select academyname,academycode from aca_ma_cla_info where grade=#{grade}
+    </select>
+</mapper>

@@ -7,7 +7,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
     //用户列表
     var tableIns = table.render({
-        elem: '#academyList',
+        elem: '#majorList',
         url: 'http://localhost:8080/demo_war_exploded/AcademyManager/queryAllAcademy.action',
         cellMinWidth: 95,
         page: true,
@@ -39,6 +39,17 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
     });
 
+    //列表操作 监听
+    table.on('tool(userList)', function (obj) {
+        var layEvent = obj.event,
+            data = obj.data;
+
+        if (layEvent === 'edit') { //编辑
+            update(data);
+        }
+    });
+
+
     //搜索【此功能需要后台配合，所以暂时没有动态效果演示】
     $(".search_btn").on("click", function () {
         if ($(".searchVal").val() != '') {
@@ -58,7 +69,6 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     // 编辑信息
     function update(edit) {
 
-
         var index = layui.layer.open({
             title: "更新学院信息",
             // 如果是iframe层
@@ -73,7 +83,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
                     body.find(".academyCode").val(edit.academyCode);  // 学院编码
                     body.find(".isdelete").val(edit.isdelete);  // 是否启用
 
-                    form.render();
+                    form.render('checkbox');
                 }
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回学院信息列表', '.layui-layer-setwin .layui-layer-close', {
@@ -92,13 +102,18 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
     }
 
+
+    $(".addNews_btn").click(function () {
+        addUser();
+    })
+
     // 添加学院
-    function addUser(edit) {
+    function addUser() {
         var index = layui.layer.open({
             title: "添加学院",
             // 如果是iframe层
             type: 2,
-            content: "academyAdd.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
+            content: "majorAdd.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
                 setTimeout(function () {
@@ -116,20 +131,8 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         })
     }
 
-    $(".addNews_btn").click(function () {
-        addUser();
-    })
 
 
-    //列表操作
-    table.on('tool(userList)', function (obj) {
-        var layEvent = obj.event,
-            data = obj.data;
-
-        if (layEvent === 'edit') { //编辑
-            update(data);
-        }
-    });
 
     // 禁用
     form.on('switch(isdelete)', function (data) {
@@ -138,18 +141,6 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         var isdelete = data.elem.checked ? '0' : '1';
         console.log(isdelete);
 
-        /*$.ajax({
-            url: 'http://localhost:8080/demo_war_exploded/AcademyManager/queryAllAcademy.action',
-            data:isdelete
-        })*/
-        /*setTimeout(function(){
-            layer.close(index);
-            if(data.elem.checked){
-                layer.msg("禁用成功！");
-            }else{
-                layer.msg("取消置顶成功！");
-            }
-        },500);*/
     })
 
 })

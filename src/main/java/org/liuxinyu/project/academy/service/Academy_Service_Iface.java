@@ -10,7 +10,7 @@ public interface Academy_Service_Iface {
 
     Map<String,Object> addAcademy(Academy academy) throws Exception ;
 
-    List<Academy> queryAllAcademy() throws Exception ;
+    List<Academy> queryAllAcademy(String key) throws Exception ;
 
     Map<String,Object>  updateAcademy(Academy academy) throws Exception ;
 }
