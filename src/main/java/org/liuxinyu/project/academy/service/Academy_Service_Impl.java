@@ -43,7 +43,15 @@ public class Academy_Service_Impl implements Academy_Service_Iface {
 
     public Map<String, Object> updateAcademy(Academy academy) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
-        iAcademy_dao.updateAcademy(academy);
+        academy.setNewid(academy.getGrade()+academy.getAcademyCode());
+        try {
+            iAcademy_dao.updateAcademy(academy);
+        }catch (Exception e){
+            stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
+            stringObjectHashMap.put("error", "已有["+academy.getId()+"]编号的学院");
+            return stringObjectHashMap;
+        }
+
         stringObjectHashMap.put("state", 0);// 0 成功 : 1 失败
         stringObjectHashMap.put("success", "更新成功");
         return stringObjectHashMap;

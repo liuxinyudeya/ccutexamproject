@@ -13,16 +13,16 @@
         select id,grade,academyname,academycode,DATE_FORMAT(updatetime, "%Y-%m-%d") updatetime_str,isdelete
         from aca_ma_cla_info
         <where>
-            <if test="value!='' and value!=' ' and value!=null ">
-                and id like '%${value}%' or grade like '%${value}%' or academyname like '%${value}%' or academycode like
-                '%${value}%'
+            <if test="value!='' and value!=null ">
+                and id like #{value} or academyname like #{value}
             </if>
         </where>
     </select>
 
     <update id="updateAcademy" parameterType="org.liuxinyu.project.academy.entity.Academy">
         update aca_ma_cla_info
-        set grade=#{grade},
+        set id=#{newid},
+            grade=#{grade},
             academyname=#{academyName},
             academycode=#{academyCode},
             isdelete=#{isdelete},

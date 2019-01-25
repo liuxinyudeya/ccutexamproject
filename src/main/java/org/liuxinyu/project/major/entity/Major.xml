@@ -10,4 +10,21 @@
     <select id="queryAcademyKind" parameterType="string" resultType="org.liuxinyu.project.academy.entity.Academy">
         select academyname,academycode from aca_ma_cla_info where grade=#{grade}
     </select>
+
+    <insert id="addMajor" parameterType="org.liuxinyu.project.academy.entity.Academy">
+        insert into aca_ma_cla_info (id,grade,academyname,academycode,majorname,majorcode,department,managerid,isdelete,updatetime)
+        values (#{id},#{grade},#{academyName},#{academyCode},#{majorName},#{majorCode},#{department},#{managerid},#{isdelete},NOW())
+    </insert>
+
+    <select id="queryAllMajor" parameterType="string" resultType="org.liuxinyu.project.academy.entity.Academy">
+        select id,grade,academyname,academycode,majorcode,majorname,DATE_FORMAT(updatetime, "%Y-%m-%d")
+        updatetime_str,isdelete
+        from aca_ma_cla_info
+        <where>
+            and department='02'
+            <if test="value!='' and value!=null ">
+                and id like #{value} or majorname like #{value} or academyname like #{value}
+            </if>
+        </where>
+    </select>
 </mapper>

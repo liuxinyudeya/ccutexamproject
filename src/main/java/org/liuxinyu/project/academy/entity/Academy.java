@@ -11,6 +11,10 @@ public class Academy {
     private String department;
     private String isdelete;
     private String updatetime_str;
+    private String majorName;
+    private String majorCode;
+    private String managerid;
+    private String newid;
 
     @Override
     public String toString() {
@@ -22,10 +26,12 @@ public class Academy {
                 ", grade='" + grade + '\'' +
                 ", department='" + department + '\'' +
                 ", isdelete='" + isdelete + '\'' +
-                ", update_str='" + updatetime_str + '\'' +
+                ", updatetime_str='" + updatetime_str + '\'' +
+                ", majorName='" + majorName + '\'' +
+                ", majorCode='" + majorCode + '\'' +
+                ", managerid='" + managerid + '\'' +
                 '}';
     }
-
 
     public String getId() {
         return id;
@@ -91,4 +97,29 @@ public class Academy {
         this.updatetime_str = updatetime_str;
     }
 
+    public String getMajorName() { return majorName; }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
+    }
+
+    public String getMajorCode() {
+        return majorCode;
+    }
+
+    public void setMajorCode(String majorCode) {
+        this.majorCode = majorCode;
+    }
+
+    public String getManagerid() {
+        return managerid;
+    }
+
+    public void setManagerid(String managerid) {
+        this.managerid = managerid;
+    }
+
+    public String getNewid() { return newid; }
+
+    public void setNewid(String newid) { this.newid = newid; }
 }

@@ -13,7 +13,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         page: true,
         height: "full-125",
         limits: [10, 15, 20, 25],
-        limit: 20,
+        limit: 15,
         id: "academyList",
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
@@ -122,7 +122,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
 
     //列表操作
-    table.on('tool(userList)', function (obj) {
+    table.on('tool(academyList)', function (obj) {
         var layEvent = obj.event,
             data = obj.data;
 

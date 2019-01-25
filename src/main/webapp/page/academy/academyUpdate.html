@@ -80,7 +80,7 @@
 			var obj = new Object();
 			obj.id = $("#id").val();
 			obj.grade = $(".grade").val();
-			obj.academyName = $(".academyName").val();
+			obj.academyName =$(".academyName").val();
 			obj.academyCode = $(".academyCode").val();
 			obj.isdelete=$(".isdelete").val();
 			$.ajax({
@@ -92,7 +92,7 @@
 					if (res.state == 0) {
 						layer.msg(res.success, {icon: 1, time: 1500});
 					} else {
-						layer.msg(res.error, {icon: 2, time: 1500});
+						layer.msg(res.error, {icon: 2, time: 2000});
 					}
 				}
 				, error: function () {

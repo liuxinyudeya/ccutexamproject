@@ -4,20 +4,21 @@ layui.use(['form', 'layer'], function () {
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery;
 
-
     $.ajax({
         type: 'POST'
         , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/gradeInit.action"
         , success: function (res) {
+
             if (res.length == 0) {
                 layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
             }
             var html = "";
-            for (var index in res) {
-                html += "<option value=" + res[index] + ">" + res[index] + "级</option>"
+            for (var i in res)
 
-            }
+                html += "<option value=" + res[i] + ">" + res[i] + "级</option>"
+
             $('.grade').append(html);
+            $('.grade').val($('.grade_hiden').val())
             form.render('select');
 
         }
@@ -27,10 +28,37 @@ layui.use(['form', 'layer'], function () {
 
     })
 
+    $.ajax({
+        type: 'POST'
+        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+        , data: 'grade=' + $('.grade_hiden').val()
+        , success: function (res) {
+            if (res.length == 0) {
+                layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
+            }
+
+            var html = "";
+            for (var i in res) {
+
+                html = "<option value=" + res[i].academyCode + ">" + res[i].academyName + "</option>"
+                $('.academy').append(html);
+            }
+
+            $('.academy').removeAttr("disabled");
+            $('.academy').val($('.academyCode_hiden').val());
+            form.render('select');
+
+        }
+        , error: function (res) {
+            layer.msg('糟糕，出错了！', {icon: 3, time: 1500})
+        }
+
+    })
+
+
     // 二级联动 根据年级查询学院信息
     form.on('select(grade)', function (data) {
         // console.log(data.value); //得到被选中的值
-
         $('.academy').html("<option></option>");
         form.render('select');
 
@@ -45,9 +73,11 @@ layui.use(['form', 'layer'], function () {
 
                 var html = "";
                 for (var i in res) {
-                    html += "<option value=" + res[i].academyCode + ">" + res[i].academyName + "</option>"
+
+                    html = "<option value=" + res[i].academyCode + ">" + res[i].academyName + "</option>"
+                    $('.academy').append(html);
                 }
-                $('.academy').append(html);
+
                 $('.academy').removeAttr("disabled");
                 form.render('select');
 
@@ -65,7 +95,8 @@ layui.use(['form', 'layer'], function () {
         //弹出loading
         var obj = new Object();
         obj.grade = $(".grade").val();
-        obj.academyName = $(".academy").find("option[value=" + $(".academy").val() + "]").text();
+        option
+        obj.academyName = $(".academy").find("[value=" + $(".academy").val() + "]").text();
         obj.academyCode = $(".academy").val();
         obj.majorName = $(".majorName").val();
         obj.majorCode = $(".majorCode").val();

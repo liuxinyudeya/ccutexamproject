@@ -12,5 +12,9 @@ public interface IMajor_Dao {
 
     List<String> queryGradeKind() ;
 
-    List<Academy> queryAcademyKind() ;
+    List<Academy> queryAcademyKind(String grade) ;
+
+    void addMajor(Academy academy) ;
+
+    List<Academy> queryAllMajor(String key) ;
 }
