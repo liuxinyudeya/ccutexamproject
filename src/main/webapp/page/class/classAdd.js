@@ -3,7 +3,7 @@ layui.use(['form', 'layer'], function () {
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery;
-
+    var gradegrade;
 
     $.ajax({
         type: 'POST'
@@ -30,14 +30,15 @@ layui.use(['form', 'layer'], function () {
     // 二级联动 根据年级查询学院信息
     form.on('select(grade)', function (data) {
         // console.log(data.value); //得到被选中的值
-
+        grade = data.value;
+        console.log(grade);
         $('.academy').html("<option></option>");
         form.render('select');
 
         $.ajax({
             type: 'POST'
             , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
-            , data: 'managerid=' + data.value+'&department=03'
+            , data: 'managerid=' + data.value + '&department=03'
             , success: function (res) {
                 if (res.length == 0) {
                     layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
@@ -60,6 +61,40 @@ layui.use(['form', 'layer'], function () {
 
     });
 
+    // 三级联动 根据学院信息查询专业信息
+    form.on('select(academy)', function (data) {
+        console.log(data.value); //得到被选中的值
+        console.log(grade + data.value);
+
+        $('.major').html("<option></option>");
+        form.render('select');
+
+        $.ajax({
+            type: 'POST'
+            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , data: 'managerid=' + grade + data.value + '&department=02'
+            , success: function (res) {
+                if (res.length == 0) {
+                    layer.msg('暂无专业信息哦', {icon: 4, time: 1500})
+                }
+
+                var html = "";
+                for (var i in res) {
+                    html += "<option value=" + res[i].majorCode + ">" + res[i].majorName + "</option>"
+                }
+                $('.major').append(html);
+                $('.major').removeAttr("disabled");
+                form.render('select');
+
+            }
+            , error: function (res) {
+                layer.msg('糟糕，出错了！', {icon: 3, time: 1500})
+            }
+
+        })
+
+    });
+
 
     form.on("submit(addUser)", function (data) {
         //弹出loading
@@ -67,13 +102,16 @@ layui.use(['form', 'layer'], function () {
         obj.grade = $(".grade").val();
         obj.academyName = $(".academy").find("option[value=" + $(".academy").val() + "]").text();
         obj.academyCode = $(".academy").val();
-        obj.majorName = $(".majorName").val();
-        obj.majorCode = $(".majorCode").val();
+        obj.majorName = $(".major").find("option[value=" + $(".major").val() + "]").text();
+        obj.majorCode = $(".major").val();
+        obj.classno = $(".classno").val();
         obj.isdelete = $(".isdelete").val();
-
+        console.log(obj);
+        console.log(obj.classno);
+        console.log(obj.isdelete);
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/addMajor.action",
+            url: "http://localhost:8080/demo_war_exploded/ClassManager_Controller/addClass.action",
             data: obj,
             success: function (res) {
                 console.log(res);

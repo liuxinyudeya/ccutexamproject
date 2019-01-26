@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>添加学院</title>
+	<title>修改班级信息</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,31 +14,43 @@
 </head>
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;">
+
 	<div class="layui-form-item layui-row layui-col-xs12">
-		<label class="layui-form-label">选择年级</label>
+		<label class="layui-form-label">年级</label>
 		<div class="layui-input-block">
-			<select name="grade" class="grade" lay-filter="grade">
-				<option value="2015">2015级</option>
-				<option value="2016">2016级</option>
-				<option value="2017">2017级</option>
-				<option value="2018">2018级</option>
+			<select name="grade" class="grade" lay-filter="grade" lay-verify="required" >
+				<option></option>
 			</select>
 		</div>
 	</div>
 
 	<div class="layui-form-item layui-row layui-col-xs12">
-		<label class="layui-form-label">学院名</label>
+		<label class="layui-form-label">学院</label>
 		<div class="layui-input-block">
-			<input type="text" class="layui-input academyName" lay-verify="required" placeholder="请输入学院名">
+			<select name="academy" class="academy" lay-filter="academy" lay-verify="required" disabled>
+				<option></option>
+			</select>
 		</div>
 	</div>
 
 	<div class="layui-form-item layui-row layui-col-xs12">
-		<label class="layui-form-label">学院编号</label>
+		<label class="layui-form-label">专业</label>
 		<div class="layui-input-block">
-			<input type="text" class="layui-input academyCode" lay-verify="required" placeholder="请输入学院编号">
+			<select name="major" class="major" lay-filter="major" lay-verify="required" disabled>
+				<option></option>
+			</select>
 		</div>
 	</div>
+
+
+
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<label class="layui-form-label">班级编号</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input classno" lay-verify="required" placeholder="请输入班级编号">
+		</div>
+	</div>
+
 
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<label class="layui-form-label">是否禁用</label>
@@ -61,12 +73,24 @@
 	</div>
 	<div class="layui-form-item layui-row layui-col-xs12">
 		<div class="layui-input-block">
-			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">添加</button>
+			<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">更新</button>
 			<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
 		</div>
 	</div>
+
+	<input class="id_hiden" type="hidden">
+	<input class="grade_hiden" type="hidden">
+	<input class="academyName_hiden" type="hidden">
+	<input class="academyCode_hiden" type="hidden">
+	<input class="majorCode_hiden" type="hidden">
+	<input class="majorName_hiden" type="hidden">
+	<input class="isdelete_hiden" type="hidden">
+	<input class="classno_hiden" type="hidden">
+
+
+
 </form>
 <script type="text/javascript" src="../../layui/layui.js"></script>
-<script type="text/javascript" src="academyAdd.js"></script>
+<script type="text/javascript" src="claUpdate.js"></script>
 </body>
 </html>

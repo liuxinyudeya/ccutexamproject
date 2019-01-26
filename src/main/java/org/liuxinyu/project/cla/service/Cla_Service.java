@@ -1,8 +1,9 @@
-package org.liuxinyu.project.major.service;
+package org.liuxinyu.project.cla.service;
 
-import org.apache.ibatis.annotations.Param;
 import org.liuxinyu.project.academy.entity.Academy;
+import org.liuxinyu.project.cla.mapper.ICla_Dao;
 import org.liuxinyu.project.major.mapper.IMajor_Dao;
+import org.liuxinyu.project.major.service.IMajor_Service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,29 +18,21 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class Major_Service implements IMajor_Service {
+public class Cla_Service implements ICla_Service {
+
 
     @Resource
-    IMajor_Dao iMajor_dao;
+    ICla_Dao iCla_dao;
 
-    public List<String> gradeInit() throws Exception {
-        List<String> gradeList = iMajor_dao.queryGradeKind();
-        return gradeList;
-    }
 
-    public List<Academy> academyInit(String managerid, String department) throws Exception {
-        List<Academy> academyList = iMajor_dao.queryAcademyKind(managerid, department);
-        return academyList;
-    }
-
-    public Map<String, Object> addMajor(Academy academy) throws Exception {
+    public Map<String, Object> addCla(Academy academy) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
-        academy.setId(academy.getGrade() + academy.getAcademyCode() + academy.getMajorCode()); // 设置主键id : 年级+学院编号+专业编号 确保唯一
-        academy.setDepartment("02"); // 设置部门等级 03 学院 : 02 专业 : 01 班级
-        academy.setManagerid(academy.getGrade() + academy.getAcademyCode());
+        academy.setId(academy.getGrade() + academy.getAcademyCode() + academy.getMajorCode() + academy.getClassno()); // 设置主键id : 年级+学院编号+专业编号 确保唯一
+        academy.setDepartment("01"); // 设置部门等级 03 学院 : 02 专业 : 01 班级
+        academy.setManagerid(academy.getGrade() + academy.getAcademyCode() + academy.getMajorCode());
 
         try {
-            iMajor_dao.addMajor(academy);
+            iCla_dao.addCla(academy);
         } catch (Exception e) {
             stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
             stringObjectHashMap.put("error", "已录入该信息");
@@ -52,17 +45,17 @@ public class Major_Service implements IMajor_Service {
         return stringObjectHashMap;
     }
 
-    public List<Academy> queryAllMajor(String key) throws Exception {
+    public List<Academy> queryAllCla(String key) throws Exception {
 
-        return iMajor_dao.queryAllMajor(key);
+        return iCla_dao.queryAllCla(key);
     }
 
-    public Map<String, Object> updateMajor(Academy academy) throws Exception {
+    public Map<String, Object> updateCla(Academy academy) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
-        academy.setNewid(academy.getGrade() + academy.getAcademyCode() + academy.getMajorCode());
-        academy.setManagerid(academy.getGrade() + academy.getAcademyCode());
+        academy.setNewid(academy.getGrade() + academy.getAcademyCode() + academy.getMajorCode()+academy.getClassno());
+        academy.setManagerid(academy.getGrade() + academy.getAcademyCode()+academy.getMajorCode());
         try {
-            iMajor_dao.updateMajor(academy);
+            iCla_dao.updateCla(academy);
         } catch (Exception e) {
             stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
             stringObjectHashMap.put("error", "已有[" + academy.getId() + "]编号的学院");

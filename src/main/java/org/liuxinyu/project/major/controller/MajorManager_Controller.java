@@ -1,6 +1,7 @@
 package org.liuxinyu.project.major.controller;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.ibatis.annotations.Param;
 import org.liuxinyu.project.academy.entity.Academy;
 import org.liuxinyu.project.major.service.IMajor_Service;
 import org.liuxinyu.project.util.entity.LayuiTable;
@@ -40,16 +41,17 @@ public class MajorManager_Controller {
 
     @ResponseBody
     @RequestMapping("academyInit")
-    public List<Academy> academyInit(String grade) {
+    public List<Academy> academyInit(String managerid, String department) {
         List<Academy> list = new ArrayList<Academy>();
         try {
-            list = iMajor_service.academyInit(grade);
+            list = iMajor_service.academyInit(managerid, department);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return list;
     }
+
 
     @ResponseBody
     @RequestMapping("addMajor")
@@ -88,5 +90,21 @@ public class MajorManager_Controller {
         return JSON.toJSONString(list);
 
     }
+
+    @ResponseBody
+    @RequestMapping("updateMajor")
+    public Map<String, Object> updateMajor(Academy academy) {
+        System.out.println("academy = " + academy);
+        Map<String, Object> stringObjectHashMap = null;
+        try {
+            stringObjectHashMap = iMajor_service.updateMajor(academy);
+        } catch (Exception e) {
+            e.printStackTrace();
+            stringObjectHashMap.put("state", 1);
+            stringObjectHashMap.put("error", "糟糕,服务器出错了!");
+        }
+        return stringObjectHashMap;
+    }
+
 
 }

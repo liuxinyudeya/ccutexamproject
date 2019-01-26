@@ -15,6 +15,7 @@ public class Academy {
     private String majorCode;
     private String managerid;
     private String newid;
+    private String classno;
 
     @Override
     public String toString() {
@@ -30,6 +31,8 @@ public class Academy {
                 ", majorName='" + majorName + '\'' +
                 ", majorCode='" + majorCode + '\'' +
                 ", managerid='" + managerid + '\'' +
+                ", newid='" + newid + '\'' +
+                ", classno='" + classno + '\'' +
                 '}';
     }
 
@@ -97,7 +100,9 @@ public class Academy {
         this.updatetime_str = updatetime_str;
     }
 
-    public String getMajorName() { return majorName; }
+    public String getMajorName() {
+        return majorName;
+    }
 
     public void setMajorName(String majorName) {
         this.majorName = majorName;
@@ -119,7 +124,19 @@ public class Academy {
         this.managerid = managerid;
     }
 
-    public String getNewid() { return newid; }
+    public String getNewid() {
+        return newid;
+    }
 
-    public void setNewid(String newid) { this.newid = newid; }
+    public void setNewid(String newid) {
+        this.newid = newid;
+    }
+
+    public String getClassno() {
+        return classno;
+    }
+
+    public void setClassno(String classno) {
+        this.classno = classno;
+    }
 }

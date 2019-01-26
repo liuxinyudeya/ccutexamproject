@@ -7,8 +7,8 @@
       select grade from aca_ma_cla_info  group by grade
     </select>
 
-    <select id="queryAcademyKind" parameterType="string" resultType="org.liuxinyu.project.academy.entity.Academy">
-        select academyname,academycode from aca_ma_cla_info where grade=#{grade}
+    <select id="queryAcademyKind"  resultType="org.liuxinyu.project.academy.entity.Academy">
+        select academyname,academycode,majorname,majorcode from aca_ma_cla_info where managerid=#{managerid} and department=#{department}
     </select>
 
     <insert id="addMajor" parameterType="org.liuxinyu.project.academy.entity.Academy">
@@ -19,12 +19,26 @@
     <select id="queryAllMajor" parameterType="string" resultType="org.liuxinyu.project.academy.entity.Academy">
         select id,grade,academyname,academycode,majorcode,majorname,DATE_FORMAT(updatetime, "%Y-%m-%d")
         updatetime_str,isdelete
-        from aca_ma_cla_info
+        from (select * from aca_ma_cla_info where department = '02') a
         <where>
             and department='02'
             <if test="value!='' and value!=null ">
-                and id like #{value} or majorname like #{value} or academyname like #{value}
+                and academyname like #{value} or majorname like #{value} or id like #{value}
             </if>
         </where>
     </select>
+
+    <update id="updateMajor" parameterType="org.liuxinyu.project.academy.entity.Academy">
+        update aca_ma_cla_info
+        set id=#{newid},
+            grade=#{grade},
+            academyname=#{academyName},
+            academycode=#{academyCode},
+            majorname=#{majorName},
+            majorCode=#{majorCode},
+            managerid=#{managerid},
+            isdelete=#{isdelete},
+            updatetime=NOW()
+        where id = #{id}
+    </update>
 </mapper>
