@@ -12,7 +12,7 @@ import java.util.Map;
 public interface IMajor_Service {
     List<String> gradeInit() throws Exception;
 
-    List<Academy> academyInit(String managerid,String department) throws Exception;
+    List<Academy> academyInit(String managerid, String department) throws Exception;
 
     Map<String, Object> addMajor(Academy academy) throws Exception;
 

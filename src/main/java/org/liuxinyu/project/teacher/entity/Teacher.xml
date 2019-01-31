@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.liuxinyu.project.teacher.mapper.ITeacher_Dao">
+
+
+    <insert id="addTeacher" parameterType="org.liuxinyu.project.teacher.entity.Teacher">
+        insert into teacher (teacherno,name,sex,isdelete,updatetime)
+        values (#{teacherno},#{name},#{sex},#{isdelete},NOW())
+    </insert>
+
+    <select id="queryAllTeacher" parameterType="string" resultType="org.liuxinyu.project.teacher.entity.Teacher">
+        select teacherno,name,sex,DATE_FORMAT(updatetime, "%Y-%m-%d")
+        updatetime_str,isdelete
+        from teacher
+        <where>
+            <if test="value!='' and value!=null ">
+                and teacherno like #{value} or name like #{value}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateTeacher" parameterType="org.liuxinyu.project.teacher.entity.Teacher">
+        update teacher
+        set teacherno=#{newteacherno},
+            name=#{name},
+            sex=#{sex},
+            isdelete=#{isdelete},
+            updatetime=NOW()
+        where teacherno = #{teacherno}
+    </update>
+</mapper>

@@ -7,8 +7,8 @@
       select grade from aca_ma_cla_info  group by grade
     </select>
 
-    <select id="queryAcademyKind"  resultType="org.liuxinyu.project.academy.entity.Academy">
-        select academyname,academycode,majorname,majorcode from aca_ma_cla_info where managerid=#{managerid} and department=#{department}
+    <select id="queryAcademyKind" resultType="org.liuxinyu.project.academy.entity.Academy">
+        select academyname,academycode,majorname,majorcode,id,classno from aca_ma_cla_info where managerid=#{managerid} and department=#{department}
     </select>
 
     <insert id="addMajor" parameterType="org.liuxinyu.project.academy.entity.Academy">

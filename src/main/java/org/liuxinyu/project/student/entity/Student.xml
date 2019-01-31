@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.liuxinyu.project.student.mapper.IStudent_Dao">
+
+    <insert id="addStudent" parameterType="org.liuxinyu.project.student.entity.Student">
+        insert into student (grade,academyname,academycode,majorname,majorcode,classno,studentno,name,sex,isdelete,updatetime)
+        values  (#{grade},#{academyName},#{academyCode},#{majorName},#{majorCode},#{classno},#{studentno},#{name},#{sex},#{isdelete},NOW())
+    </insert>
+
+    <select id="queryAllStudent" parameterType="string" resultType="org.liuxinyu.project.student.entity.Student">
+        select studentno,grade,academyname,academycode,majorcode,majorname,classno,name,sex,classno,DATE_FORMAT(updatetime, "%Y-%m-%d")
+        updatetime_str,isdelete
+        from student
+        <where>
+            <if test="value!='' and value!=null ">
+                and name like #{value} or studentno like #{value}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateStudent" parameterType="org.liuxinyu.project.academy.entity.Academy">
+        update student
+        set studentno=#{newstudentno},
+            grade=#{grade},
+            academyname=#{academyName},
+            academycode=#{academyCode},
+            majorname=#{majorName},
+            majorCode=#{majorCode},
+            classno=#{classno},
+            name=#{name},
+            sex=#{sex},
+            isdelete=#{isdelete},
+            updatetime=NOW()
+        where studentno = #{studentno}
+    </update>
+</mapper>

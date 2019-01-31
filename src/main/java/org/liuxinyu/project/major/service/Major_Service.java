@@ -32,6 +32,7 @@ public class Major_Service implements IMajor_Service {
         return academyList;
     }
 
+
     public Map<String, Object> addMajor(Academy academy) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
         academy.setId(academy.getGrade() + academy.getAcademyCode() + academy.getMajorCode()); // 设置主键id : 年级+学院编号+专业编号 确保唯一

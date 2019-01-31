@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.liuxinyu.project.distribution.mapper.ITea_Cla_Cou_Dao">
+
+    <insert id="addTea_Cla_Cou" parameterType="org.liuxinyu.project.distribution.entity.Tea_Cla_Cou">
+        insert into tea_cla_cou (id,grade,academyname,academycode,majorname,majorcode,classno,teacherno,teachername,courseno,coursename,updatetime)
+        values  (#{id},#{grade},#{academyName},#{academyCode},#{majorName},#{majorCode},#{classno},#{teacherno},#{teacherName},#{courseno},#{courseName},NOW())
+    </insert>
+
+    <select id="queryAllTea_Cla_Cou" parameterType="string"
+            resultType="org.liuxinyu.project.distribution.entity.Tea_Cla_Cou">
+        select
+        id,grade,academyname,academycode,majorcode,majorname,classno,courseno,coursename,teacherno,teachername,DATE_FORMAT(updatetime,
+        "%Y-%m-%d")
+        updatetime_str
+        from tea_cla_cou
+        <where>
+            <if test="value!='' and value!=null ">
+                and teachername like #{value} or coursename like #{value}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateTea_Cla_Cou" parameterType="org.liuxinyu.project.distribution.entity.Tea_Cla_Cou">
+        update tea_cla_cou
+        set
+            grade=#{grade},
+            academyname=#{academyName},
+            academycode=#{academyCode},
+            majorname=#{majorName},
+            majorCode=#{majorCode},
+            classno=#{classno},
+            courseno=#{courseno},
+            coursename=#{courseName},
+            teacherno=#{teacherno},
+            teacherName=#{teacherName},
+            updatetime=NOW()
+        where id = #{id}
+    </update>
+</mapper>

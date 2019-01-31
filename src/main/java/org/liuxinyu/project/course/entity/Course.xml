@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.liuxinyu.project.course.mapper.ICourse_Dao">
+
+    <insert id="addCourse" parameterType="org.liuxinyu.project.course.entity.Course">
+        insert into course (courseno,grade,academyname,academycode,majorname,majorcode,coursename,coursecode,isdelete,updatetime)
+        values (#{courseno},#{grade},#{academyName},#{academyCode},#{majorName},#{majorCode},#{courseName},#{courseCode},#{isdelete},NOW())
+    </insert>
+
+    <select id="queryCourse" parameterType="string" resultType="org.liuxinyu.project.course.entity.Course">
+        select courseno,coursename from course where grade=#{grade} and academycode=#{academyCode} and majorcode=#{majorCode} and distributionCode='0'
+    </select>
+
+    <select id="queryAllCourse" parameterType="string" resultType="org.liuxinyu.project.course.entity.Course">
+        select courseno,grade,academyname,academycode,majorcode,majorname,coursename,coursecode,DATE_FORMAT(updatetime,
+        "%Y-%m-%d")
+        updatetime_str,isdelete,distributionName,distributionCode
+        from course
+        <where>
+            <if test="value!='' and value!=null ">
+                and coursename like #{value}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateCourse" parameterType="org.liuxinyu.project.course.entity.Course">
+        update course
+        set courseno=#{newcourseno},
+            grade=#{grade},
+            academyname=#{academyName},
+            academycode=#{academyCode},
+            majorname=#{majorName},
+            majorCode=#{majorCode},
+            coursename=#{courseName},
+            coursecode=#{courseCode},
+            isdelete=#{isdelete},
+            updatetime=NOW()
+        where courseno = #{courseno}
+    </update>
+
+    <update id="updateCourse_dist" parameterType="string">
+        update course set distributionName='已分配',distributionCode='1' where courseno=#{value}
+    </update>
+</mapper>

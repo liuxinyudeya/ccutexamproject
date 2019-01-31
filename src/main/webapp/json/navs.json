@@ -105,6 +105,26 @@
 			"icon": "layui-icon-release",
 			"href": "page/class/classManager.html",
 			"spread": false
+		},{
+			"title": "课程信息",
+			"icon": "layui-icon-release",
+			"href": "page/course/courseManager.html",
+			"spread": false
+		},{
+			"title": "教师信息",
+			"icon": "layui-icon-release",
+			"href": "page/teacher/teacherManager.html",
+			"spread": false
+		},{
+			"title": "学生信息",
+			"icon": "layui-icon-release",
+			"href": "page/student/studentManager.html",
+			"spread": false
+		},{
+			"title": "课程分配",
+			"icon": "layui-icon-release",
+			"href": "page/distribution/distributionManager.html",
+			"spread": false
 		}
 	]
 }
