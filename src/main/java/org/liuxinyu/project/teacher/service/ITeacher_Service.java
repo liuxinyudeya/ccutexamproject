@@ -18,4 +18,7 @@ public interface ITeacher_Service {
     List<Teacher> queryAllTeacher(String key) throws Exception;
 
     Map<String, Object> updateTeacher(Teacher teacher) throws Exception;
+
+
+
 }

@@ -2,6 +2,8 @@ package org.liuxinyu.project.teacher.controller;
 
 import com.alibaba.fastjson.JSON;
 import org.liuxinyu.project.academy.entity.Academy;
+import org.liuxinyu.project.login.entity.Account;
+import org.liuxinyu.project.login.mapper.IAccount_Dao;
 import org.liuxinyu.project.major.service.IMajor_Service;
 import org.liuxinyu.project.teacher.entity.Teacher;
 import org.liuxinyu.project.teacher.mapper.ITeacher_Dao;
@@ -26,14 +28,19 @@ public class TeacherManager_Controller {
 
     @Resource
     ITeacher_Service iTeacher_service;
+    @Resource
+    IAccount_Dao iAccount_dao;
 
     @ResponseBody
     @RequestMapping("addTeacher")
     public Map<String, Object> addTeacher(Teacher teacher) {
         System.out.println("teacher = " + teacher);
         Map<String, Object> stringObjectHashMap = null;
+
+
         try {
-            stringObjectHashMap = iTeacher_service.addTeacher(teacher);
+            stringObjectHashMap = iTeacher_service.addTeacher(teacher); // 教师信息表添加教师
+
         } catch (Exception e) {
             e.printStackTrace();
             stringObjectHashMap.put("state", 1);

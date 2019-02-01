@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.liuxinyu.project.login.mapper.IAccount_Dao">
+    <select id="queryAccount" parameterType="org.liuxinyu.project.login.entity.Account"
+            resultType="org.liuxinyu.project.login.entity.Account">
+        select username,password ,rolecode from account where username=#{username} and password=#{password}
+    </select>
+
+    <insert id="addAccount" parameterType="org.liuxinyu.project.login.entity.Account">
+        insert into account (username, password, rolecode, updatetime) values (#{username},#{password},#{roleCode},NOW())
+    </insert>
+
+    <update id="updateAccount" parameterType="org.liuxinyu.project.login.entity.Account">
+        update account set username=#{newusername} where username=#{username}
+    </update>
+</mapper>
