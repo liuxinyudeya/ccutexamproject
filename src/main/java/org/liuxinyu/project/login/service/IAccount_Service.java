@@ -3,6 +3,7 @@ package org.liuxinyu.project.login.service;
 import org.liuxinyu.project.login.entity.Account;
 
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,5 +12,5 @@ import java.util.Map;
  */
 
 public interface IAccount_Service {
-    Map<String, Object> queryAccount(Account account) throws Exception;
+    List<Account> queryAccount(Account account) throws Exception;
 }

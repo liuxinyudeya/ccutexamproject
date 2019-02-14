@@ -98,7 +98,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             title: "添加学院",
             // 如果是iframe层
             type: 2,
-            content: "academyAdd.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
+            content: "academyAdd.jsp",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
                 setTimeout(function () {

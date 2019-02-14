@@ -21,14 +21,12 @@ public class Account_Service implements IAccount_Service {
     @Resource
     IAccount_Dao iAccount_dao;
 
-    public Map<String, Object> queryAccount(Account account) throws Exception {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public List<Account> queryAccount(Account account) throws Exception {
+
 
         List<Account> resultList = iAccount_dao.queryAccount(account);
-        resultMap.put("state", '0');
-        resultMap.put("success", "登陆成功");
-        resultMap.put("count",resultList.size());
 
-        return resultMap;
+
+        return resultList;
     }
 }

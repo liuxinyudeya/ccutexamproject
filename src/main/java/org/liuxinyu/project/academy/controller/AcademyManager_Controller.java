@@ -4,14 +4,13 @@ import com.alibaba.fastjson.JSON;
 import org.liuxinyu.project.academy.entity.Academy;
 import org.liuxinyu.project.academy.service.Academy_Service_Iface;
 import org.liuxinyu.project.util.entity.LayuiTable;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,9 +30,10 @@ public class AcademyManager_Controller {
      */
     @ResponseBody
     @RequestMapping(value = "addAcademy", method = RequestMethod.POST)
-    public Map<String, Object> addAcademy(Academy academy) {
+    public Map<String, Object> addAcademy(HttpServletRequest httpServletRequest ,Academy academy) {
         System.out.println("academy = " + academy);
         Map<String, Object> stringObjectHashMap = null;
+        String username = (String)httpServletRequest.getSession().getAttribute("username");
         try {
             stringObjectHashMap = academy_service_iface.addAcademy(academy);
         } catch (Exception e) {

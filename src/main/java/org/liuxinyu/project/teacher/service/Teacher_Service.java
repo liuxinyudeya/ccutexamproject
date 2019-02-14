@@ -33,6 +33,7 @@ public class Teacher_Service implements ITeacher_Service {
         Account account = new Account();
         account.setUsername(teacher.getTeacherno());
         account.setPassword("123456");
+        account.setName(teacher.getName());
         account.setRoleCode("02"); // 教师
         try {
             iTeacher_dao.addTeacher(teacher);
@@ -57,7 +58,9 @@ public class Teacher_Service implements ITeacher_Service {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
         Account account = new Account();
         account.setNewusername(teacher.getNewteacherno());
+        account.setName(teacher.getName());
         account.setUsername(teacher.getTeacherno());
+
         try {
             iTeacher_dao.updateTeacher(teacher);
             iAccount_dao.updateAccount(account);

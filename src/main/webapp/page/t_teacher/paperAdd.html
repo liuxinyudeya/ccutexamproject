@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加题目</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../css/public.css" media="all"/>
+</head>
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">题目类型</label>
+        <div class="layui-input-block">
+            <select name="questionType" class="questionType" lay-filter="questionType"
+                    lay-verify="required">
+                <option value="01">单选</option>
+                <option value="02">多选</option>
+                <option value="03">判断</option>
+                <option value="04">填空</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">题目难度</label>
+        <div class="layui-input-block">
+            <select name="questionLevel" class="questionLevel" lay-filter="questionLevel" lay-verify="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">设置分数</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input questionScore" lay-verify="required" placeholder="请设置分数">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">题目描述</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input questionDesc" lay-verify="required"
+                   placeholder="请输入题目描述,如果是填空题,请将答案用(___)代替">
+        </div>
+    </div>
+
+
+    <div id="contextAnswer01">
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">A选项</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input A" placeholder="请输入答案描述">
+            </div>
+        </div>
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">B选项</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input B" placeholder="请输入答案描述">
+            </div>
+        </div>
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">C选项</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input C" placeholder="请输入答案描述">
+            </div>
+        </div>
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">D选项</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input D" placeholder="请输入答案描述">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">正确选项</label>
+        <div class="layui-input-block realAnswer">
+            <input type="radio" class="answer" name="answer" value="A" title="A">
+            <input type="radio" class="answer" name="answer" value="B" title="B">
+            <input type="radio" class="answer" name="answer" value="C" title="C">
+            <input type="radio" class="answer" name="answer" value="D" title="D">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">添加</button>
+            <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="paperAdd.js"></script>
+
+</body>
+</html>

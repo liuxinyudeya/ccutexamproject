@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,15 +25,23 @@ public class Account_Controller {
 
     @ResponseBody
     @RequestMapping("verifyLogin")
-    public Map<String,Object> verifyLogin(Account account){
-        Map<String,Object> resultMap = new HashMap<String, Object>();
-
+    public Map<String, Object> verifyLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Account account) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        List<Account> resoultList = null;
         try {
-            resultMap =  resultMap =  iAccount_service.queryAccount(account);
+            resoultList = iAccount_service.queryAccount(account);
+            if (1 == resoultList.size()) {
+                httpServletRequest.getSession().setAttribute("username", resoultList.get(0).getUsername());
+                resultMap.put("state", "0");
+                resultMap.put("count", 1);
+            } else {
+                resultMap.put("state", "1");
+                resultMap.put("count", 0);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            resultMap.put("state","0");
-            resultMap.put("error","糟糕，出错了！");
+            resultMap.put("state", "0");
+            resultMap.put("error", "糟糕，出错了！");
         }
         return resultMap;
     }

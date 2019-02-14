@@ -36,6 +36,7 @@ public class Student_Service implements IStudent_Service {
 
         account.setUsername(student.getStudentno()); // 学号就是账号
         account.setPassword("123456"); // 默认密码123456
+        account.setName(student.getName());
         account.setRoleCode("01"); // 学生
 
         try {
@@ -62,6 +63,7 @@ public class Student_Service implements IStudent_Service {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
         Account account = new Account();
         account.setNewusername(student.getNewstudentno());
+        account.setName(student.getName());
         account.setUsername(student.getStudentno());
         try {
             iStudent_dao.updateStudent(student); // 修改学生学号

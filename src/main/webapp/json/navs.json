@@ -126,7 +126,15 @@
 			"href": "page/distribution/distributionManager.html",
 			"spread": false
 		}
-	]
+	],
+  "teacher": [
+	  {
+		  "title": "我的课程",
+		  "icon": "layui-icon-release",
+		  "href": "page/t_teacher/courseManager.html",
+		  "spread": false
+	  }
+  ]
 }
 
 

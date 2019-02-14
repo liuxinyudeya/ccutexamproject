@@ -17,13 +17,17 @@ layui.use(['form', 'layer', 'jquery'], function () {
             data: 'username=' + $("#userName").val() + '&password=' + $("#password").val(),
             success: function (res) {
 
-                if(res.state=='0'&&res.count==1){
-                    setTimeout(function () {
-                       // $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
-                        window.location.href = "index.html";
-                    }, 1000);
-                }else{
-                    layer.msg('请检查您的账号或者密码', {icon: 3, time: 1500});
+                if (res.state == '0') {
+                    if (res.count == 1) {
+                        setTimeout(function () {
+                            // $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
+                            window.location.href = "index.jsp";
+                        }, 1000);
+                    }else{
+                        layer.msg('请检查您的账号或者密码哦', {icon: 3, time: 1500});
+                    }
+                } else {
+                    layer.msg('糟糕,服务器出错了', {icon: 3, time: 1500});
                 }
 
             },

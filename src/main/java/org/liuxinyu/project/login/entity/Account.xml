@@ -9,10 +9,10 @@
     </select>
 
     <insert id="addAccount" parameterType="org.liuxinyu.project.login.entity.Account">
-        insert into account (username, password, rolecode, updatetime) values (#{username},#{password},#{roleCode},NOW())
+        insert into account (username, password, name, rolecode, updatetime) values (#{username},#{password},#{name},#{roleCode},NOW())
     </insert>
 
     <update id="updateAccount" parameterType="org.liuxinyu.project.login.entity.Account">
-        update account set username=#{newusername} where username=#{username}
+        update account set username=#{newusername},name=#{name} where username=#{username}
     </update>
 </mapper>

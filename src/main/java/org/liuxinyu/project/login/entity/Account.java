@@ -9,6 +9,7 @@ public class Account {
     private String username;
     private String password;
     private String roleCode;
+    private String name;
 
     @Override
     public String toString() {
@@ -17,6 +18,7 @@ public class Account {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", roleCode='" + roleCode + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -50,5 +52,13 @@ public class Account {
 
     public void setRoleCode(String roleCode) {
         this.roleCode = roleCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -51,7 +51,7 @@
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>
-            /login/login.html
+            page/login/login.html
         </welcome-file>
     </welcome-file-list>
 
