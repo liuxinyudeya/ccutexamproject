@@ -24,32 +24,28 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {field: 'academyName', title: '学院名称', minWidth: 120, align: 'center'},
             {field: 'majorName', title: '专业名称', minWidth: 150, align: 'center'},
             {field: 'stuCount', title: '班级人数', minWidth: 150, align: 'center'},
+            {field: 'score', title: '总分', minWidth: 60, align: 'center'},
+            {field: 'level', title: '难度', minWidth: 60, align: 'center'},
             {
-                field: '', title: '考试码', align: 'center',sort: true,templet: function (d) {
-                    if (d.examCode != null) {
-                        return d.examCode
+                field: 'paperno', title: '考试码', align: 'center', sort: true, templet: function (d) {
+                    if (d.paperno != null) {
+                        return d.paperno
                     } else {
                         return '<span  class="layui-btn layui-btn-green layui-btn-xs">未出卷</span>'
                     }
                 }
             },
-            {
-                field: '', title: '考试状态', align: 'center', sort: true,templet: function (d) {
-                    if (d.examstate == '1') {
-                        return '已完成'
-                    } else {
-                        return '未考试'
-                    }
-                }
-            },
+            {field: 'examstate', title: '考试状态', minWidth: 150, align: 'center'},
             {field: 'updatetime_str', title: '最后修改时间', align: 'center', minWidth: 150},
-            {title: '操作', minWidth: 120, fixed: "right", align: "center",templet: function (d) {
-                    if (d.examCode != null) {
+            {
+                title: '操作', minWidth: 120, fixed: "right", align: "center", templet: function (d) {
+                    if (d.paperno != null) {
                         return '<span lay-event="setpaper" lay-event="setpaper" class="layui-btn layui-btn-red layui-btn-xs">查看试卷</span>'
                     } else {
                         return '<span lay-event="setpaper" lay-event="setpaper" class="layui-btn layui-btn-green layui-btn-xs">立即出卷</span>'
                     }
-                }}
+                }
+            }
         ]]
 
     });
@@ -59,7 +55,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         var layEvent = obj.event,
             data = obj.data;
 
-        if(layEvent==='setpaper'){
+        if (layEvent === 'setpaper') {
             setpaper(data);
         }
     });
@@ -80,6 +76,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             layer.msg("请输入搜索的内容");
         }
     });
+
     // 添加试卷
     function setpaper(edit) {
         var index = layui.layer.open({
@@ -90,7 +87,8 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
                 if (edit) {
-                    body.find(".id_hiden").val(edit.id);  // id
+                    body.find("#id_hiden").val(edit.id);  // id
+                    body.find("#courseno_hiden").val(edit.courseno);  // id
                     form.render();
                 }
 

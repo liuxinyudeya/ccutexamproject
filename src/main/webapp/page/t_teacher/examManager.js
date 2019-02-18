@@ -4,11 +4,28 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         $ = layui.jquery,
         laytpl = layui.laytpl,
         table = layui.table;
+    var paperid;
+    $.ajax({
+        type: 'POST',
+        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/isexistPaper.action?courseid=" + $("#courseno_hiden").val(),
+        success: function (res) {
+            console.log(res);
+            paperid = res.id;
+            $("#paperid_hiden").val(paperid);
+            if (res.paperNo != null) {
+                $(".addPaperButton").addClass('layui-hide');
+            }
 
+        }
+        , error: function () {
+            layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+        }
+
+    })
     //用户列表
     var tableIns = table.render({
         elem: '#paperList',
-        url: 'http://localhost:8080/demo_war_exploded/***/****.action',
+        url: 'http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryAllQuestion.action?courseno=' + $("#courseno_hiden").val(),
         cellMinWidth: 95,
         page: true,
         height: "full-125",
@@ -18,11 +35,10 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         cols: [[
             {field: 'id', title: '试卷ID', minWidth: 100, align: "center", sort: true},
             {field: 'questionTypeName', title: '题目类型', minWidth: 100, align: "center", sort: true},
-            {field: 'questionLevel', title: '题目难度', minWidth: 180, align: 'center'},
-            {field: 'questionDesc', title: '题目描述', minWidth: 100, align: 'center' },
-            {field: 'anwser', title: '正确答案', minWidth: 180, align: 'center'},
-            {field: 'updatetime_str', title: '最后修改时间', align: 'center', minWidth: 150},
-            {title: '操作', minWidth: 175, templet: '#userListBar', fixed: "right", align: "center"}
+            {field: 'questionLevel', title: '题目难度', minWidth: 150, align: 'center'},
+            {field: 'questionDesc', title: '题目描述', minWidth: 600, align: 'center'},
+            {field: 'realAnswers', title: '正确答案', minWidth: 180, align: 'center'},
+            {title: '操作', minWidth: 100, templet: '#userListBar', fixed: "right", align: "center"}
         ]]
 
     });
@@ -42,52 +58,43 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     });
 
 
-    //搜索【此功能需要后台配合，所以暂时没有动态效果演示】
-    $(".search_btn").on("click", function () {
-        if ($(".searchVal").val() != '') {
-            table.reload("majorList", {
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                },
-                where: {
-                    key: '%' + $(".searchVal").val() + '%'  //搜索的关键字
-                }
-            })
-        } else {
-            layer.msg("请输入搜索的内容");
-        }
-    });
-
     // 删除题目
     function del(data) {
         console.log(data);
+        console.log(data.id);
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/delQuestion.action?questionid=" + data.id,
+            error: function () {
+                layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+            }
+        })
+        setTimeout(function () {
+            layer.closeAll("iframe");
+            //刷新父页面
+            parent.location.reload();
+        }, 2000);
+        return false;
     }
 
     // 编辑信息
     function update(edit) {
+        console.log(edit.id);
 
         var index = layui.layer.open({
             title: "更新学院信息",
             // 如果是iframe层
             type: 2,
-            content: "majorUpdate.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
+            content: "questionUpdate.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
             success: function (layero, index) {
 
                 var body = layui.layer.getChildFrame('body', index);
                 if (edit) {
-                    body.find(".id_hiden").val(edit.id);  // id
-                    body.find(".isdelete_hiden").val(edit.isdelete);  // 是否启用
-                    body.find(".grade_hiden").val(edit.grade);  //年级
-                    body.find(".academyName_hiden").val(edit.academyName);  // 学院名称
-                    body.find(".academyCode_hiden").val(edit.academyCode);  // 学院编码
-                    body.find(".majorCode_hiden").val(edit.academyCode);  // 学院编码
-                    body.find(".majorName_hiden").val(edit.majorName);  // 学院编码
-
-
-                    form.render('checkbox');
+                    body.find("#questionid_hiden").val(edit.id);  // id
+                    form.render();
                 }
                 setTimeout(function () {
-                    layui.layer.tips('点击此处返回学院信息列表', '.layui-layer-setwin .layui-layer-close', {
+                    layui.layer.tips('点击此处返回试卷信息列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
                 }, 500)
@@ -105,7 +112,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
 
     $(".addNews_btn").click(function () {
-        addUser();
+        addUser(paperid);
     })
 
     $(".addPaper").click(function () {
@@ -120,6 +127,9 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             content: "paperInit.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
+                body.find("#paperid").val($("#paperid_hiden").val());  // paperid
+                body.find("#id").val($("#id_hiden").val());  //
+
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回试卷题目列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
@@ -136,8 +146,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     }
 
 
-
-    function addUser() {
+    function addUser(paperid) {
         var index = layui.layer.open({
             title: "添加试题",
             // 如果是iframe层
@@ -145,6 +154,10 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             content: "paperAdd.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
+
+                body.find("#paperid").val(paperid);  // id
+
+
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回试卷题目列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3

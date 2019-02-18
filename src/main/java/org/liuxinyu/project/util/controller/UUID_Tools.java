@@ -40,5 +40,11 @@ public class UUID_Tools {
         return ss;
     }
 
+    public static String getpaperno(int number) {
+        String ss = getUUID().substring(0, 6);
+
+        return ss;
+    }
+
 
 }

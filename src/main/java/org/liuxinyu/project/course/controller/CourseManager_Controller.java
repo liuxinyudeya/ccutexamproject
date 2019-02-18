@@ -43,6 +43,8 @@ public class CourseManager_Controller {
         return stringObjectHashMap;
     }
 
+
+
     @ResponseBody
     @RequestMapping("queryAllCourse")
     public String queryAllCourse(int page, int limit, String key) {

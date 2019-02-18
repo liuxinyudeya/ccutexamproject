@@ -27,8 +27,6 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {field: 'teacherno', title: '教师工号', minWidth: 80, align: 'center', sort: true},
             {field: 'courseName', title: '课程名称', minWidth: 80, align: 'center', sort: true},
             {field: 'courseno', title: '课程编号', minWidth: 80, align: 'center', sort: true},
-            {field: 'examstate', title: '考试状态', minWidth: 80, align: 'center', sort: true},
-            {field: 'paperno', title: '试卷编号', minWidth: 80, align: 'center', sort: true},
             {field: 'updatetime_str', title: '最后修改时间', align: 'center', minWidth: 120},
             {title: '操作', minWidth: 120, templet: '#userListBar', fixed: "right", align: "center"}
         ]]

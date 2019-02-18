@@ -1,66 +1,72 @@
-layui.use(['form', 'layer'], function () {
+layui.use(['form', 'layer', 'laydate'], function () {
 
     var form = layui.form,
+        laydate = layui.laydate,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery;
     var questionTypeCode = '01';
+    $.ajax({
+        type: 'POST'
+        ,
+        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryPaper.action?paperid=" + $("#paperid").val()
+        ,
+        success: function (res) {
+            console.log(res);
+            $(".questionCount").val(res.paperCount);
+            $(".paperScore").val(res.paperScore);
+            $(".paperLevel").val(res.paperLevel);
 
-
-    form.on("select(questionType)", function (data) {
-
-        if (data.value == '02') {// 多选
-            $("#contextAnswer01").removeClass('layui-hide');
-            var checkbox = " <input type=\"checkbox\" name=\"answer\" value=\"A\" title=\"A\">" +
-                "<input type=\"checkbox\" class=\" answer\"  name=\"answer\" value=\"B\" title=\"B\">" +
-                "<input type=\"checkbox\" class=\" answer\" name=\"answer\" value=\"C\" title=\"C\">" +
-                "<input type=\"checkbox\" class=\" answer\" name=\"answer\" value=\"D\" title=\"D\">";
-            $(".realAnswer").html(checkbox);
-
-        } else if (data.value == '03') {// 判断
-
-            $("#contextAnswer01").addClass('layui-hide');
-            var context = " <input type=\"radio\" class=\"answer\" name=\"answer\" value=\"true\" title=\"正确\">" +
-                "<input type=\"radio\" class=\"answer\"  name=\"answer\" value=\"false\" title=\"错误\">";
-            $(".realAnswer").html(context);
-        } else if (data.value == '04') {// 填空
-            $("#contextAnswer01").addClass('layui-hide');
-            var context = "<input type=\"text\" class=\"layui-input answer\" name=\"anwser\" lay-verify=\"required\" placeholder=\"请输入答案描述\">";
-            $(".realAnswer").html(context);
-
+            $(".radioCount").val(res.radioCount);
+            $(".checkboxCount").val(res.checkboxCount);
+            $(".judgeCount").val(res.judgeCount);
+            $(".fillCount").val(res.fillCount);
+            form.render();
         }
-        form.render();
-        questionTypeCode = data.value;
+        , error: function () {
+            layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+        }
     })
+
+    //格式化时间
+    function filterTime(val) {
+        if (val < 10) {
+            return "0" + val;
+        } else {
+            return val;
+        }
+    }
+
+    //定时发布
+    var time = new Date();
+
+    var submitTime = time.getFullYear() + '-' + filterTime(time.getMonth() + 1) + '-' + filterTime(time.getDate()) + ' ' + filterTime(time.getHours()) + ':' + filterTime(time.getMinutes()) + ':' + filterTime(time.getSeconds());
+    laydate.render({
+        elem: '#testTime',
+        type: 'datetime',
+        trigger: "click",
+        done: function (value, date, endDate) {
+            submitTime = value;
+        }
+    });
+
     form.on("submit(addUser)", function (data) {
         //弹出loading
+        console.log(data);
         var obj = new Object();
-        obj.questionTypeName = $(".questionType").find("option[value=" + $(".questionType").val() + "]").text();
-        obj.questionTypeCode = questionTypeCode;
-        obj.questionLevel = $(".questionLevel").val();
-        obj.questionScore = $(".questionScore").val();
-        obj.questionDesc = $(".questionDesc").val();
-        var realAnswerList = new Array();
+        console.log();
+        console.log();
+        obj.testTime_str = submitTime;
+        obj.minuteCount = $(".minuteCount").val();
+        obj.tea_cla_couid = $("#id").val();
+        obj.id = $("#paperid").val();
+        console.log(obj.id);
 
-        if (questionTypeCode != '04') {
-            $(".realAnswer input[name=answer]:checked").each(function () {
-                realAnswerList.push(this.value);
-            })
-        } else {
-            realAnswerList.push($(".answer").val());
-        }
-        obj.realAnswerList = realAnswerList;
-        console.log(obj);
-        /*$.ajax({
+        $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/CourseManager_Controller/addCourse.action",
+            url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/setPaper.action",
             data: obj,
             success: function (res) {
-                console.log(res);
-                if (res.state == 0) {
-                    layer.msg(res.success, {icon: 1, time: 1500});
-                } else {
-                    layer.msg(res.error, {icon: 2, time: 1500});
-                }
+                layer.msg(res.success, {icon: 1, time: 1500});
             }
             , error: function () {
                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});
@@ -71,7 +77,7 @@ layui.use(['form', 'layer'], function () {
             layer.closeAll("iframe");
             //刷新父页面
             parent.location.reload();
-        }, 2000);*/
+        }, 2000);
         return false;
     })
 

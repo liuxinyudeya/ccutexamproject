@@ -39,4 +39,9 @@
             updatetime=NOW()
         where id = #{id}
     </update>
+
+    <select id="queryTea_Cla_Cou" parameterType="string"
+            resultType="org.liuxinyu.project.distribution.entity.Tea_Cla_Cou">
+        select * from tea_cla_cou where id=#{value };
+    </select>
 </mapper>

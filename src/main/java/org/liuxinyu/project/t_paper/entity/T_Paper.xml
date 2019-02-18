@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.liuxinyu.project.t_paper.mapper.T_Paper_Dao">
+
+    <resultMap id="question" type="org.liuxinyu.project.t_paper.entity.Question">
+        <id column="id" property="id"/>
+        <result column="questionTypeCode" property="questionTypeCode"/>
+        <result column="questionTypeName" property="questionTypeName"/>
+        <result column="questionLevel" property="questionLevel"/>
+        <result column="questionScore" property="questionScore"/>
+        <result column="questionDesc" property="questionDesc"/>
+        <result column="realAnswers" property="realAnswers"/>
+
+        <collection property="Answers" ofType="org.liuxinyu.project.t_paper.entity.Answer">
+            <result column="answerid" property="answerid"/>
+            <result column="answerCode" property="answerCode"/>
+            <result column="answerName" property="answerName"/>
+        </collection>
+    </resultMap>
+    <select id="queryPaperByCourseId" resultType="org.liuxinyu.project.t_paper.entity.Paper">
+        select id ,paperno from paper where courseno = #{value }
+    </select>
+
+    <insert id="addOnePaper" parameterType="string">
+        insert into paper (id,courseno) values (#{id },#{courseno })
+    </insert>
+
+    <insert id="addQuestion" parameterType="org.liuxinyu.project.t_paper.entity.Question">
+        insert into question (id, questionlevel, questionscore, questiontypecode, questiontypename, questiondesc, realanswers, paperid) values
+                              (#{id },#{questionLevel },#{questionScore },#{questionTypeCode },#{questionTypeName },#{questionDesc },#{realAnswers },#{paperid })
+    </insert>
+
+    <insert id="addAnswer" parameterType="org.liuxinyu.project.t_paper.entity.Answer">
+        insert into answer (id, questionId, answerCode, anwserName) values (#{id },#{questionId },#{answerCode },#{anwserName })
+    </insert>
+
+    <select id="queryAllQuestion" parameterType="string" resultType="org.liuxinyu.project.t_paper.entity.Question">
+       select * from question  where paperid =(select id from paper where courseno = #{ value})
+    </select>
+
+    <select id="queryQuestion" parameterType="string" resultMap="question">
+        select q.*,a.id answerid,a.answerCode,a.answerName
+     from question q join answer a on q.id=#{value } and q.id=a.questionId order by a.answerCode asc
+    </select>
+
+    <update id="updateQuestion" parameterType="org.liuxinyu.project.t_paper.entity.Question">
+        update question set questionlevel=#{questionLevel},
+        questionscore=#{questionScore},questiontypecode=#{questionTypeCode},
+        questiontypename=#{questionTypeName},questiondesc=#{questionDesc},realanswers=#{realAnswers}
+        where id=#{id}
+    </update>
+
+    <update id="updateAnswer" parameterType="string">
+        update answer set answerName=#{answerName} where id=#{id}
+    </update>
+
+    <delete id="delQuestion" parameterType="string">
+        delete from question where id=#{value }
+    </delete>
+
+    <delete id="delAnswer" parameterType="string">
+       delete  from answer where id=#{value }
+    </delete>
+
+    <select id="queryPaper" parameterType="string" resultType="org.liuxinyu.project.t_paper.entity.paperInit">
+      select questiontypecode,count(*) count,sum(questionscore) score,sum(questionlevel) level
+      from question
+      where paperid = #{paperid}
+      group by questiontypecode  asc
+
+    </select>
+
+    <update id="setPaper" parameterType="org.liuxinyu.project.t_paper.entity.Paper">
+        update paper set level=#{level },score=#{score},classno=#{classno},teacherno=#{teacherno},courseno=#{courseno},minuteCount=#{minuteCount},examstate=#{examstate},paperstate=#{paperstate},testTime=STR_TO_DATE(#{testTime_str},'%Y-%m-%d %H:%i:%s'),paperno=#{paperNo}
+        where id=#{id }
+    </update>
+
+    <select id="verifyPaper" parameterType="string" resultType="string">
+        select paperno from paper where id=#{value }
+    </select>
+</mapper>

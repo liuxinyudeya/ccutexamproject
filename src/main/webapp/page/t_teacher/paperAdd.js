@@ -39,30 +39,29 @@ layui.use(['form', 'layer'], function () {
         obj.questionLevel = $(".questionLevel").val();
         obj.questionScore = $(".questionScore").val();
         obj.questionDesc = $(".questionDesc").val();
-        var realAnswerList = new Array();
-
+        obj.paperid = $("#paperid").val();
+        var str = "";
         if (questionTypeCode != '04') {
             $(".realAnswer input[name=answer]:checked").each(function () {
-                realAnswerList.push(this.value);
+                str += ',' + this.value;
             })
-        } else {
-            realAnswerList.push($(".answer").val());
-        }
-        obj.realAnswerList = realAnswerList;
-        console.log(obj);
-        /*$.ajax({
-            type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/CourseManager_Controller/addCourse.action",
-            data: obj,
-            success: function (res) {
-                console.log(res);
-                if (res.state == 0) {
-                    layer.msg(res.success, {icon: 1, time: 1500});
-                } else {
-                    layer.msg(res.error, {icon: 2, time: 1500});
-                }
+            if (questionTypeCode == '01' || questionTypeCode == '02') {
+                obj.A = $(".A").val();
+                obj.B = $(".B").val();
+                obj.C = $(".C").val();
+                obj.D = $(".D").val();
             }
-            , error: function () {
+            str = str.substr(1);
+        } else {
+            str = $(".answer").val();
+        }
+        obj.realAnswers = str;
+        console.log(obj.realAnswers);
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/addQuestion.action",
+            data: obj,
+            error: function () {
                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});
             }
 
@@ -71,7 +70,7 @@ layui.use(['form', 'layer'], function () {
             layer.closeAll("iframe");
             //刷新父页面
             parent.location.reload();
-        }, 2000);*/
+        }, 2000);
         return false;
     })
 

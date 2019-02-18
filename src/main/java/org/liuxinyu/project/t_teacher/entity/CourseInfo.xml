@@ -2,7 +2,7 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.liuxinyu.project.t_teacher.mapper.CourseInfo_Dao">
     <select id="queryCourseList" parameterType="string" resultType="org.liuxinyu.project.t_teacher.entity.CourseInfo">
-        select id,
+      select id,
        grade,
        classno,
        majorname,
@@ -11,6 +11,11 @@
        coursename,
        DATE_FORMAT(updatetime, "%Y-%m-%d") updatetime_str,
        (select count(*) from student s where s.classno = tcc.classno) stuCount
+       ,(select p.paperno from paper p where p.courseno=tcc.courseno) paperno
+       ,(select p.examstate from paper p where p.courseno=tcc.courseno) examstate
+       ,(select p.score from paper p where p.courseno=tcc.courseno) score
+       ,(select p.level from paper p where p.courseno=tcc.courseno) level
+
 from tea_cla_cou tcc where tcc.teacherno=#{value}
 
 

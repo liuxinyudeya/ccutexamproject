@@ -18,4 +18,7 @@ public interface ITea_Cla_Cou_Dao {
     List<Tea_Cla_Cou> queryAllTea_Cla_Cou(String key);
 
     void updateTea_Cla_Cou(Tea_Cla_Cou tea_cla_cou);
+
+    Tea_Cla_Cou queryTea_Cla_Cou(String id);
+
 }

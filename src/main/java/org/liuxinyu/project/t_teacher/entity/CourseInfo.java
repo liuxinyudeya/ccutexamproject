@@ -11,9 +11,10 @@ public class CourseInfo {
     private String majorName;
     private int stuCount; // 班级学生个数
     private String paperno; // 试卷编号
-    private boolean examstate; // 考试状态
+    private String examstate; // 考试状态
     private String updatetime_str; // 最后修改时间
-    private String examCode; // 考试码
+    private String score;
+    private String level;
 
     @Override
     public String toString() {
@@ -28,9 +29,10 @@ public class CourseInfo {
                 ", majorName='" + majorName + '\'' +
                 ", stuCount=" + stuCount +
                 ", paperno='" + paperno + '\'' +
-                ", examstate=" + examstate +
+                ", examstate='" + examstate + '\'' +
                 ", updatetime_str='" + updatetime_str + '\'' +
-                ", examCode='" + examCode + '\'' +
+                ", score='" + score + '\'' +
+                ", level='" + level + '\'' +
                 '}';
     }
 
@@ -114,12 +116,11 @@ public class CourseInfo {
         this.paperno = paperno;
     }
 
-
-    public boolean isExamstate() {
+    public String getExamstate() {
         return examstate;
     }
 
-    public void setExamstate(boolean examstate) {
+    public void setExamstate(String examstate) {
         this.examstate = examstate;
     }
 
@@ -131,11 +132,19 @@ public class CourseInfo {
         this.updatetime_str = updatetime_str;
     }
 
-    public String getExamCode() {
-        return examCode;
+    public String getScore() {
+        return score;
     }
 
-    public void setExamCode(String examCode) {
-        this.examCode = examCode;
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

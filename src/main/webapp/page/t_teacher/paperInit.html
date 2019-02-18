@@ -18,13 +18,13 @@
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">试卷总分</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input paperScore" disabled>
+            <input type="text" class="layui-input paperScore" readonly>
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">试卷总题数</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input questionCount" disabled>
+            <input type="text" class="layui-input questionCount" readonly>
         </div>
     </div>
 
@@ -32,27 +32,27 @@
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">单选题</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input radioCount" disabled>
+            <input type="text" class="layui-input radioCount" readonly>
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">多选题</label>
         <div class="layui-input-block">
-            <<input type="text" class="layui-input checkboxCount" disabled>
+            <input type="text" class="layui-input checkboxCount" readonly>
         </div>
     </div>
 
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">判断题</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input judgeCount" disabled>
+            <input type="text" class="layui-input judgeCount" readonly>
         </div>
     </div>
 
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">填空题</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input fillCount" disabled>
+            <input type="text" class="layui-input fillCount" readonly>
         </div>
     </div>
 
@@ -60,28 +60,36 @@
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">题目难度</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input paperLevel" disabled>
+            <input type="text" class="layui-input paperLevel" readonly>
         </div>
     </div>
 
 
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">起止时间</label>
+    <div class="layui-form-item  releaseDate">
+        <label class="layui-form-label">开考时间</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input startTime" disabled>
+            <input type="text" class="layui-input" id="testTime" placeholder="请选择日期和时间"  lay-verify="required" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <label class="layui-form-label">考试时长</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input minuteCount" lay-verify="required" placeholder="请设置考试时长(分钟数)">
         </div>
     </div>
 
-
     <div class="layui-form-item layui-row layui-col-xs12">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">添加</button>
+            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">生成</button>
             <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
         </div>
     </div>
+    <input type="hidden" id="paperid">
+    <input type="hidden" id="id">
+
 </form>
 <script type="text/javascript" src="../../layui/layui.js"></script>
-<script type="text/javascript" src="paperAdd.js"></script>
+<script type="text/javascript" src="paperInit.js"></script>
 
 </body>
 </html>

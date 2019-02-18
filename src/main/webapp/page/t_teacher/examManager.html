@@ -27,13 +27,13 @@
                 <a class="layui-btn layui-btn-normal addNews_btn">添加试题</a>
             </div>
 
-            <div class="layui-inline">
-                <a class="layui-btn layui-btn-normal addPaper">生成试卷</a>
+            <div class="layui-inline addPaperButton">
+                <a class="layui-btn  addPaper" style="background-color: #e60000">生成试卷</a>
             </div>
 
         </form>
     </blockquote>
-    <table id="paperList" lay-filter="academyList"></table>
+    <table id="paperList" lay-filter="paperList"></table>
 
     <!--操作-->
     <script type="text/html" id="userListBar">
@@ -41,6 +41,10 @@
 
         <a class="layui-btn layui-btn-xs" lay-event="del">删除</a>
     </script>
+    <input id="id_hiden" type="hidden">
+    <input id="paperid_hiden" type="hidden">
+    <input id="courseno_hiden" type="hidden">
+
 </form>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="examManager.js"></script>

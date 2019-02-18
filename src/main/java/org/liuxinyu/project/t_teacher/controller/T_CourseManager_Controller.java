@@ -26,7 +26,6 @@ public class T_CourseManager_Controller {
     public String courseList(int page, int limit, HttpServletRequest request, HttpServletResponse responseh) {
         List<CourseInfo> resultList = new ArrayList<CourseInfo>();
         List<CourseInfo> data = new ArrayList<CourseInfo>();
-        System.out.println(request.getSession().getAttribute("username"));
         String teacherno = (String) request.getSession().getAttribute("username");
         try {
             resultList = t_courseManager_iService.queryCourseLIst(teacherno);
