@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="loginHtml">
+<head>
+    <meta charset="utf-8">
+    <title>CCUTCloudExam</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href=" http://localhost:8080/demo_war_exploded/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href=" http://localhost:8080/demo_war_exploded/css/public.css" media="all"/>
+</head>
+<body class="loginBody">
+<form class="layui-form" style="height: 475px; width: 400px">
+    <div class="login_face"><img src=" http://localhost:8080/demo_war_exploded/images/face.jpg" class="userAvatar">
+    </div>
+
+    <div class="layui-form-item layui-row  ">
+        <label class="layui-form-label">年级</label>
+        <div class="layui-input-block">
+            <select name="grade" class="grade" lay-filter="grade" lay-verify="required">
+                <option></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row  ">
+        <label class="layui-form-label">学院</label>
+        <div class="layui-input-block">
+            <select name="academy" class="academy" lay-filter="academy" lay-verify="required" disabled>
+                <option></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row  ">
+        <label class="layui-form-label">专业</label>
+        <div class="layui-input-block">
+            <select name="major" class="major" lay-filter="major" lay-verify="required" disabled>
+                <option></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row  ">
+        <label class="layui-form-label">班级</label>
+        <div class="layui-input-block">
+            <select name="major" class="classno" lay-filter="classno" lay-verify="required" disabled>
+                <option></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row  ">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input stuno" lay-verify="required" placeholder="请输入学号">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row ">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input name" lay-verify="required" placeholder="请输入姓名">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <button class="layui-btn layui-block register" lay-filter="register" lay-submit>注册</button>
+    </div>
+</form>
+
+<script type="text/javascript" src=" http://localhost:8080/demo_war_exploded/layui/layui.js"></script>
+<script type="text/javascript" src=" http://localhost:8080/demo_war_exploded/page/login/register.js"></script>
+<script type="text/javascript" src=" http://localhost:8080/demo_war_exploded/js/cache.js"></script>
+</body>
+</html>

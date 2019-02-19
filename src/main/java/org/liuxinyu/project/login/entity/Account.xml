@@ -5,7 +5,7 @@
 <mapper namespace="org.liuxinyu.project.login.mapper.IAccount_Dao">
     <select id="queryAccount" parameterType="org.liuxinyu.project.login.entity.Account"
             resultType="org.liuxinyu.project.login.entity.Account">
-        select username,password ,rolecode from account where username=#{username} and password=#{password}
+        select username,password ,rolecode ,name from account where username=#{username} and password=#{password}
     </select>
 
     <insert id="addAccount" parameterType="org.liuxinyu.project.login.entity.Account">

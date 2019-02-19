@@ -33,7 +33,6 @@ public class Student_Service implements IStudent_Service {
     public Map<String, Object> addStudent(Student student) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
         Account account = new Account();
-
         account.setUsername(student.getStudentno()); // 学号就是账号
         account.setPassword("123456"); // 默认密码123456
         account.setName(student.getName());

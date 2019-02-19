@@ -16,5 +16,7 @@ public interface IStudent_Dao {
 
     List<Student> queryAllStudent(String key);
 
+    List<Student> queryStudentByStuno(String studentno);
+
     void updateStudent(Student student);
 }

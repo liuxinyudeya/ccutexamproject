@@ -169,7 +169,7 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
         }
         paperInit.setPaperCount(paperCount);
         paperInit.setPaperScore(paperScore);
-        paperInit.setPaperLevel(paperLevel / 4);
+        paperInit.setPaperLevel(paperLevel / paperCount);
         return paperInit;
     }
 }

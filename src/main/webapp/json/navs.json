@@ -134,7 +134,17 @@
 		  "href": "page/t_teacher/courseManager.html",
 		  "spread": false
 	  }
-  ]
+  ],
+	"student": [
+		{
+			"title": "我的课程",
+			"icon": "layui-icon-release",
+			"href": "page/s_student/studentManager.html",
+			"spread": false
+		}
+	]
 }
+
+
 
 

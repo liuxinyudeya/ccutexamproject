@@ -9,7 +9,10 @@ layui.use(['form', 'layer', 'jquery'], function () {
         });
     })
 
-    //登录按钮
+    form.on("submit(register)", function (data) {
+        window.location.href = "register.html";
+        return false;
+    })
     form.on("submit(login)", function (data) {
 
         $.ajax({
@@ -23,20 +26,16 @@ layui.use(['form', 'layer', 'jquery'], function () {
                             // $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
                             window.location.href = "index.jsp";
                         }, 1000);
-                    }else{
-                        layer.msg('请检查您的账号或者密码哦', {icon: 3, time: 1500});
                     }
                 } else {
-                    layer.msg('糟糕,服务器出错了', {icon: 3, time: 1500});
+                    layer.msg('请检查您的账号或者密码哦', {icon: 3, time: 1500});
                 }
 
             },
             error: function () {
                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});
             }
-
         })
-
 
         return false;
     })

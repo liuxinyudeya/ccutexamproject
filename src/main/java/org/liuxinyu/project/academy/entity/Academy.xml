@@ -3,8 +3,8 @@
 <mapper namespace="org.liuxinyu.project.academy.mapper.IAcademy_Dao">
 
     <insert id="addAcademyByOne" parameterType="org.liuxinyu.project.academy.entity.Academy">
-        insert into aca_ma_cla_info (id, grade, academyname, academycode, department, updatetime, isdelete)
-        values (#{id}, #{grade}, #{academyName}, #{academyCode}, #{department}, NOW(), #{isdelete})
+        insert into aca_ma_cla_info (id, grade, academyname, academycode, department, managerid, updatetime, isdelete)
+        values (#{id}, #{grade}, #{academyName}, #{academyCode}, #{department}, #{grade}, NOW(), #{isdelete})
     </insert>
 
     <select id="queryAllAcademy"
@@ -13,9 +13,10 @@
         select id,grade,academyname,academycode,DATE_FORMAT(updatetime, "%Y-%m-%d") updatetime_str,isdelete
         from aca_ma_cla_info
         <where>
-            <if test="value!='' and value!=null ">
+            <if test="value!='' and value!=null">
                 and id like #{value} or academyname like #{value}
             </if>
+            and department='03'
         </where>
     </select>
 

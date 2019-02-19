@@ -5,8 +5,8 @@
 <mapper namespace="org.liuxinyu.project.course.mapper.ICourse_Dao">
 
     <insert id="addCourse" parameterType="org.liuxinyu.project.course.entity.Course">
-        insert into course (courseno,grade,academyname,academycode,majorname,majorcode,coursename,coursecode,isdelete,updatetime)
-        values (#{courseno},#{grade},#{academyName},#{academyCode},#{majorName},#{majorCode},#{courseName},#{courseCode},#{isdelete},NOW())
+        insert into course (courseno,grade,academyname,academycode,majorname,majorcode,classno,coursename,coursecode,isdelete,updatetime)
+        values (#{courseno},#{grade},#{academyName},#{academyCode},#{majorName},#{majorCode},#{classno },#{courseName},#{courseCode},#{isdelete},NOW())
     </insert>
 
     <select id="queryCourse" parameterType="string" resultType="org.liuxinyu.project.course.entity.Course">
@@ -14,7 +14,7 @@
     </select>
 
     <select id="queryAllCourse" parameterType="string" resultType="org.liuxinyu.project.course.entity.Course">
-        select courseno,grade,academyname,academycode,majorcode,majorname,coursename,coursecode,DATE_FORMAT(updatetime,
+        select courseno,grade,academyname,academycode,majorcode,classno,majorname,coursename,coursecode,DATE_FORMAT(updatetime,
         "%Y-%m-%d")
         updatetime_str,isdelete,distributionName,distributionCode
         from course

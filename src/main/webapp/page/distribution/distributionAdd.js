@@ -204,10 +204,6 @@ layui.use(['form', 'layer'], function () {
         obj.teacherno = $(".teacher").val();
         obj.classno = $(".classno").val();
         obj.isdelete = $(".isdelete").val();
-        console.log(obj.teachername);
-        console.log(obj.coursename);
-        console.log(obj);
-
 
         $.ajax({
             type: 'POST',

@@ -19,6 +19,9 @@ public class Course {
     private String updatetime_str;
     private String isdelete;
     private String newcourseno;
+    private String distributionCode;
+    private String distributionName;
+    private String classno;
 
     @Override
     public String toString() {
@@ -35,6 +38,9 @@ public class Course {
                 ", updatetime_str='" + updatetime_str + '\'' +
                 ", isdelete='" + isdelete + '\'' +
                 ", newcourseno='" + newcourseno + '\'' +
+                ", distributionCode='" + distributionCode + '\'' +
+                ", distributionName='" + distributionName + '\'' +
+                ", classno='" + classno + '\'' +
                 '}';
     }
 
@@ -132,5 +138,29 @@ public class Course {
 
     public void setNewcourseno(String newcourseno) {
         this.newcourseno = newcourseno;
+    }
+
+    public String getDistributionCode() {
+        return distributionCode;
+    }
+
+    public void setDistributionCode(String distributionCode) {
+        this.distributionCode = distributionCode;
+    }
+
+    public String getDistributionName() {
+        return distributionName;
+    }
+
+    public void setDistributionName(String distributionName) {
+        this.distributionName = distributionName;
+    }
+
+    public String getClassno() {
+        return classno;
+    }
+
+    public void setClassno(String classno) {
+        this.classno = classno;
     }
 }

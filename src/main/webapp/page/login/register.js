@@ -1,20 +1,18 @@
-layui.use(['form', 'layer'], function () {
-
+layui.use(['form', 'layer', 'jquery'], function () {
     var form = layui.form,
-        layer = parent.layer === undefined ? layui.layer : top.layer,
-        $ = layui.jquery;
+        layer = parent.layer === undefined ? layui.layer : top.layer
+    $ = layui.jquery;
     var grade;
-
     $.ajax({
-        type: 'POST'
+        type: 'post'
         , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/gradeInit.action"
         , success: function (res) {
             if (res.length == 0) {
                 layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
             }
             var html = "";
-            for (var index in res) {
-                html += "<option value=" + res[index] + ">" + res[index] + "级</option>"
+            for (var i in res) {
+                html += "<option value=" + res[i] + ">" + res[i] + "级</option>"
 
             }
             $('.grade').append(html);
@@ -29,9 +27,9 @@ layui.use(['form', 'layer'], function () {
 
     // 二级联动 根据年级查询学院信息
     form.on('select(grade)', function (data) {
-        // console.log(data.value); //得到被选中的值
+
         grade = data.value;
-        console.log(grade);
+
         $('.academy').html("<option></option>");
         form.render('select');
 
@@ -130,8 +128,8 @@ layui.use(['form', 'layer'], function () {
     });
 
 
-    form.on("submit(addUser)", function (data) {
-        //弹出loading
+    //登录按钮
+    form.on("submit(register)", function (data) {
         var obj = new Object();
         obj.grade = $(".grade").val();
         obj.academyName = $(".academy").find("option[value=" + $(".academy").val() + "]").text();
@@ -139,33 +137,72 @@ layui.use(['form', 'layer'], function () {
         obj.majorName = $(".major").find("option[value=" + $(".major").val() + "]").text();
         obj.majorCode = $(".major").val();
         obj.classno = $(".classno").val();
-        obj.courseName = $(".courseName").val();
-        obj.courseCode = $(".courseCode").val();
-        obj.isdelete = $(".isdelete").val();
+        obj.name = $(".name").val()
+        obj.studentno = $(".stuno").val();
+        obj.sex = '男';
+        obj.isdelete = '0';
+
         console.log(obj);
+
         $.ajax({
-            type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/CourseManager_Controller/addCourse.action",
+            url: "http://localhost:8080/demo_war_exploded/StudentManager_Controller/addStudent.action",
             data: obj,
             success: function (res) {
-                console.log(res);
-                if (res.state == 0) {
-                    layer.msg(res.success, {icon: 1, time: 1500});
+
+                if (res.state == '0') {
+                    verifyLogin();
                 } else {
-                    layer.msg(res.error, {icon: 2, time: 1500});
+                    layer.msg(res.error, {icon: 3, time: 1500});
                 }
-            }
-            , error: function () {
+
+            },
+            error: function () {
                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});
             }
 
         })
-        setTimeout(function () {
-            layer.closeAll("iframe");
-            //刷新父页面
-            parent.location.reload();
-        }, 2000);
+
         return false;
     })
 
+    function verifyLogin() {
+        $.ajax({
+            url: "http://localhost:8080/demo_war_exploded/Account_Controller/verifyLogin.action",
+            data: 'username=' + $(".stuno").val() + '&password=123456',
+            success: function (res) {
+
+                if (res.state == '0') {
+                    if (res.count == 1) {
+                        setTimeout(function () {
+                            // $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
+                            window.location.href = "index.jsp";
+                        }, 1000);
+                    }
+                } else {
+                    layer.msg('请检查您的账号或者密码哦', {icon: 3, time: 1500});
+                }
+
+            },
+            error: function () {
+                layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+            }
+        })
+    }
+
+    //表单输入效果
+    $(".loginBody .input-item").click(function (e) {
+        e.stopPropagation();
+        $(this).addClass("layui-input-focus").find(".layui-input").focus();
+    })
+    $(".loginBody .layui-form-item .layui-input").focus(function () {
+        $(this).parent().addClass("layui-input-focus");
+    })
+    $(".loginBody .layui-form-item .layui-input").blur(function () {
+        $(this).parent().removeClass("layui-input-focus");
+        if ($(this).val() != '') {
+            $(this).parent().addClass("layui-input-active");
+        } else {
+            $(this).parent().removeClass("layui-input-active");
+        }
+    })
 })

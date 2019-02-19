@@ -59,6 +59,11 @@
                     <a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>教师中心</cite></a>
                 </li>
 
+                <!-- 学生中心 -->
+                <li class="layui-nav-item" data-menu="student" pc>
+                    <a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>学生中心</cite></a>
+                </li>
+
                 <li class="layui-nav-item" data-menu="systemeSttings" pc>
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
                 </li>
@@ -78,7 +83,7 @@
                 </li>
                 <li class="layui-nav-item" id="userInfo">
                     <a href="javascript:;"><img src="images/face.jpg" class="layui-nav-img userAvatar" width="35"
-                                                height="35"><cite class="adminName">emm</cite></a>
+                                                height="35"><cite class="adminName"><%=request.getSession().getAttribute("name")%></cite></a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
                                                                                          data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
@@ -104,7 +109,7 @@
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
             <a class="img" title="我的头像"><img src="images/face.jpg" class="userAvatar"></a>
-            <p>你好！<span class="userName">刘心宇</span>, 欢迎登录</p>
+            <p>你好！<span class="userName"><%=request.getSession().getAttribute("name")%></span>, 欢迎登录</p>
         </div>
         <!-- 搜索 -->
         <div class="layui-form component">

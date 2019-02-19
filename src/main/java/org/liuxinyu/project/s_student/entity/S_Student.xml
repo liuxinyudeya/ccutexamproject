@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.liuxinyu.project.s_student.mapper.IS_Student_Dao">
+    <select id="queryCourseList" parameterType="string" resultType="org.liuxinyu.project.s_student.entity.S_Student">
+select tcc.classno
+     ,tcc.courseno
+     ,tcc.coursename
+     ,tcc.teacherno
+     ,tcc.teachername
+     ,p.id
+     ,p.testTime
+     ,p.minuteCount
+     ,p.score
+     ,p.level
+     ,p.paperno
+     ,p.examstate
+from (select *
+      from tea_cla_cou
+      where classno = (select classno from student where studentno = #{value })) tcc
+       left join paper p on tcc.courseno = p.courseno;
+    </select>
+</mapper>

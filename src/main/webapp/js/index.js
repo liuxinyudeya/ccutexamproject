@@ -41,6 +41,10 @@ layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
                 dataStr = data.teacher;
                 //重新渲染左侧菜单
                 tab.render();
+            }else if (json == "student") {
+                dataStr = data.student;
+                //重新渲染左侧菜单
+                tab.render();
             }
         })
     }

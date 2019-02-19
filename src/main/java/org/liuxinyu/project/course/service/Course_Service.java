@@ -28,7 +28,8 @@ public class Course_Service implements ICourse_Service {
 
     public Map<String, Object> addCourse(Course course) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
-        course.setCourseno(course.getCourseCode() + course.getGrade() + course.getAcademyCode() + course.getMajorCode()); // 设置主键id : 课程编号+年级+学院编号+专业编号 确保唯一
+        /* course.setCourseno(course.getCourseCode() + course.getGrade() + course.getAcademyCode() + course.getMajorCode() ); // 设置主键id : 课程编号+年级+学院编号+专业编号 确保唯一*/
+        course.setCourseno(course.getCourseCode() + course.getClassno()); // 设置主键id : 课程编号+班级编号 确保唯一
 
         try {
             icourse_dao.addCourse(course);
@@ -50,7 +51,7 @@ public class Course_Service implements ICourse_Service {
     }
 
     public List<Course> queryCourse(String graed, String academyCode, String majorCode) throws Exception {
-        return icourse_dao.queryCourse(graed,academyCode,majorCode);
+        return icourse_dao.queryCourse(graed, academyCode, majorCode);
     }
 
     public Map<String, Object> updateCourse(Course course) throws Exception {

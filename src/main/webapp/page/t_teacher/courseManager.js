@@ -40,9 +40,9 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {
                 title: '操作', minWidth: 120, fixed: "right", align: "center", templet: function (d) {
                     if (d.paperno != null) {
-                        return '<span lay-event="setpaper" lay-event="setpaper" class="layui-btn layui-btn-red layui-btn-xs">查看试卷</span>'
+                        return '<span lay-event="setpaper"  class="layui-btn layui-btn-red layui-btn-xs">查看试卷</span>'
                     } else {
-                        return '<span lay-event="setpaper" lay-event="setpaper" class="layui-btn layui-btn-green layui-btn-xs">立即出卷</span>'
+                        return '<span lay-event="setpaper"  class="layui-btn layui-btn-green layui-btn-xs">立即出卷</span>'
                     }
                 }
             }

@@ -23,6 +23,7 @@ public class Account_Controller {
     @Resource
     IAccount_Service iAccount_service;
 
+
     @ResponseBody
     @RequestMapping("verifyLogin")
     public Map<String, Object> verifyLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Account account) {
@@ -32,6 +33,7 @@ public class Account_Controller {
             resoultList = iAccount_service.queryAccount(account);
             if (1 == resoultList.size()) {
                 httpServletRequest.getSession().setAttribute("username", resoultList.get(0).getUsername());
+                httpServletRequest.getSession().setAttribute("name", resoultList.get(0).getName());
                 resultMap.put("state", "0");
                 resultMap.put("count", 1);
             } else {
