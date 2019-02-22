@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.liuxinyu.project.paper.mapper.IExam_Dao">
+    <select id="queryQuestionID" parameterType="string" resultType="string">
+        select id from question where paperid=#{paperid } and questiontypecode=#{questionTypeCode }
+    </select>
+
+    <select id="queryPaper" parameterType="string" resultType="org.liuxinyu.project.t_paper.entity.Paper">
+        select * from paper where id=#{value }
+    </select>
+</mapper>

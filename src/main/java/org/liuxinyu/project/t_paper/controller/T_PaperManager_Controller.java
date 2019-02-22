@@ -111,8 +111,6 @@ public class T_PaperManager_Controller {
     @RequestMapping("isexistPaper")
     public Paper isexistPaper(String courseid) {
         System.out.println("course = " + courseid);
-        System.out.println("course = " + courseid);
-
         Paper paper = new Paper();
         try {
             paper = t_paperManager_iService.isexistPaper(courseid);

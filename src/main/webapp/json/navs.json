@@ -141,6 +141,11 @@
 			"icon": "layui-icon-release",
 			"href": "page/s_student/studentManager.html",
 			"spread": false
+		},{
+			"title": "成绩列表",
+			"icon": "layui-icon-release",
+			"href": "page/s_student/paperManager.html",
+			"spread": false
 		}
 	]
 }

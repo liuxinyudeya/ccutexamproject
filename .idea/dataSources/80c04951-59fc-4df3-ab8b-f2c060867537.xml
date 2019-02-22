@@ -916,521 +916,598 @@
     <table id="230" parent="2" name="account"/>
     <table id="231" parent="2" name="answer"/>
     <table id="232" parent="2" name="course"/>
-    <table id="233" parent="2" name="paper"/>
-    <table id="234" parent="2" name="question"/>
-    <table id="235" parent="2" name="student"/>
-    <table id="236" parent="2" name="tea_cla_cou"/>
-    <table id="237" parent="2" name="teacher"/>
-    <routine id="238" parent="2" name="inserttest">
+    <table id="233" parent="2" name="gradeinfo"/>
+    <table id="234" parent="2" name="paper"/>
+    <table id="235" parent="2" name="question"/>
+    <table id="236" parent="2" name="student"/>
+    <table id="237" parent="2" name="tea_cla_cou"/>
+    <table id="238" parent="2" name="teacher"/>
+    <routine id="239" parent="2" name="inserttest">
       <SourceTextLength>75</SourceTextLength>
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="239" parent="2" name="ttt">
+    <routine id="240" parent="2" name="ttt">
       <SourceTextLength>69</SourceTextLength>
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <column id="240" parent="229" name="id">
+    <column id="241" parent="229" name="id">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="229" name="grade">
+    <column id="242" parent="229" name="grade">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="229" name="academyname">
+    <column id="243" parent="229" name="academyname">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="229" name="academycode">
+    <column id="244" parent="229" name="academycode">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="229" name="majorname">
+    <column id="245" parent="229" name="majorname">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="229" name="majorcode">
+    <column id="246" parent="229" name="majorcode">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="229" name="classno">
+    <column id="247" parent="229" name="classno">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="229" name="department">
+    <column id="248" parent="229" name="department">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="229" name="managerid">
+    <column id="249" parent="229" name="managerid">
       <Position>9</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="229" name="updatetime">
+    <column id="250" parent="229" name="updatetime">
       <Position>10</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="229" name="isdelete">
+    <column id="251" parent="229" name="isdelete">
       <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="251" parent="229" name="PRIMARY">
+    <key id="252" parent="229" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="252" parent="230" name="username">
+    <column id="253" parent="230" name="username">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="230" name="password">
+    <column id="254" parent="230" name="password">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;123456&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="230" name="rolecode">
+    <column id="255" parent="230" name="rolecode">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="230" name="isdelete">
+    <column id="256" parent="230" name="isdelete">
       <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="230" name="updatetime">
+    <column id="257" parent="230" name="updatetime">
       <Position>5</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="230" name="name">
+    <column id="258" parent="230" name="name">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="258" parent="230" name="PRIMARY">
+    <key id="259" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>username</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="259" parent="231" name="id">
+    <column id="260" parent="231" name="id">
       <Position>1</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="231" name="questionId">
+    <column id="261" parent="231" name="questionId">
       <Position>2</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="231" name="answerCode">
+    <column id="262" parent="231" name="answerCode">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="231" name="answerName">
+    <column id="263" parent="231" name="answerName">
       <Position>4</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="263" parent="231" name="PRIMARY">
+    <key id="264" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="264" parent="232" name="courseno">
+    <column id="265" parent="232" name="courseno">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="232" name="coursename">
+    <column id="266" parent="232" name="coursename">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="232" name="grade">
+    <column id="267" parent="232" name="grade">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="232" name="academyname">
+    <column id="268" parent="232" name="academyname">
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="232" name="academycode">
+    <column id="269" parent="232" name="academycode">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="232" name="majorname">
+    <column id="270" parent="232" name="majorname">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="232" name="majorcode">
+    <column id="271" parent="232" name="majorcode">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="232" name="updatetime">
+    <column id="272" parent="232" name="updatetime">
       <Position>8</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="232" name="isdelete">
+    <column id="273" parent="232" name="isdelete">
       <Position>9</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="232" name="coursecode">
+    <column id="274" parent="232" name="coursecode">
       <Position>10</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="232" name="distributionCode">
+    <column id="275" parent="232" name="distributionCode">
       <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="232" name="distributionName">
+    <column id="276" parent="232" name="distributionName">
       <Position>12</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;未分配&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="232" name="classno">
+    <column id="277" parent="232" name="classno">
       <Position>13</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="277" parent="232" name="PRIMARY">
+    <key id="278" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>courseno</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="278" parent="233" name="id">
+    <column id="279" parent="233" name="id">
       <Position>1</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="233" name="classno">
+    <column id="280" parent="233" name="studentno">
       <Position>2</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="233" name="teacherno">
+    <column id="281" parent="233" name="classno">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="233" name="courseno">
+    <column id="282" parent="233" name="paperid">
       <Position>4</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="233" name="testTime">
+    <column id="283" parent="233" name="courseno">
       <Position>5</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="233" name="minuteCount">
+    <column id="284" parent="233" name="grade">
       <Position>6</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="233" name="paperno">
+    <column id="285" parent="233" name="academycode">
       <Position>7</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="233" name="examstate">
+    <column id="286" parent="233" name="academyName">
+      <Position>8</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="233" name="majorcode">
+      <Position>9</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="233" name="majorname">
+      <Position>10</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="289" parent="233" name="score">
+      <Position>11</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="290" parent="233" name="uptime">
+      <Position>12</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="291" parent="233" name="rank">
+      <Position>13</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="292" parent="233" name="testTIme">
+      <Position>14</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="293" parent="233" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="294" parent="234" name="id">
+      <Position>1</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="295" parent="234" name="classno">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="296" parent="234" name="teacherno">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="297" parent="234" name="courseno">
+      <Position>4</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="298" parent="234" name="testTime">
+      <Position>5</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="299" parent="234" name="minuteCount">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="300" parent="234" name="paperno">
+      <Position>7</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="301" parent="234" name="examstate">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;未考试&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="233" name="paperstate">
+    <column id="302" parent="234" name="paperstate">
       <Position>9</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="233" name="score">
+    <column id="303" parent="234" name="score">
       <Position>10</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;-&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="233" name="level">
+    <column id="304" parent="234" name="level">
       <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
       <DefaultExpression>&apos;-&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="289" parent="233" name="PRIMARY">
+    <key id="305" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="290" parent="234" name="id">
+    <column id="306" parent="235" name="id">
       <Position>1</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="234" name="questionlevel">
+    <column id="307" parent="235" name="questionlevel">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="234" name="questionscore">
+    <column id="308" parent="235" name="questionscore">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="234" name="questiontypecode">
+    <column id="309" parent="235" name="questiontypecode">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="234" name="questiontypename">
+    <column id="310" parent="235" name="questiontypename">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="234" name="questiondesc">
+    <column id="311" parent="235" name="questiondesc">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="234" name="realanswers">
+    <column id="312" parent="235" name="realanswers">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="234" name="paperid">
+    <column id="313" parent="235" name="paperid">
       <Position>8</Position>
       <DataType>varchar(40)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="298" parent="234" name="PRIMARY">
+    <key id="314" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="299" parent="235" name="studentno">
+    <column id="315" parent="236" name="studentno">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="235" name="grade">
+    <column id="316" parent="236" name="grade">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="235" name="academyname">
+    <column id="317" parent="236" name="academyname">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="235" name="academycode">
+    <column id="318" parent="236" name="academycode">
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="235" name="majorname">
+    <column id="319" parent="236" name="majorname">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="235" name="majorcode">
+    <column id="320" parent="236" name="majorcode">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="235" name="classno">
+    <column id="321" parent="236" name="classno">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="235" name="name">
+    <column id="322" parent="236" name="name">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="235" name="sex">
+    <column id="323" parent="236" name="sex">
       <Position>9</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="235" name="updatetime">
+    <column id="324" parent="236" name="updatetime">
       <Position>10</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="235" name="isdelete">
+    <column id="325" parent="236" name="isdelete">
       <Position>11</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="310" parent="235" name="PRIMARY">
+    <key id="326" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>studentno</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="311" parent="236" name="id">
+    <column id="327" parent="237" name="id">
       <Position>1</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="236" name="grade">
+    <column id="328" parent="237" name="grade">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="236" name="academyname">
+    <column id="329" parent="237" name="academyname">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="236" name="academycode">
+    <column id="330" parent="237" name="academycode">
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="315" parent="236" name="majorname">
+    <column id="331" parent="237" name="majorname">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="316" parent="236" name="majorcode">
+    <column id="332" parent="237" name="majorcode">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="236" name="classno">
+    <column id="333" parent="237" name="classno">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="318" parent="236" name="teacherno">
+    <column id="334" parent="237" name="teacherno">
       <Position>8</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="319" parent="236" name="teachername">
+    <column id="335" parent="237" name="teachername">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="236" name="courseno">
+    <column id="336" parent="237" name="courseno">
       <Position>10</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="236" name="coursename">
+    <column id="337" parent="237" name="coursename">
       <Position>11</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="236" name="examstate">
+    <column id="338" parent="237" name="examstate">
       <Position>12</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="236" name="paperno">
+    <column id="339" parent="237" name="paperno">
       <Position>13</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="236" name="isdelete">
+    <column id="340" parent="237" name="isdelete">
       <Position>14</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="236" name="updatetime">
+    <column id="341" parent="237" name="updatetime">
       <Position>15</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="326" parent="236" name="PRIMARY">
+    <key id="342" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="327" parent="237" name="teacherno">
+    <column id="343" parent="238" name="teacherno">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="237" name="name">
+    <column id="344" parent="238" name="name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="237" name="sex">
+    <column id="345" parent="238" name="sex">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="237" name="updatetime">
+    <column id="346" parent="238" name="updatetime">
       <Position>4</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="237" name="isdelete">
+    <column id="347" parent="238" name="isdelete">
       <Position>5</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="332" parent="237" name="PRIMARY">
+    <key id="348" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>teacherno</ColNames>
       <Primary>1</Primary>
     </key>
-    <argument id="333" parent="238" name="id">
+    <argument id="349" parent="239" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="334" parent="238" name="name">
+    <argument id="350" parent="239" name="name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </argument>
-    <argument id="335" parent="238" name="sex">
+    <argument id="351" parent="239" name="sex">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="336" parent="238" name="age">
+    <argument id="352" parent="239" name="age">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="337" parent="239" name="name">
+    <argument id="353" parent="240" name="name">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
     </argument>
-    <argument id="338" parent="239" name="count">
+    <argument id="354" parent="240" name="count">
       <Position>2</Position>
       <ArgumentDirection>O</ArgumentDirection>
       <DataType>int(11)|0s</DataType>

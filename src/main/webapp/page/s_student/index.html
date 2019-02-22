@@ -1,0 +1,541 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>远程教育考试平台_在线考试</title>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
+    <link href="iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="test.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+        .hasBeenAnswer {
+            background: #5d9cec;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<!-- 提交 -->
+<div class="test_title">
+    <p class="test_time">
+        <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+    </p>
+    <font><input type="button" class="submit" value="交卷"></font>
+</div>
+<body>
+<input class="paperid" type="hidden">
+<div class="main">
+    <!--nr start-->
+    <div class="test_main">
+        <!-- 答题区 -->
+        <div class="nr_left">
+            <div class="test">
+                <form action="" method="post">
+
+
+                    <!--单选题-->
+                    <div class="test_content ">
+                        <div class="test_content_title redio">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"></i><span>题，</span><span>合计</span><i
+                                    class="content_fs"></i><span>分</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="test_content_nr ">
+                        <ul class="content"></ul>
+                    </div>
+                    <!--多选题-->
+                    <div class="test_content">
+                        <div class="test_content_title checkBox">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
+                                    class="content_fs"> </i><span>分</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="test_content_nr">
+                        <ul class="checkboxcontent"></ul>
+                    </div>
+
+                    <!-- 判断题 -->
+                    <div class="test_content">
+                        <div class="test_content_title judge">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
+                                    class="content_fs"> </i><span>分</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="test_content_nr">
+                        <ul class="judgeContent"></ul>
+                    </div>
+                    <!-- 填空题 -->
+                    <div class="test_content">
+                        <div class="test_content_title fill">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
+                                    class="content_fs"> </i><span>分</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="test_content_nr">
+                        <ul class="fillContent"></ul>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- 答题卡区 -->
+        <div class="nr_right">
+            <div class="nr_rt_main">
+                <div class="rt_nr1">
+                    <div class="rt_nr1_title">
+                        <h1>
+                            <i class="icon iconfont">&#xe692;</i>答题卡
+                        </h1>
+                        <p class="test_time">
+                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+                        </p>
+                    </div>
+
+                    <div class="rt_content">
+                        <div class="rt_content_tt rediocard">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题</span>
+                            </p>
+                        </div>
+                        <div class="rt_content_nr answerSheet">
+                            <ul class="redioQuestion"></ul>
+                        </div>
+                    </div>
+
+                    <div class="rt_content">
+                        <div class="rt_content_tt checkboxcard">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题</span>
+                            </p>
+                        </div>
+                        <div class="rt_content_nr answerSheet">
+                            <ul class="checkboxQuestion"></ul>
+                        </div>
+                    </div>
+
+                    <div class="rt_content">
+                        <div class="rt_content_tt judgecard">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题</span>
+                            </p>
+                        </div>
+                        <div class="rt_content_nr answerSheet">
+                            <ul class="judgeQuestion"></ul>
+                        </div>
+                    </div>
+
+                    <div class="rt_content">
+                        <div class="rt_content_tt fillcard">
+                            <h2></h2>
+                            <p>
+                                <span>共</span><i class="content_lit"> </i><span>题</span>
+                            </p>
+                        </div>
+                        <div class="rt_content_nr answerSheet">
+                            <ul class="fillQuestion"></ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery-1.11.3.min.js"></script>
+<script src="jquery.easy-pie-chart.js"></script>
+<!--时间js-->
+<script src="time/jquery.countdown.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".paperid").val(getId('id'));
+        queryPaper();
+        $(".submit").click(upPaper);
+    });
+
+    function upPaper() {
+        console.log(radioCount);
+        var obj = new Object();
+        var radioList = new Array();
+        var checkboxList = new Array();
+        var judgeList = new Array();
+        var fillList = new Array();
+        if (radioCount != 0) {
+            for (var i = 0; i < radioCount; i++) {
+                var question = new Object();
+                question.answer = $("input[name=radio" + i + "]:checked").val();
+                question.questionid = $("input[name=radio" + i + "]:checked").attr("id");
+
+                if (question.answer != null || question.questionid != null) {
+                    radioList.push(question)
+                }
+
+            }
+        }
+
+        if (checkboxCount != 0) {
+            for (var i = 0; i < checkboxCount; i++) {
+                var question = new Object();
+                var array = new Array();
+                array = $("input[name=checkbox" + i + "]:checked");
+                if (array != null && array.length > 0) {
+                    var answer = "";
+                    var questionid = "";
+                    for (var j = 0; j < array.length; j++) {
+                        answer = answer + array[j].value + ",";
+                        questionid = array[j].id;
+                    }
+                    question.questionid = questionid;
+                    question.answer = answer.substr(0, answer.length - 1);
+                    if (question.answer != null || question.questionid != null) {
+                        checkboxList.push(question)
+                    }
+                }
+
+            }
+        }
+
+        if (judgeCount != 0) {
+            for (var i = 0; i < judgeCount; i++) {
+                var question = new Object();
+                question.answer = $("input[name=judge" + i + "]:checked").val();
+                question.questionid = $("input[name=judge" + i + "]:checked").attr("id");
+                if (question.answer != null || question.questionid != null) {
+                    judgeList.push(question);
+                }
+            }
+
+        }
+
+        if (fillCount != 0) {
+            for (var i = 0; i < fillCount; i++) {
+                var question = new Object();
+                question.answer = $("input[name=fillAnswer" + i + "]").val();
+                question.questionid = $("input[name=fillAnswer" + i + "]").attr("id");
+                if (question.answer != null && question.questionid != null) {
+                    fillList.push(question);
+                }
+            }
+        }
+        obj.paperid = $(".paperid").val();
+        obj.radioList = radioList;
+        obj.checkboxList = checkboxList;
+        obj.judgeList = judgeList;
+        obj.fillList = fillList;
+        console.log(obj);
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:8080/demo_war_exploded/S_StudentManager_Controller/upPaper.action'
+            , data: 'data=' + JSON.stringify(obj)
+            , success: function (res) {
+                window.location.href = 'studentManager.html';
+            }
+            , error: function () {
+                console.log("正在统计分数,请稍等");
+            }
+        })
+
+    }
+
+    //获取URL中的参数..等等
+    function getId(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return decodeURIComponent(r[2]);
+        }
+        return '';
+
+    }
+
+    function queryPaper() {
+        $.ajax({
+            url: 'http://localhost:8080/demo_war_exploded/Exam_Controller/queryExam.action'
+            , data: 'paperid=' + $(".paperid").val()
+            , success: function (res) {
+                initPaper(res);
+            }
+            , error: function () {
+                layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+            }
+        })
+    }
+
+    var radioCount = 0;
+    var checkboxCount = 0;
+    var judgeCount = 0;
+    var fillCount = 0;
+
+    function initPaper(data) {
+        console.log(data);
+        timeinit(data.minuteCount);
+        // 单选
+        if (data.redioList != null && data.redioList.length > 0) {
+            var UL = $(".content");
+            var Score = 0;
+            $(".redio h2").html(data.redioList[0].questionTypeName);
+            $(".redio p .content_lit").html(data.redioList.length);
+            radioCount = data.redioList.length;
+            $(".rediocard h2").html(data.redioList[0].questionTypeName);
+            $(".rediocard p .content_lit").html(data.redioList.length);
+            var redioQuestion = $(".redioQuestion");
+            for (var i in data.redioList) {
+                var num = parseInt(i) + parseInt("1");
+                var licard = $("<li><a href=#" + data.redioList[i].id + ">" + num + "</a> </li></ul>");
+                redioQuestion.append(licard);
+                Score = parseInt(data.redioList[i].questionScore) + Score;
+                var li = $("<li id='" + data.redioList[i].id + "'>");
+                var div1 = $("<div class='test_content_nr_tt'>");
+
+                var k = $("<i>" + num + "</i>");
+                var span = $("<span >(" + data.redioList[i].questionScore + "分)</span>");
+                var font = $("<font>" + data.redioList[i].questionDesc + "</font>");
+                var b = $("<b class=\"icon iconfont\">&#xe881;</b>");
+
+
+                var div2 = $(" <div class='test_content_nr_main'>");
+                var ul = $("<ul>");
+                for (var j in data.redioList[i].answers) {
+                    var option = $("  <li class='option'>");
+                    var redio1 = $("<input type='radio' class='radioOrCheck' name='radio" + i + "'  id='" + data.redioList[i].id + "' value='" + data.redioList[i].answers[j].answerCode + "'/>");
+                    var label = $("<label for='" + data.redioList[i].answers[j].answerid + "'> " + data.redioList[i].answers[j].answerCode + ".</label>");
+                    var p = $("<p class='ue' style='display: inline;'>" + data.redioList[i].answers[j].answerName + "</p>");
+                    label.append(p);
+                    option.append(redio1);
+                    option.append(label);
+                    ul.append(option);
+
+                    div2.append(ul);
+                }
+                div1.append(k);
+                div1.append(span);
+                div1.append(font);
+                div1.append(b);
+
+                li.append(div1);
+                li.append(div2);
+                UL.append(li);
+            }
+            $(".redio p .content_fs").html(Score);
+        }
+        // 多选
+        if (data.checkboxList != null && data.checkboxList.length > 0) {
+            var UL = $(".checkboxcontent");
+            var Score = 0;
+            $(".checkBox h2").html(data.checkboxList[0].questionTypeName);
+            $(".checkBox p .content_lit").html(data.checkboxList.length);
+            checkboxCount = data.checkboxList.length;
+            $(".checkboxcard h2").html(data.checkboxList[0].questionTypeName);
+            $(".checkboxcard p .content_lit").html(data.checkboxList.length);
+            var checkboxQuestion = $(".checkboxQuestion");
+            for (var i in data.checkboxList) {
+                var num = parseInt(i) + parseInt("1");
+                var licard = $("<li><a href=#" + data.checkboxList[i].id + ">" + num + "</a> </li></ul>");
+                checkboxQuestion.append(licard);
+                Score = parseInt(data.checkboxList[i].questionScore) + Score;
+                var li = $("<li id='" + data.checkboxList[i].id + "'>");
+                var div1 = $("<div class='test_content_nr_tt'>");
+
+                var k = $("<i>" + num + "</i>");
+                var span = $("<span >(" + data.checkboxList[i].questionScore + "分)</span>");
+                var font = $("<font>" + data.checkboxList[i].questionDesc + "</font>");
+                var b = $("<b class=\"icon iconfont\">&#xe881;</b>");
+
+
+                var div2 = $(" <div class='test_content_nr_main'>");
+                var ul = $("<ul>");
+                for (var j in data.checkboxList[i].answers) {
+                    var option = $("  <li class='option'>");
+                    var redio1 = $("<input type='checkbox' class='radioOrCheck' name='checkbox" + i + "'  id='" + data.checkboxList[i].id + "' value='" + data.checkboxList[i].answers[j].answerCode + "' />");
+                    var label = $("<label for='" + data.checkboxList[i].answers[j].answerid + "'> " + data.checkboxList[i].answers[j].answerCode + ".</label>");
+                    var p = $("<p class='ue' style='display: inline;'>" + data.checkboxList[i].answers[j].answerName + "</p>");
+                    label.append(p);
+                    option.append(redio1);
+                    option.append(label);
+                    ul.append(option);
+
+                    div2.append(ul);
+                }
+                div1.append(k);
+                div1.append(span);
+                div1.append(font);
+                div1.append(b);
+
+                li.append(div1);
+                li.append(div2);
+                UL.append(li);
+            }
+            $(".checkBox p .content_fs").html(Score);
+        }
+        // 判断
+        if (data.judgeList != null && data.checkboxList.length > 0) {
+            var UL = $(".judgeContent");
+            var Score = 0;
+            $(".judge h2").html(data.judgeList[0].questionTypeName);
+            $(".judge p .content_lit").html(data.judgeList.length);
+            judgeCount = data.judgeList.length;
+            $(".judgecard h2").html(data.judgeList[0].questionTypeName);
+            $(".judgecard p .content_lit").html(data.judgeList.length);
+            var judgeQuestion = $(".judgeQuestion");
+            for (var i in data.judgeList) {
+                var num = parseInt(i) + parseInt("1");
+                var licard = $("<li><a href=#" + data.judgeList[i].id + ">" + num + "</a> </li></ul>");
+                judgeQuestion.append(licard);
+                Score = parseInt(data.judgeList[i].questionScore) + Score;
+                var li = $("<li id='" + data.judgeList[i].id + "'>");
+                var div1 = $("<div class='test_content_nr_tt'>");
+
+                var k = $("<i>" + num + "</i>");
+                var span = $("<span >(" + data.judgeList[i].questionScore + "分)</span>");
+                var font = $("<font>" + data.judgeList[i].questionDesc + "</font>");
+                var b = $("<b class=\"icon iconfont\">&#xe881;</b>");
+
+
+                var div2 = $(" <div class='test_content_nr_main'>");
+                var ul = $("<ul>");
+                for (var j in data.judgeList[i].answers) {
+                    var option = $("  <li class='option'>");
+                    var redio1 = $("<input type='radio' class='radioOrCheck' name= 'judge" + i + "'  id='" + data.judgeList[i].id + "' value='" + data.judgeList[i].answers[j].answerName + "' />");
+                    var label = $("<label for='" + data.judgeList[i].answers[j].answerid + "'> </label>");
+                    var p = $("<p class='ue' style='display: inline;'>" + data.judgeList[i].answers[j].answerName + "</p>");
+                    label.append(p);
+                    option.append(redio1);
+                    option.append(label);
+                    ul.append(option);
+
+                    div2.append(ul);
+                }
+                div1.append(k);
+                div1.append(span);
+                div1.append(font);
+                div1.append(b);
+
+                li.append(div1);
+                li.append(div2);
+                UL.append(li);
+            }
+            $(".judge p .content_fs").html(Score);
+        }
+        // 填空
+        if (data.fillList != null && data.fillList.length > 0) {
+            var UL = $(".fillContent");
+            var Score = 0;
+            $(".fill h2").html(data.fillList[0].questionTypeName);
+            $(".fill p .content_lit").html(data.fillList.length);
+            fillCount = data.fillList.length;
+            $(".fillcard h2").html(data.fillList[0].questionTypeName);
+            $(".fillcard p .content_lit").html(data.fillList.length);
+            var fillQuestion = $(".fillQuestion");
+            for (var i in data.judgeList) {
+                var num = parseInt(i) + parseInt("1");
+                var licard = $("<li><a href=#" + data.judgeList[i].id + ">" + num + "</a> </li></ul>");
+                fillQuestion.append(licard);
+                Score = parseInt(data.fillList[i].questionScore) + Score;
+                var li = $("<li id='" + data.fillList[i].id + "'>");
+                var div1 = $("<div class='test_content_nr_tt'>");
+
+                var k = $("<i>" + num + "</i>");
+                var span = $("<span >(" + data.fillList[i].questionScore + "分)</span>");
+                var font = $("<font>" + data.fillList[i].questionDesc + "</font>");
+                var b = $("<b class=\"icon iconfont\">&#xe881;</b>");
+
+                var div2 = $(" <div class='test_content_nr_main'>")
+                var ul = $("<ul>");
+                var li2 = $("<li>");
+                var input = $(" <input class='fromInput'  name='fillAnswer" + i + "' id='" + data.fillList[i].id + "'  />");
+
+                li2.append(input);
+                ul.append(li2);
+                div2.append(ul);
+
+                div1.append(k);
+                div1.append(span);
+                div1.append(font);
+                div1.append(b);
+
+                li.append(div1);
+                li.append(div2);
+                UL.append(li);
+            }
+            $(".fill p .content_fs").html(Score);
+        }
+
+
+    }
+
+    function timeinit(Time) {
+        var time = parseInt(Time);
+        var count = parseInt(time / 60) + 1
+        var hour = 0;
+        var minut = 0;
+        for (var i = 0; i < count; i++) {
+            if (time >= 60) {
+                console.log("in");
+                hour = hour + 1;
+                time = time - 60;
+            } else {
+                minut = time;
+            }
+
+        }
+        if (hour < 12) {
+            hour = '0' + hour;
+        }
+        if (minut < 10) {
+            minut = '0' + minut;
+        }
+
+        console.log(hour);
+        console.log(minut);
+        $(".alt-1").html(hour + ':' + minut);
+        $('.alt-1').countDown({
+            css_class: 'countdown-alt-1'
+        });
+    }
+
+    window.jQuery(function ($) {
+        "use strict";
+
+        $('time').countDown({
+            with_separators: false
+        });
+
+    });
+
+    $(function () {
+        $('li.option label').click(function () {
+            debugger;
+            var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
+            var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
+            // 设置已答题
+            if (!cardLi.hasClass('hasBeenAnswer')) {
+                cardLi.addClass('hasBeenAnswer');
+            }
+
+        });
+    });
+</script>
+
+</body>
+
+</html>

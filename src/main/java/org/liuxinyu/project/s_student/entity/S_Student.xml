@@ -19,4 +19,47 @@ from (select *
       where classno = (select classno from student where studentno = #{value })) tcc
        left join paper p on tcc.courseno = p.courseno;
     </select>
+
+    <select id="calcScore" parameterType="string" resultType="java.lang.Integer">
+select (case realanswers when #{answer } then questionscore else 0 end) score
+from question
+where id = #{questionid };
+    </select>
+
+    <select id="queryQuestionForCheck" parameterType="string" resultType="org.liuxinyu.project.s_student.entity.UpPer">
+        select realanswers,questionscore from question where id=#{value };
+    </select>
+
+    <insert id="addGradeInfo" parameterType="org.liuxinyu.project.s_student.entity.GradeInfo">
+        insert into gradeinfo (id, studentno, classno, paperid, courseno, grade, academycode, academyName, majorcode, majorname, score, uptime)
+        values (#{id},#{studentno},#{classno},#{paperid},#{courseno},#{grade},#{academyCode},#{academyName},#{majorCode},#{majorName},#{score},NOW());
+    </insert>
+
+    <select id="queryStudent" resultType="org.liuxinyu.project.student.entity.Student" parameterType="string">
+        select * from student where studentno=#{value};
+    </select>
+
+    <update id="paperFinsh" parameterType="string">
+        update paper set examstate  ='已完成'  where id=#{value };
+    </update>
+
+    <select id="queryGradeInfo" parameterType="string" resultType="org.liuxinyu.project.s_student.entity.GradeInfo">
+        select *
+from gradeinfo where studentno=#{value };
+    </select>
+
+    <select id="queryTCC" parameterType="string" resultType="org.liuxinyu.project.distribution.entity.Tea_Cla_Cou">
+        select * from tea_cla_cou where courseno=${value };
+    </select>
+
+    <select id="queryClassAvg" parameterType="string" resultType="string">
+select Avg(score) classAvg
+from gradeinfo g where g.studentno=#{value } group by g.classno;
+    </select>
+
+    <select id="queryClassRank" parameterType="string" resultType="java.util.HashMap">
+        SELECT @rowNum := @rowNum + 1 AS 'classrank',g.studentno
+  FROM gradeinfo g,
+     (SELECT @rowNum := 0) b where g.classno=#{value }
+    </select>
 </mapper>

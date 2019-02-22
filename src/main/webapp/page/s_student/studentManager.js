@@ -28,7 +28,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
                     if (d.testTime != null) {
                         var unixTimestamp = new Date(d.testTime);
                         return unixTimestamp.toLocaleString();
-                    }else{
+                    } else {
                         return '-';
                     }
 
@@ -47,7 +47,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {
                 field: 'examstate', title: '考试状态', align: 'center', sort: true, templet: function (d) {
                     if (d.examstate == '已完成') {
-                        return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs checkpaper">查看试卷</span>'
+                        return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs checkpaper">已完成</span>'
                     } else {
                         // 进入考场
                         return '<span  lay-event="startexam" class="layui-btn layui-btn-red layui-btn-xs startexam ">进入考场</span>'
@@ -65,7 +65,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             data = obj.data;
 
         if (layEvent === 'startexam') {
-            console.log(data);
+            window.location.href = 'index.html?id=' + data.id;
         }
     });
 

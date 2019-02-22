@@ -10,7 +10,7 @@ public class Question {
     private String questionTypeName; // 题目类型名称
     private String questionTypeCode; // 题目类型编码
     private String questionLevel; // 题目难度等级
-    private String questionScore; // 题目分数
+    private double questionScore; // 题目分数
     private String questionDesc; // 题目描述
     private String A; // A选项
     private String B; // B选项
@@ -88,11 +88,11 @@ public class Question {
         this.questionLevel = questionLevel;
     }
 
-    public String getQuestionScore() {
+    public double getQuestionScore() {
         return questionScore;
     }
 
-    public void setQuestionScore(String questionScore) {
+    public void setQuestionScore(double questionScore) {
         this.questionScore = questionScore;
     }
 

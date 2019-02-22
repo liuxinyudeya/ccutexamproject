@@ -68,7 +68,7 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
                 paperScore += paperInit01.getScore();
                 paperLevel += paperInit01.getLevel();
             }
-            paper.setLevel(paperScore + "");
+            paper.setLevel(paperLevel + "");
             paper.setScore(paperScore + "");
 
             String id = paper.getTea_cla_couid(); // 查询Tea_Cla_Cou基本信息
@@ -108,6 +108,7 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
     @Override
     public void delQuestion(String questionId) throws Exception {
         t_paper_dao.delQuestion(questionId);
+        t_paper_dao.delAnswer(questionId);
     }
 
     private void q(String answerCode, String answerName, String questionID) {

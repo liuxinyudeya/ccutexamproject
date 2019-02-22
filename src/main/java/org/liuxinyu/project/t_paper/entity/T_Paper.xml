@@ -17,6 +17,12 @@
             <result column="answerName" property="answerName"/>
         </collection>
     </resultMap>
+
+    <select id="queryQuestion" parameterType="string" resultMap="question">
+        select q.*,a.id answerid,a.answerCode,a.answerName
+     from question q join answer a on q.id=#{value } and q.id=a.questionId order by a.answerCode asc
+    </select>
+
     <select id="queryPaperByCourseId" resultType="org.liuxinyu.project.t_paper.entity.Paper">
         select id ,paperno from paper where courseno = #{value }
     </select>
@@ -31,17 +37,13 @@
     </insert>
 
     <insert id="addAnswer" parameterType="org.liuxinyu.project.t_paper.entity.Answer">
-        insert into answer (id, questionId, answerCode, anwserName) values (#{id },#{questionId },#{answerCode },#{anwserName })
+        insert into answer (id, questionId, answerCode, answerName) values (#{id },#{questionId },#{answerCode },#{answerName })
     </insert>
 
     <select id="queryAllQuestion" parameterType="string" resultType="org.liuxinyu.project.t_paper.entity.Question">
        select * from question  where paperid =(select id from paper where courseno = #{ value})
     </select>
 
-    <select id="queryQuestion" parameterType="string" resultMap="question">
-        select q.*,a.id answerid,a.answerCode,a.answerName
-     from question q join answer a on q.id=#{value } and q.id=a.questionId order by a.answerCode asc
-    </select>
 
     <update id="updateQuestion" parameterType="org.liuxinyu.project.t_paper.entity.Question">
         update question set questionlevel=#{questionLevel},
@@ -59,7 +61,7 @@
     </delete>
 
     <delete id="delAnswer" parameterType="string">
-       delete  from answer where id=#{value }
+       delete  from answer where questionId=#{value }
     </delete>
 
     <select id="queryPaper" parameterType="string" resultType="org.liuxinyu.project.t_paper.entity.paperInit">
