@@ -29,4 +29,15 @@ public class Account_Service implements IAccount_Service {
 
         return resultList;
     }
+
+    @Override
+    public void updatePwd(Account account) throws Exception {
+        iAccount_dao.updatePwd(account);
+    }
+
+    @Override
+    public Account queryPwd(String username) throws Exception {
+        return iAccount_dao.queryPwd(username);
+
+    }
 }

@@ -2,6 +2,7 @@ package org.liuxinyu.project.s_student.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.liuxinyu.project.distribution.entity.Tea_Cla_Cou;
+import org.liuxinyu.project.s_student.entity.ClassRank;
 import org.liuxinyu.project.s_student.entity.GradeInfo;
 import org.liuxinyu.project.s_student.entity.S_Student;
 import org.liuxinyu.project.s_student.entity.UpPer;
@@ -28,7 +29,9 @@ public interface IS_Student_Dao {
 
     Tea_Cla_Cou queryTCC(String courseno);
 
-    String queryClassAvg(String studentno);
+    String queryClassAvg(String courseno);
 
-    HashMap<String, Object> queryClassRank(String classno);
+    List<ClassRank> queryClassRank(@Param("classno") String classno, @Param("courseno") String courseno);
+
+    int isFinshExam(@Param("studentno") String studentno, @Param("courseno") String courseno);
 }

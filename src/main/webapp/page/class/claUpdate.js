@@ -102,7 +102,7 @@ layui.use(['form', 'layer'], function () {
         $.ajax({
             type: 'POST'
             , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
-            , data: 'managerid=' + data.value+'&department=03'
+            , data: 'managerid=' + data.value + '&department=03'
             , success: function (res) {
                 if (res.length == 0) {
                     layer.msg('暂无年级信息哦', {icon: 4, time: 1500})

@@ -13,5 +13,10 @@ public interface IAccount_Dao {
 
     void addAccount(Account account);
 
+    void updatePwd(Account account);
+
     void updateAccount(Account account);
+
+    Account queryPwd(String username);
+
 }

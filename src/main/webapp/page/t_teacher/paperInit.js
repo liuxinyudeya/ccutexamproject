@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'laydate'], function () {
     $.ajax({
         type: 'POST'
         ,
-        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryPaper.action?paperid=" + $("#paperid").val()
+        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryPaper.action?courseno=" + $("#courseno_hiden").val()
         ,
         success: function (res) {
             console.log(res);
@@ -58,7 +58,7 @@ layui.use(['form', 'layer', 'laydate'], function () {
         obj.testTime_str = submitTime;
         obj.minuteCount = $(".minuteCount").val();
         obj.tea_cla_couid = $("#id").val();
-        obj.id = $("#paperid").val();
+        obj.courseno = $("#courseno_hiden").val();
         console.log(obj.id);
 
         $.ajax({

@@ -12,9 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.SimpleFormatter;
 
 @Service
 @Transactional
@@ -26,6 +30,9 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
 
     public Map<String, Object> addQuestion(Question question) throws Exception {
         Map<String, Object> resultMap = new HashMap<String, Object>();
+
+        String paperId = t_paper_dao.queryPaperId(question.getCourseno());
+        question.setPaperid(paperId);
         String questionID = UUID_Tools.getUUID();
         question.setId(questionID);
         // 插入题目
@@ -56,10 +63,11 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
     @Override
     public Map<String, Object> setPaper(Paper paper) throws Exception {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String s = t_paper_dao.verifyPaper(paper.getId());
+        String paperid = t_paper_dao.queryPaperId(paper.getCourseno());
+        paper.setId(paperid);
+        String s = t_paper_dao.verifyPaper(paperid);
         if (s == null) {
-
-            List<paperInit> paperInits = t_paper_dao.queryPaper(paper.getId());
+            List<paperInit> paperInits = t_paper_dao.queryPaper(paperid);
             paperInit paperInit = new paperInit();
             double paperLevel = 0.0;
             double paperScore = 0.0;
@@ -80,6 +88,16 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
 
             paper.setExamstate("未考试");
             paper.setPaperstate("已出卷");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date_str = paper.getTestTime_str();
+            Date parse = sdf.parse(date_str);
+            long endtime_long = parse.getTime() + Integer.parseInt(paper.getMinuteCount()) * 60000;
+            Date endtime = new Date(endtime_long);
+            String endTime_str = sdf.format(endtime);
+            paper.setEndTime_str(endTime_str);
+
+            System.out.println(paper.getTestTime_str());
+            System.out.println(paper.getEndTime_str());
             t_paper_dao.setPaper(paper);
         } else {
             resultMap.put("state", "1");
@@ -145,7 +163,8 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
     }
 
     @Override
-    public paperInit queryPaper(String paperid) throws Exception {
+    public paperInit queryPaper(String courseno) throws Exception {
+        String paperid = t_paper_dao.queryPaperId(courseno);
         List<paperInit> paperInits = t_paper_dao.queryPaper(paperid);
         paperInit paperInit = new paperInit();
         double paperLevel = 0.0;
@@ -172,5 +191,12 @@ public class T_PaperManager_Service implements T_PaperManager_IService {
         paperInit.setPaperScore(paperScore);
         paperInit.setPaperLevel(paperLevel / paperCount);
         return paperInit;
+    }
+
+    @Override
+    public String isinitPaper(String courseno) throws Exception {
+        String paperId = t_paper_dao.queryPaperId(courseno);
+        String s = t_paper_dao.verifyPaper(paperId);
+        return s;
     }
 }

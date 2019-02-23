@@ -39,7 +39,6 @@ layui.use(['form', 'layer'], function () {
         obj.questionLevel = $(".questionLevel").val();
         obj.questionScore = $(".questionScore").val();
         obj.questionDesc = $(".questionDesc").val();
-        obj.paperid = $("#paperid").val();
         var str = "";
         if (questionTypeCode != '04') {
             $(".realAnswer input[name=answer]:checked").each(function () {
@@ -56,6 +55,7 @@ layui.use(['form', 'layer'], function () {
             str = $(".answer").val();
         }
         obj.realAnswers = str;
+        obj.courseno = $("#courseno").val();
         console.log(obj.realAnswers);
         $.ajax({
             type: 'POST',

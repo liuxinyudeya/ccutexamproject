@@ -13,6 +13,8 @@ public interface T_Paper_Dao {
 
     void addQuestion(Question question);
 
+    String queryPaperId(String courseno);
+
     void updateQuestion(Question question);
 
     void updateAnswer(@Param("answerName") String answerName, @Param("id") String id);

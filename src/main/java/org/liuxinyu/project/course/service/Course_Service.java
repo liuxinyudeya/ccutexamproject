@@ -5,6 +5,8 @@ import org.liuxinyu.project.cla.mapper.ICla_Dao;
 import org.liuxinyu.project.cla.service.ICla_Service;
 import org.liuxinyu.project.course.entity.Course;
 import org.liuxinyu.project.course.mapper.ICourse_Dao;
+import org.liuxinyu.project.t_paper.mapper.T_Paper_Dao;
+import org.liuxinyu.project.util.controller.UUID_Tools;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,8 @@ public class Course_Service implements ICourse_Service {
 
     @Resource
     ICourse_Dao icourse_dao;
+    @Resource
+    T_Paper_Dao t_paper_dao;
 
 
     public Map<String, Object> addCourse(Course course) throws Exception {
@@ -31,8 +35,11 @@ public class Course_Service implements ICourse_Service {
         /* course.setCourseno(course.getCourseCode() + course.getGrade() + course.getAcademyCode() + course.getMajorCode() ); // 设置主键id : 课程编号+年级+学院编号+专业编号 确保唯一*/
         course.setCourseno(course.getCourseCode() + course.getClassno()); // 设置主键id : 课程编号+班级编号 确保唯一
 
+        // 向paper表中添加记录
+        String id = UUID_Tools.getUUID();
         try {
             icourse_dao.addCourse(course);
+            t_paper_dao.addOnePaper(id, course.getCourseno());
         } catch (Exception e) {
             stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
             stringObjectHashMap.put("error", "已录入该信息");

@@ -121,6 +121,20 @@ public class T_PaperManager_Controller {
     }
 
     @ResponseBody
+    @RequestMapping("isinitpaper")
+    public String isinitpaper(String courseid) {
+        System.out.println("course = " + courseid);
+        String s = "";
+        try {
+            s = t_paperManager_iService.isinitPaper(courseid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+
+    @ResponseBody
     @RequestMapping("delQuestion")
     public void delQuestion(String questionid) {
         System.out.println("questionid = " + questionid);
@@ -134,11 +148,11 @@ public class T_PaperManager_Controller {
 
     @ResponseBody
     @RequestMapping("queryPaper")
-    public paperInit queryPaperInit(String paperid) {
-        System.out.println("questionid = " + paperid);
+    public paperInit queryPaperInit(String courseno) {
+        System.out.println("courseno = " + courseno);
         paperInit paperInit = new paperInit();
         try {
-            paperInit = t_paperManager_iService.queryPaper(paperid);
+            paperInit = t_paperManager_iService.queryPaper(courseno);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -47,4 +47,29 @@ public class Account_Controller {
         }
         return resultMap;
     }
+
+    @ResponseBody
+    @RequestMapping("updatePwd")
+    public void updatePwd(Account account) {
+        System.out.println("account = " + account);
+        try {
+            iAccount_service.updatePwd(account);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("queryPwd")
+    public Account queryPwd(HttpServletRequest request) {
+        String username = (String) request.getSession().getAttribute("username");
+        System.out.println("username = " + username);
+        Account account = new Account();
+        try {
+            account = iAccount_service.queryPwd(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
 }

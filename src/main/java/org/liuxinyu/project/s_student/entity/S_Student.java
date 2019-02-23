@@ -12,9 +12,11 @@ public class S_Student {
     private String level;
     private String minuteCount;
     private Date testTime;
+    private Date endTime;
     private String testTime_str;
     private String paperno;
     private String examstate;
+    private int finshExam;
 
     @Override
     public String toString() {
@@ -28,9 +30,11 @@ public class S_Student {
                 ", level='" + level + '\'' +
                 ", minuteCount='" + minuteCount + '\'' +
                 ", testTime=" + testTime +
+                ", endTime=" + endTime +
                 ", testTime_str='" + testTime_str + '\'' +
                 ", paperno='" + paperno + '\'' +
                 ", examstate='" + examstate + '\'' +
+                ", finshExam=" + finshExam +
                 '}';
     }
 
@@ -128,5 +132,21 @@ public class S_Student {
 
     public void setExamstate(String examstate) {
         this.examstate = examstate;
+    }
+
+    public int getFinshExam() {
+        return finshExam;
+    }
+
+    public void setFinshExam(int finshExam) {
+        this.finshExam = finshExam;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }

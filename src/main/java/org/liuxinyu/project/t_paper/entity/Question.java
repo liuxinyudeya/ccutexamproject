@@ -22,8 +22,9 @@ public class Question {
     private String CId; // C选项
     private String DId; // D选项
 
-    private List<Answer> Answers;
 
+    private List<Answer> Answers;
+    private String courseno;
 
     @Override
     public String toString() {
@@ -33,7 +34,7 @@ public class Question {
                 ", questionTypeName='" + questionTypeName + '\'' +
                 ", questionTypeCode='" + questionTypeCode + '\'' +
                 ", questionLevel='" + questionLevel + '\'' +
-                ", questionScore='" + questionScore + '\'' +
+                ", questionScore=" + questionScore +
                 ", questionDesc='" + questionDesc + '\'' +
                 ", A='" + A + '\'' +
                 ", B='" + B + '\'' +
@@ -45,7 +46,16 @@ public class Question {
                 ", CId='" + CId + '\'' +
                 ", DId='" + DId + '\'' +
                 ", Answers=" + Answers +
+                ", courseno='" + courseno + '\'' +
                 '}';
+    }
+
+    public String getCourseno() {
+        return courseno;
+    }
+
+    public void setCourseno(String courseno) {
+        this.courseno = courseno;
     }
 
     public String getPaperid() {

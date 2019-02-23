@@ -18,6 +18,8 @@ public class Paper {
     private String tea_cla_couid;
     private String level;
     private String score;
+    private Date endTime;
+    private String endTime_str;
 
 
     @Override
@@ -37,6 +39,8 @@ public class Paper {
                 ", tea_cla_couid='" + tea_cla_couid + '\'' +
                 ", level='" + level + '\'' +
                 ", score='" + score + '\'' +
+                ", endTime=" + endTime +
+                ", endTime_str='" + endTime_str + '\'' +
                 '}';
     }
 
@@ -150,5 +154,21 @@ public class Paper {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getEndTime_str() {
+        return endTime_str;
+    }
+
+    public void setEndTime_str(String endTime_str) {
+        this.endTime_str = endTime_str;
     }
 }

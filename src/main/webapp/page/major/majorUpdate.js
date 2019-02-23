@@ -31,10 +31,10 @@ layui.use(['form', 'layer'], function () {
     $.ajax({
         type: 'POST'
         , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
-        , data: 'grade=' + $('.grade_hiden').val()
+        , data: 'managerid=' + $('.grade_hiden').val()+'&department=03'
         , success: function (res) {
             if (res.length == 0) {
-                layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
+                layer.msg('暂无学院信息哦', {icon: 4, time: 1500})
             }
 
             var html = "";
@@ -110,23 +110,23 @@ layui.use(['form', 'layer'], function () {
         obj.isdelete = $(".isdelete").val();
         console.log(obj);
         console.log(obj.isdelete);
-         $.ajax({
-             type: 'POST',
-             url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/updateMajor.action",
-             data: obj,
-             success: function (res) {
-                 console.log(res);
-                 if (res.state == 0) {
-                     layer.msg(res.success, {icon: 1, time: 1500});
-                 } else {
-                     layer.msg(res.error, {icon: 2, time: 1500});
-                 }
-             }
-             , error: function () {
-                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});
-             }
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/updateMajor.action",
+            data: obj,
+            success: function (res) {
+                console.log(res);
+                if (res.state == 0) {
+                    layer.msg(res.success, {icon: 1, time: 1500});
+                } else {
+                    layer.msg(res.error, {icon: 2, time: 1500});
+                }
+            }
+            , error: function () {
+                layer.msg('糟糕,出错了', {icon: 3, time: 1500});
+            }
 
-         })
+        })
         setTimeout(function () {
             layer.closeAll("iframe");
             //刷新父页面

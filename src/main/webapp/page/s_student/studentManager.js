@@ -34,6 +34,17 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
                 }
             },
+            {
+                field: 'endTime', title: '结束时间', align: 'center', sort: true, templet: function (d) {
+                    if (d.endTime != null) {
+                        var unixTimestamp = new Date(d.endTime);
+                        return unixTimestamp.toLocaleString();
+                    } else {
+                        return '-';
+                    }
+
+                }
+            },
             {field: 'minuteCount', title: '考试时长', minWidth: 80, align: 'center', sort: true},
             {
                 field: 'paperno', title: '考试码', align: 'center', sort: true, templet: function (d) {
@@ -46,12 +57,17 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             },
             {
                 field: 'examstate', title: '考试状态', align: 'center', sort: true, templet: function (d) {
-                    if (d.examstate == '已完成') {
-                        return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs checkpaper">已完成</span>'
+
+                    if (d.finshExam != 0) {
+                        return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs ">考试结束</span>'
                     } else {
-                        // 进入考场
-                        return '<span  lay-event="startexam" class="layui-btn layui-btn-red layui-btn-xs startexam ">进入考场</span>'
+                        if (d.examstate == '未考试') {
+                            return '<span  lay-event="startexam" class="layui-btn layui-btn-red layui-btn-xs startexam ">进入考场</span>'
+                        } else {
+                            return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs ">缺考</span>'
+                        }
                     }
+
                 }
             }
 
@@ -65,7 +81,8 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             data = obj.data;
 
         if (layEvent === 'startexam') {
-            window.location.href = 'index.html?id=' + data.id;
+            startexam(data);
+
         }
     });
 
@@ -86,74 +103,20 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         }
     });
 
-    // 编辑信息
-    function update(edit) {
-        var index = layui.layer.open({
-            title: "更新学院信息",
-            // 如果是iframe层
-            type: 2,
-            content: "studentUpdate.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
-            success: function (layero, index) {
-
-                var body = layui.layer.getChildFrame('body', index);
-                if (edit) {
-                    body.find(".studentno_hiden").val(edit.studentno);  // id
-                    body.find(".isdelete_hiden").val(edit.isdelete);  // 是否启用
-                    body.find(".grade_hiden").val(edit.grade);  //年级
-                    body.find(".academyName_hiden").val(edit.academyName);  // 学院名称
-                    body.find(".academyCode_hiden").val(edit.academyCode);  // 学院编码
-                    body.find(".majorCode_hiden").val(edit.majorCode);  // 学院编码
-                    body.find(".majorName_hiden").val(edit.majorName);  // 学院编码
-                    body.find(".classno_hiden").val(edit.classno);  // 学院编码
-                    body.find(".name_hiden").val(edit.name);  // 姓名
-                    body.find(".sex_hiden").val(edit.sex);  // 性别
-
-                    form.render();
-                }
-                setTimeout(function () {
-                    layui.layer.tips('点击此处返回学院信息列表', '.layui-layer-setwin .layui-layer-close', {
-                        tips: 3
-                    });
-                }, 500)
-            }
-        })
-        layui.layer.full(index);
-        window.sessionStorage.setItem("index", index);
-        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-        $(window).on("resize", function () {
-            layui.layer.full(window.sessionStorage.getItem("index"));
-        })
-
-
-    }
-
-
-    $(".addNews_btn").click(function () {
-        addUser();
-    })
-
-    // 添加学院
-    function addUser() {
-        var index = layui.layer.open({
-            title: "添加班级",
-            // 如果是iframe层
-            type: 2,
-            content: "studentAdd.html",//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content:
-            success: function (layero, index) {
-                var body = layui.layer.getChildFrame('body', index);
-                setTimeout(function () {
-                    layui.layer.tips('点击此处返回学院信息列表', '.layui-layer-setwin .layui-layer-close', {
-                        tips: 3
-                    });
-                }, 500)
-            }
-        })
-        layui.layer.full(index);
-        window.sessionStorage.setItem("index", index);
-        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-        $(window).on("resize", function () {
-            layui.layer.full(window.sessionStorage.getItem("index"));
-        })
+    function startexam(data) {
+        console.log(data);
+        var testtime = new Date(data.testTime);
+        var endtime = new Date(data.endTime);
+        var now = new Date();
+        if (testtime > now) {
+            // 考试未开始
+            layer.msg('考试还未开始', {icon: 3, time: 1500});
+        } else if (endtime < now) {
+            // 考试已经结束
+            layer.msg('考试已结束', {icon: 3, time: 1500});
+        } else {
+            window.location.href = 'index.html?id=' + data.id;
+        }
     }
 
 })

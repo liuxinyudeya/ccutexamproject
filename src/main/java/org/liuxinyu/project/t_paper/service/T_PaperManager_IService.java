@@ -25,5 +25,7 @@ public interface T_PaperManager_IService {
 
     paperInit queryPaper(String paperid) throws Exception;
 
+    String isinitPaper(String courseno) throws Exception;
+
 
 }

@@ -88,7 +88,7 @@
                         <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
                                                                                          data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
                         </dd>
-                        <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai"
+                        <dd><a href="javascript:;" data-url="page/user/changePwd.jsp"><i class="seraph icon-xiugai"
                                                                                           data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
                         </dd>
                         <dd><a href="javascript:;" class="showNotice"><i

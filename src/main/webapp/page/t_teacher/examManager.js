@@ -5,24 +5,21 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         laytpl = layui.laytpl,
         table = layui.table;
     var paperid;
+
     $.ajax({
         type: 'POST',
-        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/isexistPaper.action?courseid=" + $("#courseno_hiden").val(),
+        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/isinitpaper.action?courseid=" + $("#courseno_hiden").val(),
         success: function (res) {
-            console.log(res);
-            paperid = res.id;
-            $("#paperid_hiden").val(paperid);
-            if (res.paperNo != null) {
+            $(".addPaperButton").removeClass('layui-hide');
+            if (res != null) {
                 $(".addPaperButton").addClass('layui-hide');
             }
 
-        }
-        , error: function () {
-            layer.msg('糟糕,出错了', {icon: 3, time: 1500});
-        }
 
+        }
     })
-    //用户列表
+
+    // 试题列表
     var tableIns = table.render({
         elem: '#paperList',
         url: 'http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryAllQuestion.action?courseno=' + $("#courseno_hiden").val(),
@@ -33,7 +30,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         limit: 15,
         id: "paperList",
         cols: [[
-            {field: 'id', title: '试卷ID', minWidth: 100, align: "center", sort: true},
+            {field: 'id', title: '试题ID', minWidth: 100, align: "center", sort: true},
             {field: 'questionTypeName', title: '题目类型', minWidth: 100, align: "center", sort: true},
             {field: 'questionLevel', title: '题目难度', minWidth: 150, align: 'center'},
             {field: 'questionDesc', title: '题目描述', minWidth: 600, align: 'center'},
@@ -112,7 +109,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
 
 
     $(".addNews_btn").click(function () {
-        addUser(paperid);
+        addUser();
     })
 
     $(".addPaper").click(function () {
@@ -129,6 +126,8 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
                 var body = layui.layer.getChildFrame('body', index);
                 body.find("#paperid").val($("#paperid_hiden").val());  // paperid
                 body.find("#id").val($("#id_hiden").val());  //
+                body.find("#courseno_hiden").val($("#courseno_hiden").val());  //
+
 
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回试卷题目列表', '.layui-layer-setwin .layui-layer-close', {
@@ -146,7 +145,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     }
 
 
-    function addUser(paperid) {
+    function addUser() {
         var index = layui.layer.open({
             title: "添加试题",
             // 如果是iframe层
@@ -155,7 +154,8 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             success: function (layero, index) {
                 var body = layui.layer.getChildFrame('body', index);
 
-                body.find("#paperid").val(paperid);  // id
+
+                body.find("#courseno").val($("#courseno_hiden").val());  // id
 
 
                 setTimeout(function () {

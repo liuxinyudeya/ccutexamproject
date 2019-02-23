@@ -33,6 +33,7 @@ layui.use(['form', 'layer'], function () {
         grade = data.value;
         console.log(grade);
         $('.academy').html("<option></option>");
+        $('.major').html("<option></option>");
         form.render('select');
 
         $.ajax({
@@ -41,7 +42,7 @@ layui.use(['form', 'layer'], function () {
             , data: 'managerid=' + data.value + '&department=03'
             , success: function (res) {
                 if (res.length == 0) {
-                    layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
+                    layer.msg('暂无学院信息哦', {icon: 4, time: 1500})
                 }
 
                 var html = "";

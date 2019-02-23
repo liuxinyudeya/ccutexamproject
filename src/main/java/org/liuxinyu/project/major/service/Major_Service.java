@@ -43,7 +43,7 @@ public class Major_Service implements IMajor_Service {
             iMajor_dao.addMajor(academy);
         } catch (Exception e) {
             stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
-            stringObjectHashMap.put("error", "已录入该信息");
+            stringObjectHashMap.put("error", "已录入该编号的专业信息");
             return stringObjectHashMap;
         }
 

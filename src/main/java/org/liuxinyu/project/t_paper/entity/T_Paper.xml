@@ -73,11 +73,15 @@
     </select>
 
     <update id="setPaper" parameterType="org.liuxinyu.project.t_paper.entity.Paper">
-        update paper set level=#{level },score=#{score},classno=#{classno},teacherno=#{teacherno},courseno=#{courseno},minuteCount=#{minuteCount},examstate=#{examstate},paperstate=#{paperstate},testTime=STR_TO_DATE(#{testTime_str},'%Y-%m-%d %H:%i:%s'),paperno=#{paperNo}
+        update paper set level=#{level },score=#{score},classno=#{classno},teacherno=#{teacherno},courseno=#{courseno},minuteCount=#{minuteCount},examstate=#{examstate},paperstate=#{paperstate},testTime=STR_TO_DATE(#{testTime_str},'%Y-%m-%d %H:%i:%s'),paperno=#{paperNo},endTime=STR_TO_DATE(#{endTime_str},'%Y-%m-%d %H:%i:%s')
         where id=#{id }
     </update>
 
     <select id="verifyPaper" parameterType="string" resultType="string">
         select paperno from paper where id=#{value }
+    </select>
+
+    <select id="queryPaperId" parameterType="string" resultType="string">
+        select id from paper where courseno=#{value };
     </select>
 </mapper>

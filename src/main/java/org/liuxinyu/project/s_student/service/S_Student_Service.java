@@ -1,21 +1,18 @@
 package org.liuxinyu.project.s_student.service;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import jdk.nashorn.internal.scripts.JS;
 import org.liuxinyu.project.distribution.entity.Tea_Cla_Cou;
 import org.liuxinyu.project.paper.mapper.IExam_Dao;
+import org.liuxinyu.project.s_student.entity.ClassRank;
 import org.liuxinyu.project.s_student.entity.GradeInfo;
 import org.liuxinyu.project.s_student.entity.S_Student;
 import org.liuxinyu.project.s_student.entity.UpPer;
-import org.liuxinyu.project.s_student.entity.customList;
 import org.liuxinyu.project.s_student.mapper.IS_Student_Dao;
 import org.liuxinyu.project.student.entity.Student;
-import org.liuxinyu.project.student.mapper.IStudent_Dao;
+
 import org.liuxinyu.project.t_paper.entity.Paper;
-import org.liuxinyu.project.t_paper.entity.paperInit;
-import org.liuxinyu.project.t_paper.mapper.T_Paper_Dao;
+
 import org.liuxinyu.project.util.controller.UUID_Tools;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,8 +32,14 @@ public class S_Student_Service implements IS_Student_Service {
 
     @Override
     public List<S_Student> queryCourseList(String studentno) throws Exception {
+        List<S_Student> result = new ArrayList<S_Student>();
         List<S_Student> s_students = is_student_dao.queryCourseList(studentno);
-        return s_students;
+        for (S_Student s : s_students) {
+            int finshExam = is_student_dao.isFinshExam(studentno, s.getCourseNo());
+            s.setFinshExam(finshExam);
+            result.add(s);
+        }
+        return result;
     }
 
     @Override
@@ -78,8 +81,6 @@ public class S_Student_Service implements IS_Student_Service {
         gradeInfo.setScore(paperScore + "");
         is_student_dao.addGradeInfo(gradeInfo);
 
-        // 修改考试状态
-        is_student_dao.paperFinsh(paperid);
         return paperScore;
 
     }
@@ -93,11 +94,14 @@ public class S_Student_Service implements IS_Student_Service {
             gradeInfo.setCourseName(tea_cla_cou.getCourseName());
             gradeInfo.setTeacherNo(tea_cla_cou.getTeacherno());
             gradeInfo.setTeacherName(tea_cla_cou.getTeacherName());
-            String classAvg = is_student_dao.queryClassAvg(studentno);
-            HashMap<String, Object> stringObjectHashMap = is_student_dao.queryClassRank(gradeInfo.getClassno());
-            Object classRank = stringObjectHashMap.get("classrank");
+            HashMap<String, String> map = new HashMap<String, String>();
+            String classAvg = is_student_dao.queryClassAvg(gradeInfo.getCourseno());
+            List<ClassRank> classRanks = is_student_dao.queryClassRank(gradeInfo.getClassno(), gradeInfo.getCourseno());
+            for (ClassRank cr : classRanks) {
+                map.put(cr.getStudentno(), cr.getClassrank());
+            }
             gradeInfo.setClassAvg(classAvg);
-            gradeInfo.setClassrank(String.valueOf(classRank));
+            gradeInfo.setClassrank(map.get(studentno));
             result.add(gradeInfo);
         }
 

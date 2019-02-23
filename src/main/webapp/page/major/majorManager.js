@@ -84,7 +84,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
                     body.find(".grade_hiden").val(edit.grade);  //年级
                     body.find(".academyName_hiden").val(edit.academyName);  // 学院名称
                     body.find(".academyCode_hiden").val(edit.academyCode);  // 学院编码
-                    body.find(".majorCode_hiden").val(edit.academyCode);  // 学院编码
+                    body.find(".majorCode_hiden").val(edit.majorCode);  // 学院编码
                     body.find(".majorName_hiden").val(edit.majorName);  // 学院编码
 
 

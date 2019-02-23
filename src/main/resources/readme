@@ -1,0 +1,11 @@
+ delimiter ;
+
+create event updatePaper on schedule every 1 hour
+  do
+  begin
+    start transaction
+      ;
+      set @timenow = now();
+      update paper set examstate='已完成' where endTime < @timenow;
+    commit;
+  end$$

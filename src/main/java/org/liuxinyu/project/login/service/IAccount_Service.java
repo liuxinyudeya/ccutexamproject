@@ -13,4 +13,8 @@ import java.util.Map;
 
 public interface IAccount_Service {
     List<Account> queryAccount(Account account) throws Exception;
+
+    void updatePwd(Account account) throws Exception;
+
+    Account queryPwd(String username) throws Exception;
 }

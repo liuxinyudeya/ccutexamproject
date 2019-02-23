@@ -20,14 +20,14 @@ public class Academy_Service_Impl implements Academy_Service_Iface {
 
     public Map<String, Object> addAcademy(Academy academy) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
-        academy.setId(academy.getGrade()+academy.getAcademyCode()); // 设置主键id : 年级+学院编号 确保唯一
+        academy.setId(academy.getGrade() + academy.getAcademyCode()); // 设置主键id : 年级+学院编号 确保唯一
         academy.setDepartment("03"); // 设置部门等级 03 学院 : 02 专业 : 01 班级
 
         try {
             iAcademy_dao.addAcademyByOne(academy);
         } catch (Exception e) {
             stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
-            stringObjectHashMap.put("error", "已录入该信息");
+            stringObjectHashMap.put("error", "已录入该编号的学院信息");
             return stringObjectHashMap;
         }
 
@@ -43,12 +43,12 @@ public class Academy_Service_Impl implements Academy_Service_Iface {
 
     public Map<String, Object> updateAcademy(Academy academy) throws Exception {
         HashMap<String, Object> stringObjectHashMap = new HashMap<String, Object>();
-        academy.setNewid(academy.getGrade()+academy.getAcademyCode());
+        academy.setNewid(academy.getGrade() + academy.getAcademyCode());
         try {
             iAcademy_dao.updateAcademy(academy);
-        }catch (Exception e){
+        } catch (Exception e) {
             stringObjectHashMap.put("state", 1);// 0 成功 : 1 失败
-            stringObjectHashMap.put("error", "已有["+academy.getId()+"]编号的学院");
+            stringObjectHashMap.put("error", "已有[" + academy.getAcademyCode() + "]编号的学院");
             return stringObjectHashMap;
         }
 

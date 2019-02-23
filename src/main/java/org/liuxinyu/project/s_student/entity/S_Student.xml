@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.liuxinyu.project.s_student.mapper.IS_Student_Dao">
+
+
     <select id="queryCourseList" parameterType="string" resultType="org.liuxinyu.project.s_student.entity.S_Student">
 select tcc.classno
      ,tcc.courseno
@@ -9,6 +11,7 @@ select tcc.classno
      ,tcc.teachername
      ,p.id
      ,p.testTime
+     ,p.endTime
      ,p.minuteCount
      ,p.score
      ,p.level
@@ -54,12 +57,16 @@ from gradeinfo where studentno=#{value };
 
     <select id="queryClassAvg" parameterType="string" resultType="string">
 select Avg(score) classAvg
-from gradeinfo g where g.studentno=#{value } group by g.classno;
+from gradeinfo g where  g.courseno=#{value }group by g.classno;
     </select>
 
-    <select id="queryClassRank" parameterType="string" resultType="java.util.HashMap">
+    <select id="queryClassRank" parameterType="string" resultType="org.liuxinyu.project.s_student.entity.ClassRank">
         SELECT @rowNum := @rowNum + 1 AS 'classrank',g.studentno
   FROM gradeinfo g,
-     (SELECT @rowNum := 0) b where g.classno=#{value }
+     (SELECT @rowNum := 0) b where g.classno=#{classno }  and g.courseno=#{courseno }
+    </select>
+
+    <select id="isFinshExam" parameterType="string" resultType="int">
+        select count(*) finshExam from gradeinfo where studentno=#{studentno } and courseno=#{courseno };
     </select>
 </mapper>

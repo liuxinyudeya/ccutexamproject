@@ -8,6 +8,7 @@
     <link href="main.css" rel="stylesheet" type="text/css"/>
     <link href="iconfont.css" rel="stylesheet" type="text/css"/>
     <link href="test.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
 
     <style>
         .hasBeenAnswer {
@@ -34,59 +35,64 @@
             <div class="test">
                 <form action="" method="post">
 
-
-                    <!--单选题-->
-                    <div class="test_content ">
-                        <div class="test_content_title redio">
-                            <h2></h2>
-                            <p>
-                                <span>共</span><i class="content_lit"></i><span>题，</span><span>合计</span><i
-                                    class="content_fs"></i><span>分</span>
-                            </p>
+                    <div class="q1">
+                        <!--单选题-->
+                        <div class="test_content ">
+                            <div class="test_content_title redio">
+                                <h2></h2>
+                                <p>
+                                    <span>共</span><i class="content_lit"></i><span>题，</span><span>合计</span><i
+                                        class="content_fs"></i><span>分</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="test_content_nr ">
+                            <ul class="content"></ul>
                         </div>
                     </div>
-                    <div class="test_content_nr ">
-                        <ul class="content"></ul>
-                    </div>
-                    <!--多选题-->
-                    <div class="test_content">
-                        <div class="test_content_title checkBox">
-                            <h2></h2>
-                            <p>
-                                <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
-                                    class="content_fs"> </i><span>分</span>
-                            </p>
+                    <div class="q2">
+                        <!--多选题-->
+                        <div class="test_content">
+                            <div class="test_content_title checkBox">
+                                <h2></h2>
+                                <p>
+                                    <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
+                                        class="content_fs"> </i><span>分</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
+                            <ul class="checkboxcontent"></ul>
                         </div>
                     </div>
-                    <div class="test_content_nr">
-                        <ul class="checkboxcontent"></ul>
-                    </div>
-
-                    <!-- 判断题 -->
-                    <div class="test_content">
-                        <div class="test_content_title judge">
-                            <h2></h2>
-                            <p>
-                                <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
-                                    class="content_fs"> </i><span>分</span>
-                            </p>
+                    <div class="q3">
+                        <!-- 判断题 -->
+                        <div class="test_content">
+                            <div class="test_content_title judge">
+                                <h2></h2>
+                                <p>
+                                    <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
+                                        class="content_fs"> </i><span>分</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
+                            <ul class="judgeContent"></ul>
                         </div>
                     </div>
-                    <div class="test_content_nr">
-                        <ul class="judgeContent"></ul>
-                    </div>
-                    <!-- 填空题 -->
-                    <div class="test_content">
-                        <div class="test_content_title fill">
-                            <h2></h2>
-                            <p>
-                                <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
-                                    class="content_fs"> </i><span>分</span>
-                            </p>
+                    <div class="q4"><!-- 填空题 -->
+                        <div class="test_content">
+                            <div class="test_content_title fill">
+                                <h2></h2>
+                                <p>
+                                    <span>共</span><i class="content_lit"> </i><span>题，</span><span>合计</span><i
+                                        class="content_fs"> </i><span>分</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="test_content_nr">
-                        <ul class="fillContent"></ul>
+                        <div class="test_content_nr">
+                            <ul class="fillContent"></ul>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -106,7 +112,7 @@
                         </p>
                     </div>
 
-                    <div class="rt_content">
+                    <div class="rt_content c1">
                         <div class="rt_content_tt rediocard">
                             <h2></h2>
                             <p>
@@ -118,7 +124,7 @@
                         </div>
                     </div>
 
-                    <div class="rt_content">
+                    <div class="rt_content c2">
                         <div class="rt_content_tt checkboxcard">
                             <h2></h2>
                             <p>
@@ -130,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div class="rt_content">
+                    <div class="rt_content c3">
                         <div class="rt_content_tt judgecard">
                             <h2></h2>
                             <p>
@@ -142,7 +148,7 @@
                         </div>
                     </div>
 
-                    <div class="rt_content">
+                    <div class="rt_content c4">
                         <div class="rt_content_tt fillcard">
                             <h2></h2>
                             <p>
@@ -248,7 +254,9 @@
             , url: 'http://localhost:8080/demo_war_exploded/S_StudentManager_Controller/upPaper.action'
             , data: 'data=' + JSON.stringify(obj)
             , success: function (res) {
+                alert("您的成绩为:" + res);
                 window.location.href = 'studentManager.html';
+
             }
             , error: function () {
                 console.log("正在统计分数,请稍等");
@@ -291,6 +299,8 @@
         timeinit(data.minuteCount);
         // 单选
         if (data.redioList != null && data.redioList.length > 0) {
+            $(".q1 ").removeClass('layui-hide');
+            $(".rt_content .c1").removeClass('layui-hide');
             var UL = $(".content");
             var Score = 0;
             $(".redio h2").html(data.redioList[0].questionTypeName);
@@ -337,9 +347,14 @@
                 UL.append(li);
             }
             $(".redio p .content_fs").html(Score);
+        } else {
+            $(".q1").addClass('layui-hide');
+            $(".c1").addClass('layui-hide');
         }
         // 多选
         if (data.checkboxList != null && data.checkboxList.length > 0) {
+            $(".q2").removeClass('layui-hide');
+            $(".c2").removeClass('layui-hide');
             var UL = $(".checkboxcontent");
             var Score = 0;
             $(".checkBox h2").html(data.checkboxList[0].questionTypeName);
@@ -386,9 +401,14 @@
                 UL.append(li);
             }
             $(".checkBox p .content_fs").html(Score);
+        } else {
+            $(".q2").addClass('layui-hide');
+            $(".c2").addClass('layui-hide');
         }
         // 判断
         if (data.judgeList != null && data.checkboxList.length > 0) {
+            $(".q3").removeClass('layui-hide');
+            $(".c3").removeClass('layui-hide');
             var UL = $(".judgeContent");
             var Score = 0;
             $(".judge h2").html(data.judgeList[0].questionTypeName);
@@ -435,9 +455,15 @@
                 UL.append(li);
             }
             $(".judge p .content_fs").html(Score);
+        } else {
+            $(".q3").addClass('layui-hide');
+            $(".c3").addClass('layui-hide');
         }
         // 填空
+        console.log(data.fillList.length);
         if (data.fillList != null && data.fillList.length > 0) {
+            $(".q4").removeClass('layui-hide');
+            $(".c4").removeClass('layui-hide');
             var UL = $(".fillContent");
             var Score = 0;
             $(".fill h2").html(data.fillList[0].questionTypeName);
@@ -446,9 +472,10 @@
             $(".fillcard h2").html(data.fillList[0].questionTypeName);
             $(".fillcard p .content_lit").html(data.fillList.length);
             var fillQuestion = $(".fillQuestion");
-            for (var i in data.judgeList) {
+
+            for (var i in data.fillList) {
                 var num = parseInt(i) + parseInt("1");
-                var licard = $("<li><a href=#" + data.judgeList[i].id + ">" + num + "</a> </li></ul>");
+                var licard = $("<li><a href=#" + data.fillList[i].id + ">" + num + "</a> </li></ul>");
                 fillQuestion.append(licard);
                 Score = parseInt(data.fillList[i].questionScore) + Score;
                 var li = $("<li id='" + data.fillList[i].id + "'>");
@@ -478,6 +505,9 @@
                 UL.append(li);
             }
             $(".fill p .content_fs").html(Score);
+        } else {
+            $(".q4").addClass('layui-hide');
+            $(".c4").addClass('layui-hide');
         }
 
 
