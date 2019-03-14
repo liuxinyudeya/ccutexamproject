@@ -27,28 +27,28 @@
             <ul class="layui-nav mobileTopLevelMenus" mobile>
                 <li class="layui-nav-item" data-menu="contentManagement">
                     <a href="javascript:;"><i class="seraph icon-caidan"></i><cite>CCUTCloudEXAM</cite></a>
-                    <dl class="layui-nav-child">
+                    <%--<dl class="layui-nav-child">
                         <dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i
                                 class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a></dd>
                         <dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10"
                                                                                data-icon="icon-icon10"></i><cite>用户中心</cite></a>
                         </dd>
                         <dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon"
-                                                                                 data-icon="&#xe620;">&#xe620;</i><cite>系1统设置</cite></a>
+                                                                                 data-icon="&#xe620;">&#xe620;</i><cite>系统设置</cite></a>
                         </dd>
                         <dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>使用文档</cite></a>
                         </dd>
-                    </dl>
+                    </dl>--%>
                 </li>
             </ul>
             <ul class="layui-nav topLevelMenus" pc>
-                <li class="layui-nav-item layui-this" data-menu="contentManagement">
+              <%--  <li class="layui-nav-item layui-this" data-menu="contentManagement">
                     <a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>内容管理</cite></a>
                 </li>
                 <li class="layui-nav-item" data-menu="memberCenter" pc>
                     <a href="javascript:;"><i class="seraph icon-icon10"
                                               data-icon="icon-icon10"></i><cite>用户中心</cite></a>
-                </li>
+                </li>--%>
                 <!-- 教务处管理 -->
                 <li class="layui-nav-item" data-menu="academy" pc>
                     <a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>教务处管理</cite></a>
