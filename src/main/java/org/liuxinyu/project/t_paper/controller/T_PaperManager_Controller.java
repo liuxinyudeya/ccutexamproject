@@ -63,7 +63,7 @@ public class T_PaperManager_Controller {
     @ResponseBody
     @RequestMapping("addQuestion")
     public Map<String, Object> addQuestion(Question question) {
-        Map<String, Object> stringObjectHashMap = new HashMap<>();
+        Map<String, Object> stringObjectHashMap = new HashMap<String, Object>();
         System.out.println("question = " + question);
         try {
             stringObjectHashMap = t_paperManager_iService.addQuestion(question);
@@ -79,7 +79,7 @@ public class T_PaperManager_Controller {
     @ResponseBody
     @RequestMapping("setPaper")
     public Map<String, Object> setPaper(Paper paper) {
-        Map<String, Object> stringObjectHashMap = new HashMap<>();
+        Map<String, Object> stringObjectHashMap = new HashMap<String, Object>();
         System.out.println("paper = " + paper);
         try {
             stringObjectHashMap = t_paperManager_iService.setPaper(paper);

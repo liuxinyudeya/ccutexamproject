@@ -1,5 +1,6 @@
 package org.liuxinyu.project.login.service;
 
+import jdk.internal.dynalink.beans.StaticClass;
 import org.liuxinyu.project.login.entity.Account;
 
 
@@ -12,6 +13,7 @@ import java.util.Map;
  */
 
 public interface IAccount_Service {
+
     List<Account> queryAccount(Account account) throws Exception;
 
     void updatePwd(Account account) throws Exception;

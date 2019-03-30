@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     //用户列表
     var tableIns = table.render({
         elem: '#studentList',
-        url: 'http://localhost:8080/demo_war_exploded/S_StudentManager_Controller/queryCourseList.action',
+        url: getRootPath() + '/S_StudentManager_Controller/queryCourseList.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",
@@ -57,14 +57,17 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             },
             {
                 field: 'examstate', title: '考试状态', align: 'center', sort: true, templet: function (d) {
-
+                    console.log(d);
+                    console.log(d.paperno);
                     if (d.finshExam != 0) {
-                        return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs ">考试结束</span>'
+                        return '<span  class="layui-btn layui-btn-green layui-btn-xs ">考试结束</span>'
                     } else {
-                        if (d.examstate == '未考试') {
+                        if(d.paperno==null){
+                            return '<span   class="layui-btn layui-btn-red layui-btn-xs  ">暂未出卷</span>'
+                        }else  if (d.examstate == '未考试') {
                             return '<span  lay-event="startexam" class="layui-btn layui-btn-red layui-btn-xs startexam ">进入考场</span>'
                         } else {
-                            return '<span lay-event="checkpaper" class="layui-btn layui-btn-green layui-btn-xs ">缺考</span>'
+                            return '<span  class="layui-btn layui-btn-green layui-btn-xs ">缺考</span>'
                         }
                     }
 
@@ -104,7 +107,11 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     });
 
     function startexam(data) {
-        console.log(data);
+        console.log("1");
+
+        console.log(data==null);
+        console.log(data=='');
+        console.log("2");
         var testtime = new Date(data.testTime);
         var endtime = new Date(data.endTime);
         var now = new Date();

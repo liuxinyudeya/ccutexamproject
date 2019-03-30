@@ -69,5 +69,6 @@
 </form>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="academyAdd.js"></script>
+<script type="text/javascript" src="../../js/rootpath.js"></script>
 </body>
 </html>

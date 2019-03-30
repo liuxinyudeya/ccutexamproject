@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 @Transactional
 public class Account_Service implements IAccount_Service {
-
+    public static final String NAME = "liuxinyu";
     @Resource
     IAccount_Dao iAccount_dao;
 

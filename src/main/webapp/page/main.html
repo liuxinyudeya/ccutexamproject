@@ -17,7 +17,7 @@
 		<div id="nowTime"></div>
 	</blockquote>
 	<div class="layui-row layui-col-space10 panel_box">
-		<div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
+		<!--<div class="panel layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
 			<a href="javascript:;" data-url="http://fly.layui.com/case/u/3198216" target="_blank">
 				<div class="panel_icon layui-bg-green">
 					<i class="layui-anim seraph icon-good"></i>
@@ -84,13 +84,11 @@
 					<cite>上次登录时间</cite>
 				</div>
 			</a>
-		</div>
+		</div>-->
 	</div>
 	<blockquote class="layui-elem-quote main_btn">
-		<p>本模板基于Layui2.*实现，支持除LayIM外所有的Layui组件。<a href="http://layim.layui.com/#getAuth" target="_blank" class="layui-btn layui-btn-xs">获取LayIM授权</a>　layui开发文档地址：<a class="layui-btn layui-btn-xs layui-btn-danger" target="_blank" href="http://www.layui.com/doc">layui文档</a>　千人技术交流QQ群：<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=8b7dd3ea73528c1e46c5d4e522426d60deed355caefdf481c1eacdd1b7b73bfd"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="layui后台管理模版" title="layui后台管理模版"></a>（添加时请注明来源，如：“码云”、“github”等）</p>
-		<p class="layui-red">郑重提示：本模版作为学习交流免费使用【强烈要求付费或者捐赠的我也就默默的接受了😄】，如需用作商业用途，请联系作者购买【本模版已进行作品版权证明，不管以何种形式获取的源码，请勿进行出售或者上传到任何素材网站，否则将追究相应的责任】</p>
-		<p>注：本模版未引入任何第三方组件，单纯的layui+js实现的各种功能。网站所有数据均为静态数据，无数据库，除打开的窗口和部分小改动外所有操作刷新后无效，关闭窗口或清除缓存后，所有操作无效，请知悉。</p>
-		<p class="layui-blue">PS：这只是模版而不是定制开发，不能覆盖升级很正常，请不要因为不能覆盖升级来喷我，我表示很无辜，谢谢大家</p>
+		<p>本模板基于Layui2.*实现，支持除LayIM外所有的Layui组件。<a href="http://layim.layui.com/#getAuth" target="_blank" class="layui-btn layui-btn-xs">获取LayIM授权</a>　layui开发文档地址：<a class="layui-btn layui-btn-xs layui-btn-danger" target="_blank" href="http://www.layui.com/doc">layui文档</a>　</p>
+		<p class="layui-red">郑重提示：本模版作为学习交流免费使用【😄】，如需用作商业用途，请联系作者购买【本模版已进行作品版权证明，不管以何种形式获取的源码，请勿进行出售或者上传到任何素材网站，否则将追究相应的责任】</p>
 	</blockquote>
 	<div class="layui-row layui-col-space10">
 		<div class="layui-col-lg6 layui-col-md12">
@@ -126,8 +124,12 @@
 					<td class="maxUpload"></td>
 				</tr>
 				<tr>
-					<td>当前用户权限</td>
-					<td class="userRights"></td>
+					<td>联系电话</td>
+					<td class="phone111"></td>
+				</tr>
+				<tr>
+					<td>邮箱</td>
+					<td class="email"></td>
 				</tr>
 				</tbody>
 			</table>
@@ -157,7 +159,7 @@
 								</li>
 								<li class="layui-red layedit-tool-help">郑重提示：由于后期会对此框架进行多次开发，基本上修改的是大框架，所以强烈不建议对index.js/bodyTab.js进行修改，以便后期的更新能够直接覆盖升级。【以后主要侧重组件开发和功能优化，由于能力有限，请大家多多担待】</li>
 								<li>框架采用最新的layui2.x进行对1.0版本的重写，完全不同于1.0版本的模版，不能覆盖升级</li>
-								<li class="layui-blue">由于本人对设计和色差之类的不太感冒，所以一些布局和颜色搭配不是太完美，在此跟大家说声抱歉，大家可以根据自己的喜好进行一些调整。</li>
+								<!--<li class="layui-blue">由于本人对设计和色差之类的不太感冒，所以一些布局和颜色搭配不是太完美，在此跟大家说声抱歉，大家可以根据自己的喜好进行一些调整。</li>-->
                                 <li>新增“系统日志”、“会员等级”、“图标管理”、“使用文档”等页面，新增“功能设置”、“清除缓存”、“编辑文章”等功能。</li>
 								<li>由于后期将会整合layIM，所以将原有的“消息”页面删除了，虽然会整合layIM，但是不会提供layIM的下载，如果有需求的朋友可以去进行layIM的授权 <a href="http://layim.layui.com/#getAuth" target="_blank" class="layui-btn layui-btn-xs layui-btn-normal">获取LayIM授权</a></li>
 								<li>删除天气组件【感觉没什么作用，如果需要的可以自行去“心知天气”或另外的第三方组件中设置添加】</li>
@@ -206,7 +208,7 @@
 								<li>增加“用户列表”批量删除功能【可能当时忘记添加了吧。。。】</li>
 								<li>顶部窗口导航添加“关闭其他”、“关闭全部”功能，同时修改菜单窗口过多的展示效果【在此感谢larryCMS给予的启发】</li>
 								<li>添加可隐藏左侧菜单功能【之前考虑没必要添加，但是很多朋友要求加上，那就加上吧，嘿嘿。。。】</li>
-								<li>增加换肤功能【之前就想添加的，但是一直没有找到好的方式（好吧，其实是我忘记了），此方法相对简单，不是普遍适用，只简单的做个功能，如果实际用到建议单独写一套样式，将边框颜色、按钮颜色等统一调整，此处为保证代码的简洁性，只做简单的功能，不做赘述，另外“自定义”颜色中未做校验，所以要写入正确的色值。如“#f00”】</>
+								<li>增加换肤功能【之前就想添加的，但是一直没有找到好的方式（好吧，其实是我忘记了），此方法相对简单，不是普遍适用，只简单的做个功能，如果实际用到建议单独写一套样式，将边框颜色、按钮颜色等统一调整，此处为保证代码的简洁性，只做简单的功能，不做赘述，另外“自定义”颜色中未做校验，所以要写入正确的色值。如“#f00”】</li>
 								<li>增加登录页面【背景视频仅作样式参考，实际使用中请自行更换为其他视频或图片，否则造成的任何问题使用者本人承担。】</li>
 								<li>新增打开窗口的动画效果</li>
 							</ul>

@@ -7,7 +7,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST',
-        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryQuestion.action?questionid=" + $("#questionid_hiden").val(),
+        url: getRootPath()+"/T_PaperManager_Controller/queryQuestion.action?questionid=" + $("#questionid_hiden").val(),
         success: function (res) {
             var TypeCode = res.questionTypeCode;
 
@@ -143,7 +143,7 @@ layui.use(['form', 'layer'], function () {
         console.log(obj);
          $.ajax({
               type: 'POST',
-              url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/updateQuestion.action",
+              url: getRootPath()+"/T_PaperManager_Controller/updateQuestion.action",
               data: obj,
               error: function () {
                   layer.msg('糟糕,出错了', {icon: 3, time: 1500});

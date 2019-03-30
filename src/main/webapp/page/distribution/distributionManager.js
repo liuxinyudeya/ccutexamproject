@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     //用户列表
     var tableIns = table.render({
         elem: '#distributionList',
-        url: 'http://localhost:8080/demo_war_exploded/Tea_Cla_CouManager_Controller/queryAllTea_Cla_Cou.action',
+        url: getRootPath()+'/Tea_Cla_CouManager_Controller/queryAllTea_Cla_Cou.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",

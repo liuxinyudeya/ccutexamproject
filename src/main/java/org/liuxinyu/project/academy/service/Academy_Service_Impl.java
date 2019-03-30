@@ -5,6 +5,7 @@ import org.liuxinyu.project.academy.mapper.IAcademy_Dao;
 import org.liuxinyu.project.util.entity.LayuiTable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -56,4 +57,6 @@ public class Academy_Service_Impl implements Academy_Service_Iface {
         stringObjectHashMap.put("success", "更新成功");
         return stringObjectHashMap;
     }
+
+
 }

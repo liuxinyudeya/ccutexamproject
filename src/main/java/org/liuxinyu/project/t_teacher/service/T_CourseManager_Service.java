@@ -16,7 +16,15 @@ public class T_CourseManager_Service implements T_CourseManager_IService {
     CourseInfo_Dao courseInfo_dao;
 
     public List<CourseInfo> queryCourseLIst(String teacherno) throws Exception {
-        return courseInfo_dao.queryCourseList(teacherno);
-
+        List<CourseInfo> courseInfos = courseInfo_dao.queryCourseList(teacherno);
+        for(CourseInfo c:courseInfos){
+            String courseno = c.getCourseno();
+            CourseInfo querypaperbycon = courseInfo_dao.querypaperbycon(courseno);
+            c.setPaperno(querypaperbycon.getPaperno());
+            c.setExamstate(querypaperbycon.getExamstate());
+            c.setScore(querypaperbycon.getScore());
+            c.setLevel(querypaperbycon.getLevel());
+        }
+        return courseInfos;
     }
 }

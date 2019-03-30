@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     // 教师列表
     var tableIns = table.render({
         elem: '#teacherList',
-        url: 'http://localhost:8080/demo_war_exploded/TeacherManager_Controller/queryAllTeacher.action',
+        url: getRootPath()+'/TeacherManager_Controller/queryAllTeacher.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",

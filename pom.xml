@@ -181,6 +181,17 @@
             <artifactId>commons-codec</artifactId>
             <version>1.9</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.6</version>
+        </dependency>
+
+
+
+
+
+
 
     </dependencies>
 
@@ -201,6 +212,14 @@
                     <webAppSourceDirectory>${project.build.directory}/${pom.artifactId}-${pom.version}
                     </webAppSourceDirectory>
                     <contextPath>/</contextPath>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
         </plugins>

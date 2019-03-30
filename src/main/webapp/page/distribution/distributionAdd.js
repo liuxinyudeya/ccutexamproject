@@ -7,7 +7,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/gradeInit.action"
+        , url:getRootPath()+"/MajorManager_Controller/gradeInit.action"
         , success: function (res) {
             if (res.length == 0) {
                 layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
@@ -37,7 +37,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url:getRootPath()+ "/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + data.value + '&department=03'
             , success: function (res) {
                 if (res.length == 0) {
@@ -71,7 +71,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + grade + data.value + '&department=02'
             , success: function (res) {
                 if (res.length == 0) {
@@ -105,7 +105,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + grade + $('.academy').val() + data.value + '&department=01'
             , success: function (res) {
                 if (res.length == 0) {
@@ -137,7 +137,7 @@ layui.use(['form', 'layer'], function () {
         // 查询课程
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/CourseManager_Controller/queryCourse.action"
+            , url: getRootPath()+"/CourseManager_Controller/queryCourse.action"
             ,data :'grade='+grade+'&academyCode='+$('.academy').val()+'&majorCode='+$('.major').val()
             , success: function (res) {
                 if (res.length == 0) {
@@ -166,7 +166,7 @@ layui.use(['form', 'layer'], function () {
     // 查询教师
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/TeacherManager_Controller/queryTeacher.action"
+        , url: getRootPath()+"/TeacherManager_Controller/queryTeacher.action"
         , success: function (res) {
             console.log(res);
             if (res.length == 0) {
@@ -207,7 +207,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/Tea_Cla_CouManager_Controller/addTea_Cla_Cou.action",
+            url: getRootPath()+"/Tea_Cla_CouManager_Controller/addTea_Cla_Cou.action",
             data: obj,
             success: function (res) {
                 console.log(res);

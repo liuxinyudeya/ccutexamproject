@@ -1,6 +1,7 @@
 package org.liuxinyu.project.login.controller;
 
 import org.liuxinyu.project.login.entity.Account;
+import org.liuxinyu.project.login.service.Account_Service;
 import org.liuxinyu.project.login.service.IAccount_Service;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class Account_Controller {
     public Map<String, Object> verifyLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Account account) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         List<Account> resoultList = null;
+        IAccount_Service i = new Account_Service();
         try {
             resoultList = iAccount_service.queryAccount(account);
             if (1 == resoultList.size()) {

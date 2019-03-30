@@ -7,4 +7,8 @@ import java.util.List;
 public interface CourseInfo_Dao {
 
     List<CourseInfo> queryCourseList(String teacherno);
+
+    CourseInfo querypaperbycon(String courseno);
+
+
 }

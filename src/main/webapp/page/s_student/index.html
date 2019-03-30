@@ -23,7 +23,7 @@
     <p class="test_time">
         <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
     </p>
-    <font><input type="button" class="submit" value="交卷"></font>
+    <font><input id="submitPaper" type="button" class="submit" value="交卷"></font>
 </div>
 <body>
 <input class="paperid" type="hidden">
@@ -107,9 +107,7 @@
                         <h1>
                             <i class="icon iconfont">&#xe692;</i>答题卡
                         </h1>
-                        <p class="test_time">
-                            <i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
-                        </p>
+
                     </div>
 
                     <div class="rt_content c1">
@@ -171,11 +169,13 @@
 <script src="jquery.easy-pie-chart.js"></script>
 <!--时间js-->
 <script src="time/jquery.countdown.js"></script>
+<script type="text/javascript" src="../../js/rootpath.js"></script>
 <script>
     $(document).ready(function () {
         $(".paperid").val(getId('id'));
         queryPaper();
         $(".submit").click(upPaper);
+
     });
 
     function upPaper() {
@@ -251,7 +251,7 @@
 
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:8080/demo_war_exploded/S_StudentManager_Controller/upPaper.action'
+            , url: getRootPath() + '/S_StudentManager_Controller/upPaper.action'
             , data: 'data=' + JSON.stringify(obj)
             , success: function (res) {
                 alert("您的成绩为:" + res);
@@ -278,7 +278,7 @@
 
     function queryPaper() {
         $.ajax({
-            url: 'http://localhost:8080/demo_war_exploded/Exam_Controller/queryExam.action'
+            url: getRootPath() + '/Exam_Controller/queryExam.action'
             , data: 'paperid=' + $(".paperid").val()
             , success: function (res) {
                 initPaper(res);
@@ -296,7 +296,8 @@
 
     function initPaper(data) {
         console.log(data);
-        timeinit(data.minuteCount);
+        timeinit(data.minuteCount, data.testTime);
+
         // 单选
         if (data.redioList != null && data.redioList.length > 0) {
             $(".q1 ").removeClass('layui-hide');
@@ -513,9 +514,13 @@
 
     }
 
-    function timeinit(Time) {
+    function timeinit(Time, testTime) {
         var time = parseInt(Time);
-        var count = parseInt(time / 60) + 1
+        var endtime = parseInt(testTime) + time * 60 * 1000;
+        var now = new Date().getTime();
+        var countDown = (endtime - now) / (1000 * 60);
+        console.log(countDown);
+        var count = parseInt(countDown / 60) + 1
         var hour = 0;
         var minut = 0;
         for (var i = 0; i < count; i++) {
@@ -535,12 +540,13 @@
             minut = '0' + minut;
         }
 
-        console.log(hour);
-        console.log(minut);
         $(".alt-1").html(hour + ':' + minut);
         $('.alt-1').countDown({
             css_class: 'countdown-alt-1'
         });
+        alert(countDown * 60 * 1000);
+        /*setTimeout(upPaper(), countDown * 60 * 1000);*/
+
     }
 
     window.jQuery(function ($) {

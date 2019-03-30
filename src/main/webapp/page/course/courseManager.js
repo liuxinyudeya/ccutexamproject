@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     // 课程列表
     var tableIns = table.render({
         elem: '#courseList',
-        url: 'http://localhost:8080/demo_war_exploded/CourseManager_Controller/queryAllCourse.action',
+        url: getRootPath()+'/CourseManager_Controller/queryAllCourse.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",

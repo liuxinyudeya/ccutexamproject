@@ -34,4 +34,7 @@ public interface IS_Student_Dao {
     List<ClassRank> queryClassRank(@Param("classno") String classno, @Param("courseno") String courseno);
 
     int isFinshExam(@Param("studentno") String studentno, @Param("courseno") String courseno);
+
+    String querypaperno(String courseno);
+
 }

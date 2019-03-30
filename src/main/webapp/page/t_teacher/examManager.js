@@ -5,14 +5,20 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         laytpl = layui.laytpl,
         table = layui.table;
     var paperid;
+    var isinit;
 
     $.ajax({
         type: 'POST',
-        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/isinitpaper.action?courseid=" + $("#courseno_hiden").val(),
+        url: getRootPath() + "/T_PaperManager_Controller/isinitpaper.action?courseid=" + $("#courseno_hiden").val(),
         success: function (res) {
+
             $(".addPaperButton").removeClass('layui-hide');
-            if (res != null) {
+            $(".addQuestionButton").removeClass('layui-hide');
+            isinit = "false";
+            if (res != "") {
+                isinit = "true";
                 $(".addPaperButton").addClass('layui-hide');
+                $(".addQuestionButton").addClass('layui-hide');
             }
 
 
@@ -22,7 +28,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     // 试题列表
     var tableIns = table.render({
         elem: '#paperList',
-        url: 'http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryAllQuestion.action?courseno=' + $("#courseno_hiden").val(),
+        url: getRootPath() + '/T_PaperManager_Controller/queryAllQuestion.action?courseno=' + $("#courseno_hiden").val(),
         cellMinWidth: 95,
         page: true,
         height: "full-125",
@@ -30,12 +36,12 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         limit: 15,
         id: "paperList",
         cols: [[
-            {field: 'id', title: '试题ID', minWidth: 100, align: "center", sort: true},
-            {field: 'questionTypeName', title: '题目类型', minWidth: 100, align: "center", sort: true},
-            {field: 'questionLevel', title: '题目难度', minWidth: 150, align: 'center'},
-            {field: 'questionDesc', title: '题目描述', minWidth: 600, align: 'center'},
-            {field: 'realAnswers', title: '正确答案', minWidth: 180, align: 'center'},
-            {title: '操作', minWidth: 100, templet: '#userListBar', fixed: "right", align: "center"}
+            {field: 'id', title: '试题ID', minWidth: 80, align: "center", sort: true},
+            {field: 'questionTypeName', title: '题目类型', minWidth: 80, align: "center", sort: true},
+            {field: 'questionLevel', title: '题目难度', minWidth: 80, align: 'center'},
+            {field: 'questionDesc', title: '题目描述', minWidth: 200, align: 'center'},
+            {field: 'realAnswers', title: '正确答案', minWidth: 100, align: 'center'},
+            {title: '操作', minWidth: 100, align: "center", templet: '#userListBar', field: 'right'}
         ]]
 
     });
@@ -61,7 +67,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         console.log(data.id);
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/delQuestion.action?questionid=" + data.id,
+            url: getRootPath() + "/T_PaperManager_Controller/delQuestion.action?questionid=" + data.id,
             error: function () {
                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});
             }

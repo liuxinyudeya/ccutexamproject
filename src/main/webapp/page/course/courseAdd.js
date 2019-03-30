@@ -7,7 +7,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/gradeInit.action"
+        , url: getRootPath()+"/MajorManager_Controller/gradeInit.action"
         , success: function (res) {
             if (res.length == 0) {
                 layer.msg('暂无年级信息哦', {icon: 4, time: 1500})
@@ -37,7 +37,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + data.value + '&department=03'
             , success: function (res) {
                 if (res.length == 0) {
@@ -71,7 +71,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + grade + data.value + '&department=02'
             , success: function (res) {
                 if (res.length == 0) {
@@ -105,7 +105,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + grade + $('.academy').val() + data.value + '&department=01'
             , success: function (res) {
                 if (res.length == 0) {
@@ -145,7 +145,7 @@ layui.use(['form', 'layer'], function () {
         console.log(obj);
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/CourseManager_Controller/addCourse.action",
+            url: getRootPath()+"/CourseManager_Controller/addCourse.action",
             data: obj,
             success: function (res) {
                 console.log(res);

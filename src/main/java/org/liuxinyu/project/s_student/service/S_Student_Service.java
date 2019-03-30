@@ -36,7 +36,9 @@ public class S_Student_Service implements IS_Student_Service {
         List<S_Student> s_students = is_student_dao.queryCourseList(studentno);
         for (S_Student s : s_students) {
             int finshExam = is_student_dao.isFinshExam(studentno, s.getCourseNo());
+            String querypaperno = is_student_dao.querypaperno(s.getCourseNo());
             s.setFinshExam(finshExam);
+            s.setPaperno(querypaperno);
             result.add(s);
         }
         return result;

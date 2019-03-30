@@ -11,13 +11,14 @@
        coursename,
        DATE_FORMAT(updatetime, "%Y-%m-%d") updatetime_str,
        (select count(*) from student s where s.classno = tcc.classno) stuCount
-       ,(select p.paperno from paper p where p.courseno=tcc.courseno) paperno
-       ,(select p.examstate from paper p where p.courseno=tcc.courseno) examstate
-       ,(select p.score from paper p where p.courseno=tcc.courseno) score
-       ,(select p.level from paper p where p.courseno=tcc.courseno) level
 
 from tea_cla_cou tcc where tcc.teacherno=#{value}
 
+
+    </select>
+
+    <select id="querypaperbycon" parameterType="string"  resultType="org.liuxinyu.project.t_teacher.entity.CourseInfo">
+        select p.paperno,p.examstate,p.score,p.level from paper p where p.courseno=#{value}
 
     </select>
 </mapper>

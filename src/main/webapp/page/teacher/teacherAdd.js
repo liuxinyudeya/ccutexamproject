@@ -16,7 +16,7 @@ layui.use(['form', 'layer'], function () {
         obj.isdelete = $(".isdelete").val();
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/TeacherManager_Controller/addTeacher.action",
+            url:getRootPath()+"/TeacherManager_Controller/addTeacher.action",
             data: obj,
             success: function (res) {
                 console.log(res);

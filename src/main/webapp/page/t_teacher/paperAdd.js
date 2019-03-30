@@ -6,7 +6,7 @@ layui.use(['form', 'layer'], function () {
     var questionTypeCode = '01';
 
 
-    form.on("select(questionType)", function (data) {
+    form.on("select(questionType)", function (data)    {
 
         if (data.value == '02') {// 多选
             $("#contextAnswer01").removeClass('layui-hide');
@@ -59,7 +59,7 @@ layui.use(['form', 'layer'], function () {
         console.log(obj.realAnswers);
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/addQuestion.action",
+            url: getRootPath()+"/T_PaperManager_Controller/addQuestion.action",
             data: obj,
             error: function () {
                 layer.msg('糟糕,出错了', {icon: 3, time: 1500});

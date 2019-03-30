@@ -33,6 +33,15 @@
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>  -->
 
+    <filter>
+        <filter-name>LoginCheck</filter-name>
+        <filter-class>org.liuxinyu.project.util.controller.LoginCheck</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginCheck</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
     <!-- Spring MVC servlet -->
     <servlet>
         <servlet-name>SpringMVC</servlet-name>

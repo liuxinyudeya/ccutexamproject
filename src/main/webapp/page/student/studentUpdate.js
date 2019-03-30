@@ -6,7 +6,7 @@ layui.use(['form', 'layer'], function () {
     var grade;
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/gradeInit.action"
+        , url:getRootPath()+ "/MajorManager_Controller/gradeInit.action"
         , success: function (res) {
 
             if (res.length == 0) {
@@ -30,7 +30,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+        , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
         , data: 'managerid=' + $('.grade_hiden').val() + '&department=03'
         , success: function (res) {
             if (res.length == 0) {
@@ -57,7 +57,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+        , url:getRootPath()+ "/MajorManager_Controller/academyInit.action"
         , data: 'managerid=' + $('.grade_hiden').val() + $('.academyCode_hiden').val() + '&department=02'
         , success: function (res) {
             if (res.length == 0) {
@@ -85,7 +85,7 @@ layui.use(['form', 'layer'], function () {
     $.ajax({
         type: 'POST'
         ,
-        url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+        url: getRootPath()+"/MajorManager_Controller/academyInit.action"
         ,
         data: 'managerid=' + $('.grade_hiden').val() + $('.academyCode_hiden').val() + $('.majorCode_hiden').val() + '&department=01'
         ,
@@ -133,7 +133,7 @@ layui.use(['form', 'layer'], function () {
         $('.classno').html("<option></option>");
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + data.value + '&department=03'
             , success: function (res) {
                 if (res.length == 0) {
@@ -168,7 +168,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url:getRootPath()+ "/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + grade + data.value + '&department=02'
             , success: function (res) {
                 if (res.length == 0) {
@@ -201,7 +201,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
             , data: 'managerid=' + grade + $('.major').val() + data.value + '&department=01'
             , success: function (res) {
                 if (res.length == 0) {
@@ -245,7 +245,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/StudentManager_Controller/updateStudent.action",
+            url:getRootPath()+ "/StudentManager_Controller/updateStudent.action",
             data: obj,
             success: function (res) {
                 console.log(res);

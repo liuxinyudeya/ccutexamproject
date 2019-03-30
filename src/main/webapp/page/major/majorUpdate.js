@@ -6,7 +6,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/gradeInit.action"
+        , url: getRootPath()+"/MajorManager_Controller/gradeInit.action"
         , success: function (res) {
 
             if (res.length == 0) {
@@ -30,7 +30,7 @@ layui.use(['form', 'layer'], function () {
 
     $.ajax({
         type: 'POST'
-        , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+        , url: getRootPath()+"/MajorManager_Controller/academyInit.action"
         , data: 'managerid=' + $('.grade_hiden').val()+'&department=03'
         , success: function (res) {
             if (res.length == 0) {
@@ -71,7 +71,7 @@ layui.use(['form', 'layer'], function () {
         $('.majorCode').val("");
         $.ajax({
             type: 'POST'
-            , url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/academyInit.action"
+            , url:getRootPath()+ "/MajorManager_Controller/academyInit.action"
             , data: 'grade=' + data.value
             , success: function (res) {
                 if (res.length == 0) {
@@ -112,7 +112,7 @@ layui.use(['form', 'layer'], function () {
         console.log(obj.isdelete);
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/MajorManager_Controller/updateMajor.action",
+            url: getRootPath()+"/MajorManager_Controller/updateMajor.action",
             data: obj,
             success: function (res) {
                 console.log(res);

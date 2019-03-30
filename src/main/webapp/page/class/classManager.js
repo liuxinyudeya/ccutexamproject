@@ -1,14 +1,37 @@
-layui.use(['form', 'layer', 'table', 'laytpl'], function () {
+layui.use(['form', 'layer', 'table', 'laytpl', 'upload'], function () {
     var form = layui.form,
+        upload = layui.upload,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         $ = layui.jquery,
         laytpl = layui.laytpl,
         table = layui.table;
 
+    // 上传Excle
+    var uploadExcle = upload.render({
+        elem: '.uploadExcle'
+        , url: getRootPath() + "/ClassManager_Controller/uploadExcle.action"
+        , accept: 'file' //允许上传的文件类型
+        , done: function (res) {
+            console.log(res);
+            if (res.state == 0) {
+                layer.msg(res.message, {icon: 1, time: 1500});
+            } else {
+                layer.msg(res.message, {icon: 2, time: 1500});
+            }
+            /*setTimeout(function () {
+                layer.closeAll("iframe");
+                //刷新父页面
+                parent.location.reload();
+            }, 2000);*/
+
+        }
+
+    })
+
     //用户列表
     var tableIns = table.render({
         elem: '#classList',
-        url: 'http://localhost:8080/demo_war_exploded/ClassManager_Controller/queryAllClass.action',
+        url: getRootPath() + '/ClassManager_Controller/queryAllClass.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",

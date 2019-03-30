@@ -67,6 +67,7 @@
 	</div>
 </form>
 <script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../js/rootpath.js"></script>
 <script>
 	layui.use(['form', 'layer'], function () {
 
@@ -85,7 +86,7 @@
 			obj.isdelete=$(".isdelete").val();
 			$.ajax({
 				type: 'POST',
-				url: "http://localhost:8080/demo_war_exploded/AcademyManager/updateAcademy.action",
+				url: getRootPath()+"/AcademyManager/updateAcademy.action",
 				data: obj,
 				success: function (res) {
 					console.log(res);

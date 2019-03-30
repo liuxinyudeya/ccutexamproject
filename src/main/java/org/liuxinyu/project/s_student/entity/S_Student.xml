@@ -69,4 +69,8 @@ from gradeinfo g where  g.courseno=#{value }group by g.classno;
     <select id="isFinshExam" parameterType="string" resultType="int">
         select count(*) finshExam from gradeinfo where studentno=#{studentno } and courseno=#{courseno };
     </select>
+
+    <select id="querypaperno" parameterType="string" resultType="string">
+        select paperno from paper where courseno=#{courseno}
+    </select>
 </mapper>

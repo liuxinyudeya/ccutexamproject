@@ -1,7 +1,9 @@
 package org.liuxinyu.project.cla.service;
 
 import org.liuxinyu.project.academy.entity.Academy;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,4 +19,6 @@ public interface ICla_Service {
     List<Academy> queryAllCla(String key) throws Exception;
 
     Map<String, Object> updateCla(Academy academy) throws Exception;
+
+    HashMap<String, Object> uploadExcle(MultipartFile file) throws Exception ;
 }

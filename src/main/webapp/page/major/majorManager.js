@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     //用户列表
     var tableIns = table.render({
         elem: '#majorList',
-        url: 'http://localhost:8080/demo_war_exploded/MajorManager_Controller/queryAllMajor.action',
+        url:getRootPath()+ '/MajorManager_Controller/queryAllMajor.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",

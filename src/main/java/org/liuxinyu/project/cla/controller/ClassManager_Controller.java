@@ -7,9 +7,11 @@ import org.liuxinyu.project.util.entity.LayuiTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +77,21 @@ public class ClassManager_Controller {
             e.printStackTrace();
             stringObjectHashMap.put("state", 1);
             stringObjectHashMap.put("error", "糟糕,服务器出错了!");
+        }
+        return stringObjectHashMap;
+    }
+
+    @RequestMapping(value = "uploadExcle")
+    @ResponseBody
+    public HashMap<String, Object> uploadExcle(MultipartFile file) {
+        HashMap<String, Object> stringObjectHashMap = new   HashMap<String, Object>();
+        System.out.println(file);
+        try {
+          stringObjectHashMap = iCla_service.uploadExcle(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+            stringObjectHashMap.put("state","1");
+            stringObjectHashMap.put("message","糟糕 服务器出错了");
         }
         return stringObjectHashMap;
     }

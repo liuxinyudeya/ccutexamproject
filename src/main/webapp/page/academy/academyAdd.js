@@ -17,7 +17,7 @@ layui.use(['form', 'layer'], function () {
 
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/AcademyManager/addAcademy.action",
+            url: getRootPath()+"/AcademyManager/addAcademy.action",
             data: obj,
             success: function (res) {
                 console.log(res);

@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     // 课程列表
     var tableIns = table.render({
         elem: '#courseList',
-        url: 'http://localhost:8080/demo_war_exploded/T_CourseManager_Controller/courseList.action',
+        url: getRootPath()+'/T_CourseManager_Controller/courseList.action',
         cellMinWidth: 95,
         page: true,
         height: "full-125",
@@ -37,7 +37,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             },
             {field: 'examstate', title: '考试状态', minWidth: 150, align: 'center'},
             {field: 'updatetime_str', title: '最后修改时间', align: 'center', minWidth: 150},
-            {
+            {field:'',
                 title: '操作', minWidth: 120, fixed: "right", align: "center", templet: function (d) {
                     if (d.paperno != null) {
                         return '<span lay-event="setpaper"  class="layui-btn layui-btn-red layui-btn-xs">查看试卷</span>'

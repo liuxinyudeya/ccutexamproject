@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'laydate'], function () {
     $.ajax({
         type: 'POST'
         ,
-        url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/queryPaper.action?courseno=" + $("#courseno_hiden").val()
+        url:getRootPath()+ "/T_PaperManager_Controller/queryPaper.action?courseno=" + $("#courseno_hiden").val()
         ,
         success: function (res) {
             console.log(res);
@@ -63,7 +63,7 @@ layui.use(['form', 'layer', 'laydate'], function () {
 
         $.ajax({
             type: 'POST',
-            url: "http://localhost:8080/demo_war_exploded/T_PaperManager_Controller/setPaper.action",
+            url: getRootPath()+"/T_PaperManager_Controller/setPaper.action",
             data: obj,
             success: function (res) {
                 layer.msg(res.success, {icon: 1, time: 1500});

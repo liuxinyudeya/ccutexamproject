@@ -34,4 +34,15 @@
             updatetime=NOW()
         where id = #{id}
     </update>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into ccutcloudexam.aca_ma_cla_info (id, grade, academyname, academycode, majorname, majorcode, classno,
+        department, managerid, updatetime)values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},#{item.grade},#{item.academyName},#{item.academyCode},#{item.majorName},#{item.majorCode},
+            #{item.classno},#{item.department},#{item.managerid},NOW()
+            )
+        </foreach>
+    </insert>
 </mapper>

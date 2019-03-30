@@ -3,6 +3,7 @@ package org.liuxinyu.project.cla.mapper;
 
 import org.liuxinyu.project.academy.entity.Academy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,4 +18,6 @@ public interface ICla_Dao {
     List<Academy> queryAllCla(String key);
 
     void updateCla(Academy academy);
+
+    void batchInsert(ArrayList<Academy> academies);
 }

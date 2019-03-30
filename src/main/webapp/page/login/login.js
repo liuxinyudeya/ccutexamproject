@@ -16,7 +16,7 @@ layui.use(['form', 'layer', 'jquery'], function () {
     form.on("submit(login)", function (data) {
 
         $.ajax({
-            url: "http://localhost:8080/demo_war_exploded/Account_Controller/verifyLogin.action",
+            url: getRootPath()+"/Account_Controller/verifyLogin.action",
             data: 'username=' + $("#userName").val() + '&password=' + $("#password").val(),
             success: function (res) {
 
